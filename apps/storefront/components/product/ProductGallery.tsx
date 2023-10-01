@@ -1,91 +1,57 @@
-import { PlayIcon } from "@heroicons/react/outline";
-import clsx from "clsx";
-import Image from "next/legacy/image";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import useKeypress from "react-use-keypress";
 
 import { ImageExpand } from "@/components/product/ImageExpand";
 import { VideoExpand } from "@/components/product/VideoExpand";
-import { getGalleryMedia, getVideoThumbnail } from "@/lib/media";
+import { getGalleryMedia } from "@/lib/media";
+import { ProductVariantDetailsFragment } from "@/saleor/api";
 import {
-  ProductDetailsFragment,
-  ProductMediaFragment,
-  ProductVariantDetailsFragment,
-} from "@/saleor/api";
+  ProductMediaFragmentBlurred,
+  ProductWithBlurredMedia,
+} from "../../pages/[channel]/[locale]/products/[slug]";
+import Carousel from "@/components/Carousel";
+import { images } from "next/dist/build/webpack/config/blocks/images";
 
 export interface ProductGalleryProps {
-  product: ProductDetailsFragment;
+  // product: ProductDetailsFragment;
+  product: ProductWithBlurredMedia;
   selectedVariant?: ProductVariantDetailsFragment;
 }
 
 export function ProductGallery({ product, selectedVariant }: ProductGalleryProps) {
-  const [expandedImage, setExpandedImage] = useState<ProductMediaFragment | undefined>(undefined);
-  const [videoToPlay, setVideoToPlay] = useState<ProductMediaFragment | undefined>(undefined);
+  const [expandedImage, setExpandedImage] = useState<ProductMediaFragmentBlurred | undefined>(
+    undefined,
+  );
+  const [videoToPlay, setVideoToPlay] = useState<ProductMediaFragmentBlurred | undefined>(
+    undefined,
+  );
 
   const galleryMedia = getGalleryMedia({ product, selectedVariant });
 
+  const [currentImage, setCurrentImage] = useState<ProductMediaFragmentBlurred>(galleryMedia?.[0]);
+  const [direction, setDirection] = useState(0);
+  const [currentImgIndex, setCurrentImageInd] = useState(0);
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  useKeypress("Escape", () => {
+    setExpandedImage(undefined);
+  });
+
+  const setCurrentImageCB = useCallback(
+    (ind: number) => {
+      if (ind > currentImgIndex) {
+        setDirection(1);
+      } else {
+        setDirection(-1);
+      }
+      setCurrentImage(galleryMedia[ind]);
+      setCurrentImageInd(ind);
+    },
+    [currentImage, galleryMedia, setCurrentImage],
+  );
+
   return (
     <>
-      <div
-        className={clsx(
-          "mt-1 mb-2 w-full max-h-screen grid grid-cols-1 gap-2 md:h-full h-96 overflow-scroll scrollbar-hide",
-          galleryMedia.length > 1 && "md:grid-cols-2 md:col-span-2"
-        )}
-        style={{
-          scrollSnapType: "both mandatory",
-        }}
-      >
-        {galleryMedia?.map((media: ProductMediaFragment) => {
-          const videoThumbnailUrl = getVideoThumbnail(media.url);
-          return (
-            <div
-              key={media.url}
-              className="aspect-w-1 aspect-h-1"
-              style={{
-                scrollSnapAlign: "start",
-              }}
-            >
-              {media.type === "IMAGE" && (
-                <Image
-                  onClick={() => setExpandedImage(media)}
-                  src={media.url}
-                  alt={media.alt}
-                  layout="fill"
-                  objectFit="cover"
-                  role="button"
-                  tabIndex={-2}
-                  priority
-                />
-              )}
-              {media.type === "VIDEO" && (
-                <div
-                  role="button"
-                  tabIndex={-2}
-                  onClick={() => {
-                    setVideoToPlay(media);
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      setVideoToPlay(media);
-                    }
-                  }}
-                >
-                  {videoThumbnailUrl && (
-                    <Image
-                      src={videoThumbnailUrl}
-                      alt={media.alt}
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  )}
-                  <div className="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 absolute w-full h-full flex justify-center items-center bg-transparent">
-                    <PlayIcon className="h-12 w-12" />
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
       {expandedImage && (
         <div className="absolute min-h-screen min-w-screen h-full w-full top-0 bottom-0 left-0 right-0 z-40">
           <ImageExpand image={expandedImage} onRemoveExpand={() => setExpandedImage(undefined)} />
@@ -97,6 +63,14 @@ export function ProductGallery({ product, selectedVariant }: ProductGalleryProps
           <VideoExpand video={videoToPlay} onRemoveExpand={() => setVideoToPlay(undefined)} />
         </div>
       )}
+      <Carousel
+        currentImg={currentImage}
+        currentImgIndex={currentImgIndex}
+        setCurrentImage={setCurrentImageCB}
+        setVideoToPlay={setVideoToPlay}
+        media={galleryMedia}
+        direction={direction}
+      />
     </>
   );
 }

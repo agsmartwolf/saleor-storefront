@@ -8,5 +8,5 @@ export const useStyles = makeStyles(
       width: "100%",
     },
   }),
-  { name: "AppSavebar" }
+  { name: "AppSavebar" },
 );

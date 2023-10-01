@@ -45,5 +45,5 @@ export type ReuseExistingSessionResult = Promise<PayRequestResponse | undefined>
 
 export type ReuseExistingVendorSessionFn = (
   saleorApiUrl: string,
-  params: ReuseExistingVendorSessionParams
+  params: ReuseExistingVendorSessionParams,
 ) => ReuseExistingSessionResult;

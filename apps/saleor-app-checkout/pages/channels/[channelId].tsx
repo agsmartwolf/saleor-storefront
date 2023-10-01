@@ -41,7 +41,7 @@ const Channel = () => {
   const channelPaymentOptions = useChannelPaymentOptions(
     channels,
     settingsValues.channelActivePaymentProviders,
-    channelId?.toString()
+    channelId?.toString(),
   );
 
   const handleCancel = () => {

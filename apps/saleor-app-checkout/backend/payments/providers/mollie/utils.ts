@@ -40,7 +40,7 @@ const getProductType = (line: OrderLineFragment): OrderLineType | undefined => {
 };
 
 export const getDiscountLines = (
-  discounts: OrderFragment["discounts"]
+  discounts: OrderFragment["discounts"],
 ): OrderCreateParams["lines"] =>
   discounts
     ? discounts.map((discount) => ({

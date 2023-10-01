@@ -52,7 +52,7 @@ export function FilterDropdown({
                   onClick={() => optionToggle(attributeSlug, option.slug)}
                   className={clsx(
                     active ? "border-brand text-brand" : "border-transparent text-gray-900",
-                    "group flex w-full items-center px-2 py-2 text-base border-2"
+                    "group flex w-full items-center px-2 py-2 text-base border-2",
                   )}
                   data-testid={`filterAttributeValue${option.label}`}
                 >

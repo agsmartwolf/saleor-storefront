@@ -8,5 +8,5 @@ export const useStyles = makeStyles(
   }),
   {
     name: "AppContainer",
-  }
+  },
 );

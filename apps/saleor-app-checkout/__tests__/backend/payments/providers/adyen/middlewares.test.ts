@@ -183,7 +183,7 @@ describe("isAdyenWebhookAuthenticated middleware", () => {
 
     const authToken = Buffer.from(
       TEST_ADYEN_USERNAME + ":" + TEST_ADYEN_PASSWORD,
-      "ascii"
+      "ascii",
     ).toString("base64");
 
     const request = {

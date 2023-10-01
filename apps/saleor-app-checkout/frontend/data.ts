@@ -16,7 +16,7 @@ import { Customization, CustomizationID, CustomizationSettings } from "types/com
 import { PaymentProvider, PaymentProviderID, PaymentProviderSettings } from "checkout-common";
 
 export const useCustomizationSettings = (
-  settingsValues: UnknownPublicSettingsValues
+  settingsValues: UnknownPublicSettingsValues,
 ): Customization<CustomizationID>[] =>
   useCustomizations().map((customization) => ({
     ...customization,
@@ -27,7 +27,7 @@ export const useCustomizationSettings = (
   }));
 
 export const usePaymentProviderSettings = (
-  settingsValues: UnknownPrivateSettingsValues<"unencrypted">
+  settingsValues: UnknownPrivateSettingsValues<"unencrypted">,
 ): PaymentProvider<PaymentProviderID>[] =>
   usePaymentProviders().map((provider) => ({
     ...provider,
@@ -39,7 +39,7 @@ export const usePaymentProviderSettings = (
 
 export const useChannelPaymentOptionsList = (
   channels: ChannelFragment[],
-  activePaymentProviders?: ChannelActivePaymentProviders
+  activePaymentProviders?: ChannelActivePaymentProviders,
 ): ChannelPaymentOptions[] => {
   const paymentMethods = usePaymentMethods();
   const paymentProviders = usePaymentProviders();
@@ -67,8 +67,8 @@ export const useChannelPaymentOptionsList = (
 export const useChannelPaymentOptions = (
   channels: ChannelFragment[],
   activePaymentProviders?: ChannelActivePaymentProviders,
-  channelId?: string
+  channelId?: string,
 ) =>
   useChannelPaymentOptionsList(channels, activePaymentProviders).find(
-    (channelPayments) => channelPayments.channel.id === channelId
+    (channelPayments) => channelPayments.channel.id === channelId,
   );

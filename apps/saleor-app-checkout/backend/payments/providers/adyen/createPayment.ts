@@ -77,7 +77,7 @@ export const createAdyenCheckoutPaymentLinks = async ({
       order,
       merchantAccount: config.merchantAccount,
       returnUrl: formatRedirectUrl({ saleorApiUrl, redirectUrl, orderId: order.id }),
-    })
+    }),
   );
 };
 
@@ -93,7 +93,7 @@ export const createAdyenCheckoutSession = async (
     totalAmount: number;
     checkoutId: string;
     redirectUrl: string;
-  }
+  },
 ) => {
   const { config, checkout } = await getAdyenClient(saleorApiUrl);
 

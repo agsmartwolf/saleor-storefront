@@ -8,14 +8,14 @@ import * as Apl from "@/saleor-app-checkout/config/apl";
 
 export const createTransaction = async (
   saleorApiUrl: string,
-  args: TransactionCreateMutationVariables
+  args: TransactionCreateMutationVariables,
 ) => {
   const authData = await Apl.get(saleorApiUrl);
   const client = getClientForAuthData(authData);
   const { data, error } = await client
     .mutation<TransactionCreateMutation, TransactionCreateMutationVariables>(
       TransactionCreateDocument,
-      args
+      args,
     )
     .toPromise();
 

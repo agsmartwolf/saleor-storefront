@@ -40,7 +40,7 @@ export const getPrivateSettings = async ({
       PrivateMetafieldsInferedDocument,
       {
         keys: [...allPrivateSettingID],
-      }
+      },
     )
     .toPromise();
 
@@ -50,7 +50,7 @@ export const getPrivateSettings = async ({
 
   const settingsValues = mapPrivateMetafieldsToSettings(
     data?.app?.privateMetafields || {},
-    obfuscateEncryptedData
+    obfuscateEncryptedData,
   );
 
   return settingsValues;
@@ -62,7 +62,7 @@ export const getPublicSettings = async ({ saleorApiUrl }: { saleorApiUrl: string
   const { data, error } = await getClientForAuthData(authData)
     .query<PublicMetafieldsInferedQuery, PublicMetafieldsInferedQueryVariables>(
       PublicMetafieldsInferedDocument,
-      { keys: [...allPublicSettingID] }
+      { keys: [...allPublicSettingID] },
     )
     .toPromise();
 
@@ -93,7 +93,7 @@ export const getActivePaymentProvidersSettings = async (saleorApiUrl: string) =>
 
   const activePaymentProvidersSettings = mergeChannelsWithPaymentProvidersSettings(
     settings,
-    data?.channels
+    data?.channels,
   );
 
   return activePaymentProvidersSettings;
@@ -129,7 +129,7 @@ export const getChannelActivePaymentProvidersSettings = async ({
 
 export const setPrivateSettings = async (
   saleorApiUrl: string,
-  settings: PrivateSettingsValues<"unencrypted">
+  settings: PrivateSettingsValues<"unencrypted">,
 ) => {
   const authData = await Apl.get(saleorApiUrl);
   const client = getClientForAuthData(authData);
@@ -143,7 +143,7 @@ export const setPrivateSettings = async (
         id: authData.appId,
         input: metadata,
         keys: [...allPrivateSettingID],
-      }
+      },
     )
     .toPromise();
 
@@ -155,7 +155,7 @@ export const setPrivateSettings = async (
 
   const settingsValues = mapPrivateMetafieldsToSettings(
     data?.updatePrivateMetadata?.item?.privateMetafields || {},
-    true
+    true,
   );
 
   return settingsValues;

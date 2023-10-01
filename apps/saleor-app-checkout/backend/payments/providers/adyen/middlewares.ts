@@ -21,7 +21,7 @@ export const withAdyenWebhookCredentials =
       getPrivateSettings({
         saleorApiUrl: request.params.saleorApiUrl,
         obfuscateEncryptedData: false,
-      })
+      }),
     );
 
     if (error) {
@@ -92,7 +92,7 @@ export const isAdyenWebhookHmacValid: Middleware = (handler) => async (request) 
 
   // first validate the origin
   const [validationError, isValid] = await unpackPromise(
-    validateHmac(notificationRequestItem, hmac)
+    validateHmac(notificationRequestItem, hmac),
   );
 
   if (!isValid || validationError) {

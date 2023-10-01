@@ -5,7 +5,7 @@ import { FieldValues, UseFormWatch } from "react-hook-form";
 import { Customization, CustomizationID } from "types/common";
 
 export const getFormDefaultValues = (
-  options: Customization<CustomizationID>[]
+  options: Customization<CustomizationID>[],
 ): CustomizationSettingsValues =>
   options.reduce(
     (settingsGroup, option) => ({
@@ -15,18 +15,18 @@ export const getFormDefaultValues = (
           ...values,
           [setting.id]: setting.value,
         }),
-        {}
+        {},
       ),
     }),
-    {} as CustomizationSettingsValues
+    {} as CustomizationSettingsValues,
   );
 
 export const useSettingsFromValues = (
   options: Customization<CustomizationID>[],
-  watch: UseFormWatch<FieldValues>
+  watch: UseFormWatch<FieldValues>,
 ) => {
   const [previewSettings, setPreviewSettings] = useState<CustomizationSettingsValues>(
-    getFormDefaultValues(options)
+    getFormDefaultValues(options),
   );
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const useSettingsFromValues = (
       const updatedSettings = unflattenSettings(
         "customizations",
         flattenedSettings,
-        options
+        options,
       ) as CustomizationSettingsValues;
 
       setPreviewSettings(updatedSettings);

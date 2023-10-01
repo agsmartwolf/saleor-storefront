@@ -21,7 +21,7 @@ export const getStaticPaths: GetStaticPaths = () => ({
 });
 
 export const getStaticProps = async (
-  context: GetStaticPropsContext<{ channel: string; locale: string; slug: string }>
+  context: GetStaticPropsContext<{ channel: string; locale: string; slug: string }>,
 ) => {
   if (!context.params) {
     return {

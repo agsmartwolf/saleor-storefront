@@ -25,7 +25,7 @@ export const updatePaymentMetafield = async ({
       {
         orderId,
         data: JSON.stringify(payment),
-      }
+      },
     )
     .toPromise();
 

@@ -98,5 +98,5 @@ export const useStyles = makeStyles(
       margin: theme.spacing(4),
     },
   }),
-  { name: "DesignDetails" }
+  { name: "DesignDetails" },
 );

@@ -20,7 +20,7 @@ export const requestGetPaymentProviderSettings = ({
         "authorization-bearer": token,
         "saleor-api-url": saleorApiUrl,
       },
-    }
+    },
   );
 
 export const requestSetPaymentProviderSettings = ({
@@ -40,5 +40,5 @@ export const requestSetPaymentProviderSettings = ({
         "saleor-api-url": saleorApiUrl,
       },
       body: JSON.stringify(data),
-    }
+    },
   );

@@ -21,7 +21,7 @@ function SearchPage() {
       }
     },
     1000,
-    [searchQuery]
+    [searchQuery],
   );
 
   return (

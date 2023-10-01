@@ -59,7 +59,7 @@ const stripeWebhook: NextApiHandler = async (req, res) => {
       body,
       signature: sig,
       secret: stripeSecrets.webhookSecret,
-    })
+    }),
   );
 
   if (verifyStripeEventSignatureError || !event) {

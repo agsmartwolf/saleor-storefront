@@ -21,5 +21,5 @@ export const useStyles = makeStyles(
       cursor: "pointer",
     },
   }),
-  { name: "ColorInput" }
+  { name: "ColorInput" },
 );

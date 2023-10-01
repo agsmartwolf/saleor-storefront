@@ -28,7 +28,7 @@ export async function handleMolieRefund({
   const order = await mollieClient.orders.get(id);
   const payments = await order.getPayments();
   const payment = payments.find(
-    (payment) => payment.status === PaymentStatus.paid && payment.isRefundable()
+    (payment) => payment.status === PaymentStatus.paid && payment.isRefundable(),
   );
 
   if (!payment) {
@@ -44,7 +44,7 @@ export async function handleMolieRefund({
         value: String(amount),
         currency,
       },
-    })
+    }),
   );
 
   const updateSucceeded = await updateTransaction(saleorApiUrl, {

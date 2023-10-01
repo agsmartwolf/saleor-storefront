@@ -21,7 +21,7 @@ export function ShippingMethodOption({ method }: ShippingMethodOptionProps) {
         clsx(
           checked ? "border-transparent" : "border-gray-300",
           active ? "ring-1 ring-blue-500" : "",
-          "bg-white border rounded shadow-sm p-4 flex cursor-pointer"
+          "bg-white border rounded shadow-sm p-4 flex cursor-pointer",
         )
       }
     >
@@ -47,7 +47,7 @@ export function ShippingMethodOption({ method }: ShippingMethodOptionProps) {
             className={clsx(
               active ? "border" : "border-2",
               checked ? "border-blue-500" : "border-transparent",
-              "absolute -inset-px rounded pointer-events-none"
+              "absolute -inset-px rounded pointer-events-none",
             )}
             aria-hidden="true"
           />

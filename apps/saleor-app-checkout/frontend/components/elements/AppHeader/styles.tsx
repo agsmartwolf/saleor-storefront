@@ -16,5 +16,5 @@ export const useStyles = makeStyles(
       transform: "rotate(180deg)",
     },
   }),
-  { name: "AppHeader" }
+  { name: "AppHeader" },
 );

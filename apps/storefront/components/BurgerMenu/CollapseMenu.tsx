@@ -34,9 +34,7 @@ export function CollapseMenu({ menuItem }: CollapseMenuProps) {
           </button>
           {open && (
             <div>
-              {menuItem.children?.map((item) => (
-                <SubCollapseMenu menuItem={item} key={item.id} />
-              ))}
+              {menuItem.children?.map((item) => <SubCollapseMenu menuItem={item} key={item.id} />)}
             </div>
           )}
         </>

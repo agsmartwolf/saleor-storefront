@@ -19,7 +19,7 @@ export function StockToggle({ enabled, onChange }: StockToggleProps) {
           <span
             className={clsx(
               enabled ? "translate-x-3 bg-gray-400" : "translate-x-1 bg-gray-200",
-              "inline-block w-2 h-2 transform rounded-full transition-transform"
+              "inline-block w-2 h-2 transform rounded-full transition-transform",
             )}
           />
         </Switch>

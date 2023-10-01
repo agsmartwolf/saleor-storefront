@@ -18,7 +18,7 @@ const OperationsEnum = Types.notification.NotificationRequestItem.OperationsEnum
 const EventCodeEnum = Types.notification.NotificationRequestItem.EventCodeEnum;
 
 export const mapAvailableActions = (
-  operations: Types.notification.NotificationRequestItem.OperationsEnum[] | undefined
+  operations: Types.notification.NotificationRequestItem.OperationsEnum[] | undefined,
 ): TransactionActionEnum[] => {
   if (!operations) return [];
 
@@ -70,15 +70,15 @@ export const getLineItems = (lines: OrderFragment["lines"]): Types.checkout.Line
     taxPercentage: line.taxRate * 100,
     taxAmount: getAdyenIntegerAmountFromSaleor(
       line.totalPrice.tax.amount,
-      line.totalPrice.tax.currency
+      line.totalPrice.tax.currency,
     ),
     amountExcludingTax: getAdyenIntegerAmountFromSaleor(
       line.totalPrice.net.amount,
-      line.totalPrice.net.currency
+      line.totalPrice.net.currency,
     ),
     amountIncludingTax: getAdyenIntegerAmountFromSaleor(
       line.totalPrice.gross.amount,
-      line.totalPrice.gross.currency
+      line.totalPrice.gross.currency,
     ),
     id: line.id,
     imageUrl: line.thumbnail?.url,
@@ -98,7 +98,7 @@ export const verifyBasicAuth = (username: string, password: string, token: strin
 };
 
 export const getNotificationStatus = (
-  notification: Types.notification.NotificationRequestItem
+  notification: Types.notification.NotificationRequestItem,
 ): TransactionStatus => {
   const { eventCode, success } = notification;
   if (
@@ -135,7 +135,7 @@ const getCurrencyFromTransaction = (transaction: TransactionFragment | null) => 
 };
 
 export const isNotificationAmountValid = (
-  notification: Partial<Pick<Types.notification.NotificationRequestItem, "amount">>
+  notification: Partial<Pick<Types.notification.NotificationRequestItem, "amount">>,
 ): notification is { amount: { value: number; currency: string } } => {
   if (
     typeof notification?.amount?.currency !== "string" ||
@@ -149,7 +149,7 @@ export const isNotificationAmountValid = (
 
 export const isNotificationCurrencyMatchingTransaction = (
   notificationCurrency: string,
-  transaction: TransactionFragment | null
+  transaction: TransactionFragment | null,
 ) => {
   const transactionCurrency = getCurrencyFromTransaction(transaction);
   if (!transactionCurrency) {
@@ -162,7 +162,7 @@ export const isNotificationCurrencyMatchingTransaction = (
 
 export const getTransactionAmountFromAdyen = (
   notification: Types.notification.NotificationRequestItem,
-  transaction: TransactionFragment | null
+  transaction: TransactionFragment | null,
 ): TransactionAmounts => {
   const getTransactionAmount = getTransactionAmountGetterAsMoney({
     voided: transaction?.voidedAmount?.amount,
@@ -181,7 +181,7 @@ export const getTransactionAmountFromAdyen = (
   }
 
   const notificationAmount = currency(
-    getSaleorAmountFromAdyenInteger(notification.amount.value, notification.amount.currency)
+    getSaleorAmountFromAdyenInteger(notification.amount.value, notification.amount.currency),
   );
 
   if (!isNotificationCurrencyMatchingTransaction(notification.amount.currency, transaction)) {
@@ -207,7 +207,7 @@ export const getTransactionAmountFromAdyen = (
         amountAuthorized: {
           // Payment can be partially captured
           amount: nonNegative(
-            getTransactionAmount("authorized").subtract(notificationAmount).value
+            getTransactionAmount("authorized").subtract(notificationAmount).value,
           ),
           currency: notification.amount.currency,
         },

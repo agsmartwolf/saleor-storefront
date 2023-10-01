@@ -74,5 +74,5 @@ export const useStyles = makeStyles(
       },
     },
   }),
-  { name: "FileInput" }
+  { name: "FileInput" },
 );

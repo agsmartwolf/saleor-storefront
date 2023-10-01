@@ -28,7 +28,7 @@ export const verifyAdyenSession = async (saleorApiUrl: string, session: string) 
 
 export const reuseExistingAdyenSession: ReuseExistingVendorSessionFn = async (
   saleorApiUrl,
-  { payment, orderId }
+  { payment, orderId },
 ) => {
   const session = await verifyAdyenSession(saleorApiUrl, payment.session);
   const StatusEnum = AdyenTypes.checkout.PaymentLinkResponse.StatusEnum;

@@ -56,7 +56,7 @@ export const getTransactionAmountGetter = (amounts: Amounts) => {
         return notNegative(currency(charged).subtract(refunded).subtract(voided).value);
       case "authorized":
         return notNegative(
-          currency(authorized).subtract(charged).subtract(refunded).subtract(voided).value
+          currency(authorized).subtract(charged).subtract(refunded).subtract(voided).value,
         );
     }
   };
@@ -67,7 +67,7 @@ export const getTransactionAmountGetterAsMoney = (amounts: Amounts) => (type: ke
 
 export const getActionsAfterRefund = (
   transaction: TransactionActionPayloadFragment["transaction"],
-  refundAmount: number
+  refundAmount: number,
 ) => {
   const getTransactionAmount = getTransactionAmountGetter({
     voided: transaction?.voidedAmount.amount,

@@ -19,7 +19,7 @@ export const ADYEN_PAYMENT_PREFIX = "adyen";
 
 export const isNotificationDuplicate = (
   transactions: TransactionFragment[],
-  notificationItem: Types.notification.NotificationRequestItem
+  notificationItem: Types.notification.NotificationRequestItem,
 ) => {
   const eventKeys = transactions.map(({ events }) => events.map(createEventUniqueKey)).flat();
   const newEventKey = createEventUniqueKey({
@@ -32,7 +32,7 @@ export const isNotificationDuplicate = (
 
 export const getUpdatedTransactionData = (
   transaction: TransactionFragment,
-  notification: Types.notification.NotificationRequestItem
+  notification: Types.notification.NotificationRequestItem,
 ): TransactionUpdateMutationVariables => {
   const { eventCode, pspReference, originalReference, operations } = notification;
 
@@ -61,7 +61,7 @@ export const getUpdatedTransactionData = (
 
 export const getNewTransactionData = (
   orderId: string,
-  notification: Types.notification.NotificationRequestItem
+  notification: Types.notification.NotificationRequestItem,
 ): TransactionCreateMutationVariables | undefined => {
   const { eventCode, pspReference, paymentMethod, operations } = notification;
 

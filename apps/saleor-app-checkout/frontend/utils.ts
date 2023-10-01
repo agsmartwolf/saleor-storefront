@@ -14,12 +14,12 @@ import { CombinedError } from "urql";
 export const flattenSettingId = (
   groupId: PublicSettingID[number],
   optionIdx: number,
-  settingId: string
+  settingId: string,
 ) => `${groupId}-${optionIdx}-${settingId}`;
 
 export const unflattenValue = (
   valueId: PublicMetafieldID[number],
-  flattenedValues: Record<string, string>
+  flattenedValues: Record<string, string>,
 ) => {
   const valueKey = Object.keys(flattenedValues).find((flattedKey) => {
     const keys = flattedKey.split("-");
@@ -33,7 +33,7 @@ export const unflattenValue = (
 export const unflattenSettings = <S extends Node>(
   groupId: PublicSettingID[number],
   flattenedValues: Record<string, string>,
-  options: S[]
+  options: S[],
 ) => {
   const unflattenedSettings: UnknownPublicSettingsValues = {};
 
@@ -71,7 +71,7 @@ export const getCommonErrors = (error?: Partial<CombinedError>) =>
 
 export const getMetafield = (
   metafields: PublicMetafieldsValues,
-  metafieldId: PublicMetafieldID[number]
+  metafieldId: PublicMetafieldID[number],
 ) => metafields[metafieldId];
 
 export const getRawAppPath = (path: string): string => {

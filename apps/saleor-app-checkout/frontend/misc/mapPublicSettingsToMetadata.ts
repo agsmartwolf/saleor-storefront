@@ -17,12 +17,12 @@ export const mapPublicSettingsToMetadata = (settingsValues: Partial<PublicSettin
     [] as Array<{
       key: string;
       value: string;
-    }>
+    }>,
   );
 };
 
 export const mapPublicMetafieldsToMetadata = (
-  metafieldsValues: Partial<PublicMetafieldsValues>
+  metafieldsValues: Partial<PublicMetafieldsValues>,
 ) => {
   return Object.keys(metafieldsValues).reduce(
     (metadata, metafieldsValuesKey) => {
@@ -40,6 +40,6 @@ export const mapPublicMetafieldsToMetadata = (
     [] as Array<{
       key: string;
       value: string;
-    }>
+    }>,
   );
 };

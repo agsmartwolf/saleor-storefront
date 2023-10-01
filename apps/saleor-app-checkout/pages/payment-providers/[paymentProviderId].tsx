@@ -28,7 +28,7 @@ const PaymentProvider = () => {
   const token = app.getState().token;
 
   const paymentProvider = paymentProviders.find(
-    (paymentMethod) => paymentMethod.id === paymentProviderId
+    (paymentMethod) => paymentMethod.id === paymentProviderId,
   );
 
   const handleCancel = () => {

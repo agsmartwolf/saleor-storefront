@@ -52,12 +52,12 @@ export function FilteredProductList({
   const sortBy = parseQuerySort(sortByQuery);
   const setSortBy = (
     value: UrlSorting | undefined | null,
-    transitionOptions?: TransitionOptions | undefined
+    transitionOptions?: TransitionOptions | undefined,
   ) => setSortByQuery(serializeQuerySort(value), transitionOptions);
 
   const [inStockFilter, setInStockFilter] = useQueryState(
     "inStock",
-    queryTypes.boolean.withDefault(false)
+    queryTypes.boolean.withDefault(false),
   );
 
   const [productsFilter, setProductsFilter] = useState<ProductFilterInput>();
@@ -95,7 +95,7 @@ export function FilteredProductList({
 
   const addAttributeFilter = (attributeSlug: string, choiceSlug: string) => {
     const isFilterAlreadyApplied = !!pills.find(
-      (pill) => pill.attributeSlug === attributeSlug && pill.choiceSlug === choiceSlug
+      (pill) => pill.attributeSlug === attributeSlug && pill.choiceSlug === choiceSlug,
     );
     if (isFilterAlreadyApplied) {
       return removeAttributeFilter(attributeSlug, choiceSlug);

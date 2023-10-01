@@ -36,7 +36,7 @@ import { getSaleorApiUrlFromRequest } from "@/saleor-app-checkout/backend/auth";
 
 const reuseExistingSession = (
   saleorApiUrl: string,
-  { orderId, provider, method, privateMetafield }: ReuseExistingSessionParams
+  { orderId, provider, method, privateMetafield }: ReuseExistingSessionParams,
 ): ReuseExistingSessionResult => {
   const payment: OrderPaymentMetafield = JSON.parse(privateMetafield);
 
@@ -98,7 +98,7 @@ const getPaymentResponse = async ({
   }
 
   const [paymentUrlError, data] = await unpackPromise(
-    getPaymentUrlIdForProvider({ saleorApiUrl, body, order, appUrl })
+    getPaymentUrlIdForProvider({ saleorApiUrl, body, order, appUrl }),
   );
 
   if (paymentUrlError) {

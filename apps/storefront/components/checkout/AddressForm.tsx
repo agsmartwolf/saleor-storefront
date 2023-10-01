@@ -53,7 +53,7 @@ export function AddressForm({
       errors.forEach((e) =>
         setErrorAddress(e.field as keyof AddressFormData, {
           message: e.message || "",
-        })
+        }),
       );
       return;
     }

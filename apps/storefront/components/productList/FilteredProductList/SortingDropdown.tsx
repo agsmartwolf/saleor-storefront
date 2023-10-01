@@ -47,7 +47,7 @@ export function SortingDropdown({ optionToggle, chosen }: SortingDropdownProps) 
                   onClick={() => optionToggle(option.field, option.direction)}
                   className={clsx(
                     active ? "border-brand text-brand" : "border-transparent text-gray-900",
-                    "group flex w-full items-center px-2 py-2 text-base border-2"
+                    "group flex w-full items-center px-2 py-2 text-base border-2",
                   )}
                   data-testid={`sortByOption${option.label}`}
                 >

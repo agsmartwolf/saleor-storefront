@@ -46,7 +46,7 @@ const PaymentProviderDetails: React.FC<PaymentProviderDetailsProps> = ({
     extractSettingsData(selectedPaymentProvider);
 
   const flatSettings = Object.fromEntries(
-    selectedPaymentProvider.settings.map((setting) => [setting.id, setting.value])
+    selectedPaymentProvider.settings.map((setting) => [setting.id, setting.value]),
   );
 
   const formMethods = useForm({
@@ -94,7 +94,7 @@ const PaymentProviderDetails: React.FC<PaymentProviderDetailsProps> = ({
 
   const handleSubmit = (flattedOptions: Record<string, string | undefined>) => {
     const changedEntries = Object.entries(flattedOptions).filter(
-      ([key]) => formState.dirtyFields[key]
+      ([key]) => formState.dirtyFields[key],
     );
 
     onSubmit({

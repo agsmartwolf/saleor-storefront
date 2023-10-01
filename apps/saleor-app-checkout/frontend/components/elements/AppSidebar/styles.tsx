@@ -20,5 +20,5 @@ export const useStyles = makeStyles(
       margin: theme.spacing(0, 4),
     },
   }),
-  { name: "AppSidebar" }
+  { name: "AppSidebar" },
 );

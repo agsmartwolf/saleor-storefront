@@ -9,7 +9,7 @@ import * as Apl from "@/saleor-app-checkout/config/apl";
 
 export const getTransactionProcessedEvents = async (
   saleorApiUrl: string,
-  args: TransactionProcessedEventsQueryVariables
+  args: TransactionProcessedEventsQueryVariables,
 ) => {
   const authData = await Apl.get(saleorApiUrl);
   const client = getClientForAuthData(authData);
@@ -17,7 +17,7 @@ export const getTransactionProcessedEvents = async (
   const { data, error } = await client
     .query<TransactionProcessedEventsQuery, TransactionProcessedEventsQueryVariables>(
       TransactionProcessedEventsDocument,
-      args
+      args,
     )
     .toPromise();
 

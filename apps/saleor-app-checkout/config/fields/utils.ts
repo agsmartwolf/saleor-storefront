@@ -2,11 +2,11 @@ import { IntlShape, MessageDescriptor } from "react-intl";
 
 export const withLabels = <
   K extends string | number | symbol,
-  T extends Record<string, any> & { id: K }
+  T extends Record<string, any> & { id: K },
 >(
   intl: IntlShape,
   messages: Record<K, MessageDescriptor>,
-  items: T[]
+  items: T[],
 ): (T & { id: K; label: string })[] => {
   return items.map((item) => ({
     ...item,
@@ -16,11 +16,11 @@ export const withLabels = <
 
 export const withNames = <
   K extends string | number | symbol,
-  T extends Record<string, any> & { id: K }
+  T extends Record<string, any> & { id: K },
 >(
   intl: IntlShape,
   messages: Record<K, MessageDescriptor>,
-  items: T[]
+  items: T[],
 ): (T & { id: K; name: string })[] => {
   return items.map((item) => ({
     ...item,

@@ -61,7 +61,7 @@ const saleorLineToStripeLine = (line: SaleorLine): Stripe.Checkout.SessionCreate
 
 type SaleorDiscount = OrderFragment["discounts"][number];
 const saleorDiscountToStripeLine = (
-  discount: SaleorDiscount
+  discount: SaleorDiscount,
 ): Stripe.Checkout.SessionCreateParams.LineItem => {
   return {
     price_data: {
@@ -77,7 +77,7 @@ const saleorDiscountToStripeLine = (
 };
 
 const saleorOrderShippingToStripeLine = (
-  order: OrderFragment
+  order: OrderFragment,
 ): Stripe.Checkout.SessionCreateParams.LineItem => {
   return {
     quantity: 1,
@@ -93,7 +93,7 @@ const saleorOrderShippingToStripeLine = (
 };
 
 const saleorPaymentMethodIdToStripePaymentMethodId = (
-  paymentMethodId: PaymentMethodID
+  paymentMethodId: PaymentMethodID,
 ): Stripe.Checkout.SessionCreateParams.PaymentMethodType | null => {
   switch (paymentMethodId) {
     case "creditCard":

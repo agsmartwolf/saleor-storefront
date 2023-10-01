@@ -116,7 +116,7 @@ function StripeCardForm({ checkout }: StripeCardFormInterface) {
     if (completeData?.checkoutComplete?.confirmationNeeded) {
       // Parse data for the Stripe
       const confirmationData = JSON.parse(
-        completeData?.checkoutComplete?.confirmationData || ""
+        completeData?.checkoutComplete?.confirmationData || "",
       ) as { client_secret: string };
 
       // Execute additional action at Stripe
@@ -124,7 +124,7 @@ function StripeCardForm({ checkout }: StripeCardFormInterface) {
         confirmationData.client_secret,
         {
           payment_method: paymentMethodResult.paymentMethod.id,
-        }
+        },
       );
 
       if (stripeConfirmationResponse.error) {
@@ -144,7 +144,7 @@ function StripeCardForm({ checkout }: StripeCardFormInterface) {
       if (confirmedCompleteErrors) {
         console.error(
           "Errors during checkout completion after the confirmation: ",
-          confirmedCompleteErrors
+          confirmedCompleteErrors,
         );
         setIsPaymentProcessing(false);
         return;
@@ -179,7 +179,7 @@ interface StripeCreditCardSectionInterface {
 
 export function StripeCreditCardSection({ checkout }: StripeCreditCardSectionInterface) {
   const stripeGateway = checkout.availablePaymentGateways.find(
-    (gateway) => gateway.id === STRIPE_GATEWAY
+    (gateway) => gateway.id === STRIPE_GATEWAY,
   );
   const stripeApiKey = stripeGateway?.config.find((conf) => conf.field === "api_key")?.value;
 

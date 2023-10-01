@@ -73,5 +73,5 @@ export const useStyles = makeStyles(
       margin: theme.spacing(2, 0),
     },
   }),
-  { name: "ChannelDetails" }
+  { name: "ChannelDetails" },
 );

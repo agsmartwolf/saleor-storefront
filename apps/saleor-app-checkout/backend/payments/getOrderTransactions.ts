@@ -8,7 +8,7 @@ import * as Apl from "@/saleor-app-checkout/config/apl";
 
 export const getOrderTransactions = async (
   saleorApiUrl: string,
-  args: OrderTransactionsQueryVariables
+  args: OrderTransactionsQueryVariables,
 ) => {
   const authData = await Apl.get(saleorApiUrl);
   const client = getClientForAuthData(authData);

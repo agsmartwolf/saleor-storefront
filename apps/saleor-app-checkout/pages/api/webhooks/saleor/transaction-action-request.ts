@@ -38,7 +38,7 @@ export const transactionActionRequestWebhook =
 const handler: NextWebhookApiHandler<TransactionActionPayloadFragment> = async (
   req,
   res,
-  context
+  context,
 ) => {
   const {
     authData: { saleorApiUrl },
@@ -51,7 +51,7 @@ const handler: NextWebhookApiHandler<TransactionActionPayloadFragment> = async (
     console.warn(
       "Received webhook call without transaction data",
       transaction?.type,
-      action?.amount
+      action?.amount,
     );
     return Response.BadRequest({ success: false, message: "Missing transaction data" });
   }

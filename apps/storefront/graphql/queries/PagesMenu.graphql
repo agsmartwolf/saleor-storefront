@@ -1,0 +1,11 @@
+query PagesMenu($locale: LanguageCodeEnum!, $channel: String!) {
+  menu(slug: "pages", channel: $channel) {
+    id
+    items {
+      children {
+        ...MenuItemFragment
+      }
+      ...MenuItemFragment
+    }
+  }
+}

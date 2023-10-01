@@ -10,7 +10,7 @@ import { Errors } from "./types";
 
 export const getOrderPaymentDetails = async (
   saleorApiUrl: string,
-  { id }: { id: OrderPaymentDetailsQueryVariables["id"] }
+  { id }: { id: OrderPaymentDetailsQueryVariables["id"] },
 ) => {
   const authData = await Apl.get(saleorApiUrl);
   const client = getClientForAuthData(authData);
@@ -18,7 +18,7 @@ export const getOrderPaymentDetails = async (
   const { data, error } = await client
     .query<OrderPaymentDetailsQuery, OrderPaymentDetailsQueryVariables>(
       OrderPaymentDetailsDocument,
-      { id }
+      { id },
     )
     .toPromise();
 

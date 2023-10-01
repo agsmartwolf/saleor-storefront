@@ -11,7 +11,7 @@ import { decryptSetting } from "./encryption";
 
 const readSettingsValues = (
   subSettings: Record<string, SettingValue | string | undefined>,
-  obfuscateEncryptedData: boolean
+  obfuscateEncryptedData: boolean,
 ) => {
   return reduce(
     subSettings,
@@ -40,7 +40,7 @@ const readSettingsValues = (
           : subSetting.value,
       };
     },
-    {} as Record<string, string>
+    {} as Record<string, string>,
   );
 };
 
@@ -53,7 +53,7 @@ const readSettingsValues = (
 export const mergeSettingsValues = (
   defaultSettings: UnknownPrivateSettingsValues<"unencrypted">,
   savedSettings: UnknownPrivateSettingsValues<"encrypted">,
-  obfuscateEncryptedData: boolean
+  obfuscateEncryptedData: boolean,
 ) => {
   return reduce(
     defaultSettings,
@@ -70,13 +70,13 @@ export const mergeSettingsValues = (
         [settingKey]: setting,
       };
     },
-    {} as UnknownPrivateSettingsValues<"unencrypted">
+    {} as UnknownPrivateSettingsValues<"unencrypted">,
   );
 };
 
 export const mapPrivateMetafieldsToSettings = (
   metafields: PrivateMetafieldsValues,
-  obfuscateEncryptedData: boolean
+  obfuscateEncryptedData: boolean,
 ): PrivateSettingsValues<"unencrypted"> => {
   return reduce(
     metafields,
@@ -88,7 +88,7 @@ export const mapPrivateMetafieldsToSettings = (
       }
 
       const metadataItemSettings = JSON.parse(
-        metafield || ""
+        metafield || "",
       ) as UnknownPrivateSettingsValues<"encrypted">;
 
       return {
@@ -96,10 +96,10 @@ export const mapPrivateMetafieldsToSettings = (
         [settingsKey]: mergeSettingsValues(
           settings[settingsKey],
           metadataItemSettings,
-          obfuscateEncryptedData
+          obfuscateEncryptedData,
         ) as PrivateSettingsValues<"unencrypted">[keyof PrivateSettingsValues<"unencrypted">],
       };
     },
-    defaultPrivateSettings
+    defaultPrivateSettings,
   );
 };

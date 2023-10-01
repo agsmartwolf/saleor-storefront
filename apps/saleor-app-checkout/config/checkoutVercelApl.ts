@@ -31,28 +31,32 @@ export class CheckoutVercelAPL implements APL {
 
     if (saleorApiUrl !== authData.saleorApiUrl) {
       console.log(
-        `Saleor API URL mismatch. Requested AuthData for ${saleorApiUrl}, and environment is configured for ${authData.saleorApiUrl}.`
+        `Saleor API URL mismatch. Requested AuthData for ${saleorApiUrl}, and environment is configured for ${authData.saleorApiUrl}.`,
       );
       return;
     }
 
     return authData;
   }
+
   async set(_authData: AuthData) {
     console.log(
-      `CheckoutVercelAPL: Not setting auth data for domain because CheckoutVercelAPL is used.`
+      `CheckoutVercelAPL: Not setting auth data for domain because CheckoutVercelAPL is used.`,
     );
     // do nothing
   }
+
   async delete(_domain: string) {
     console.log(
-      `CheckoutVercelAPL: Not deleting auth data for domain because CheckoutVercelAPL is used.`
+      `CheckoutVercelAPL: Not deleting auth data for domain because CheckoutVercelAPL is used.`,
     );
     // do nothing
   }
+
   async getAll() {
     return [getAuthDataFromEnvVariables()];
   }
+
   async isReady() {
     try {
       getAuthDataFromEnvVariables();
@@ -64,6 +68,7 @@ export class CheckoutVercelAPL implements APL {
       };
     }
   }
+
   async isConfigured() {
     try {
       getAuthDataFromEnvVariables();

@@ -49,7 +49,7 @@ export const prepareSaleorTransaction = (
   type: "voided" | "charged" | "authorized" | "refunded",
   amount: number,
   currency: string,
-  additionalData?: Partial<TransactionFragment>
+  additionalData?: Partial<TransactionFragment>,
 ): TransactionFragment => {
   const common: Pick<
     TransactionFragment,

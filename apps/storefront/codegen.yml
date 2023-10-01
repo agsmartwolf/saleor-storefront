@@ -1,6 +1,10 @@
 overwrite: true
 schema:
-  - ${NEXT_PUBLIC_API_URI}
+  -  ${NEXT_PUBLIC_API_URI}
+#  -  ${NEXT_PUBLIC_API_URI}:
+#      headers:
+#        Cache-Control: 'no-cache'
+#        authorization: "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjEiLCJ0eXAiOiJKV1QifQ.eyJpYXQiOjE2OTI5NzI2NzIsIm93bmVyIjoic2FsZW9yIiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6ODAwMC9ncmFwaHFsLyIsImV4cCI6MTY5Mjk3Mjk3MiwidG9rZW4iOiJNR0hwYjZNY3dBNm8iLCJlbWFpbCI6InNhbGVzQHNtYXJ0LXdvbGYuY29tIiwidHlwZSI6ImFjY2VzcyIsInVzZXJfaWQiOiJWWE5sY2pveCIsImlzX3N0YWZmIjp0cnVlfQ.X36tLCo7-2SrgsGuglj1OgydNpEoYbfeBBQd-LUid-HBzyZdZDXNkXSSTTfPpssxjY4k1htP_mTeFeEGqGTYAcymz5jScN2LADh1pZ5iyBIVEB7BXDGX8RNf5px8LsI8b5I_6pdXEO3HBT6juYv5bSKT0OFKSGY2VXFDmMBUTBBcPMfm-CqafVKl3nhfc8gcmmih_HjReh2ke3FqxRQUt5kSZHZHkqg-lx2TogXeay6Y1S5PbWzt6LwL_YWUm7VsSiR4k1PiGmI7hrrZdA-2ulemScl6JJWL7JZmRT363qkfKMc5krrCOB3t_AQpKrWh_Mbx4uM-nWlIKMhCe9gsYyBhDCNsrG3uaMJkHjm4-DpxyLzxuf_KoB1XGpO9LuGle7anq3gKY4bsZLQt7ocHyf263w2le6WS3BQkbeBiAJlX5JU48trT-rnAMs6qDByMGSbJAdmMncBQTH58aHY4ta9dSIUVsFjQhdmeAgwyS95oI4tP_lO6lbNmm0vAgDzJ"
 documents: "graphql/**/*.{ts,graphql}"
 generates:
   saleor/api.tsx:

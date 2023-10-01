@@ -1,9 +1,9 @@
 .footer {
-  @apply sm:container mb-18 sm:mb-15 mt-16;
+  @apply bg-black;
 }
 
 .footer-inner {
-  @apply px-6 border-l-0 border-r-0 sm:border-l-2 sm:border-r-2;
+  @apply sm:container px-6 bg-black;
 }
 
 @screen sm {
@@ -13,7 +13,7 @@
 }
 
 .menu {
-  @apply list-none mb-8;
+  @apply list-none;
 }
 
 .menu li + li {
@@ -21,7 +21,7 @@
 }
 
 .menu-heading {
-  @apply block text-md font-bold mb-4 cursor-pointer hover:underline;
+  @apply block text-md font-bold mb-4 cursor-pointer hover:underline text-white hover:text-brand;
 }
 
 .menu-link {

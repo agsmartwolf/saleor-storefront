@@ -11,7 +11,7 @@ interface SettingProps {
   onChange: (
     event:
       | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-      | React.DragEvent<HTMLDivElement>
+      | React.DragEvent<HTMLDivElement>,
   ) => void;
   onFileChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
@@ -53,7 +53,7 @@ const Setting: React.FC<SettingProps> = ({
   const handleChange = (
     event:
       | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-      | React.DragEvent<HTMLDivElement>
+      | React.DragEvent<HTMLDivElement>,
   ) => {
     onChange(event);
 

@@ -8,6 +8,6 @@ export const prepareGraphqlMetafields = (keys: string[], metafields: Record<stri
       ...allKeys,
       [key]: JSON.stringify(metafields[key]),
     }),
-    {}
+    {},
   );
 };

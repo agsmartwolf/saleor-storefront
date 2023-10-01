@@ -30,7 +30,7 @@ const uploadSettingFile = async (setting: FileSetting, uploadFile: UploadFileFun
 };
 
 const mapSettingsObjectToArray = (
-  settingList?: Partial<CustomizationSettingsFiles[keyof CustomizationSettingsFiles]>
+  settingList?: Partial<CustomizationSettingsFiles[keyof CustomizationSettingsFiles]>,
 ) =>
   reduce(
     settingList,
@@ -45,7 +45,7 @@ const mapSettingsObjectToArray = (
       }
       return settingsUrls;
     },
-    [] as FileSetting[]
+    [] as FileSetting[],
   );
 
 export const uploadSettingsFiles = async ({
@@ -67,8 +67,8 @@ export const uploadSettingsFiles = async ({
       const uploadedSettings = await settings;
       const uploadedSubSettings = await Promise.all(
         mapSettingsObjectToArray(subSettings).map((setting) =>
-          uploadSettingFile(setting, uploadFile)
-        )
+          uploadSettingFile(setting, uploadFile),
+        ),
       );
 
       return {
@@ -76,6 +76,6 @@ export const uploadSettingsFiles = async ({
         [idx]: merge({}, ...uploadedSubSettings),
       };
     },
-    Promise.resolve(data)
+    Promise.resolve(data),
   );
 };

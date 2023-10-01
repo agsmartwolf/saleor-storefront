@@ -5,10 +5,10 @@ export const useFetch = <
   TError,
   TFetchFn extends FetchFn<any, any>,
   TData = GetDataType<TFetchFn>,
-  TArgs = GetArgsType<TFetchFn>
+  TArgs = GetArgsType<TFetchFn>,
 >(
   fetchFn: TFetchFn,
-  optionalProps?: UseFetchOptionalProps<TArgs>
+  optionalProps?: UseFetchOptionalProps<TArgs>,
 ): UseFetchResult<TError, TData, TArgs> => {
   const { args, skip = false } = optionalProps || {};
 

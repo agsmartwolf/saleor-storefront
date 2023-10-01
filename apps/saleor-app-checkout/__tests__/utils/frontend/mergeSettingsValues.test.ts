@@ -32,7 +32,7 @@ describe("/utils/frontend/misc/mergeSettingsValues", () => {
     const privateMergedSettings = mergePrivateSettingsValues(
       defaultSettings,
       savedPrivateSettings,
-      false
+      false,
     );
 
     const expectedSettings = {
@@ -87,7 +87,7 @@ describe("/utils/frontend/misc/mergeSettingsValues", () => {
     const privateMergedSettings = mergePrivateSettingsValues(
       defaultSettings,
       savedPrivateSettings,
-      false
+      false,
     );
 
     expect(mergedSettings).toEqual(savedSettings);
@@ -124,7 +124,7 @@ describe("/utils/frontend/misc/mergeSettingsValues", () => {
     const privateMergedSettings = mergePrivateSettingsValues(
       defaultSettings,
       savedPrivateSettings,
-      false
+      false,
     );
 
     const expectedSettings = {
@@ -182,7 +182,7 @@ describe("/utils/frontend/misc/mergeSettingsValues", () => {
     const privateMergedSettings = mergePrivateSettingsValues(
       defaultSettings,
       savedPrivateSettings,
-      false
+      false,
     );
 
     const expectedSettings = {
@@ -236,7 +236,7 @@ describe("/utils/frontend/misc/mergeSettingsValues", () => {
     const privateMergedSettings = mergePrivateSettingsValues(
       defaultSettings,
       savedPrivateSettings,
-      false
+      false,
     );
 
     const expectedSettings = {

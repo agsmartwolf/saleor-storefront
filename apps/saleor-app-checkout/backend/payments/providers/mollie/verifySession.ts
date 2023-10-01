@@ -27,7 +27,7 @@ export const verifyMollieSession = async ({
 
 export const reuseExistingMollieSession: ReuseExistingVendorSessionFn = async (
   saleorApiUrl,
-  { payment, orderId }
+  { payment, orderId },
 ) => {
   const session = await verifyMollieSession({ saleorApiUrl, session: payment.session });
 

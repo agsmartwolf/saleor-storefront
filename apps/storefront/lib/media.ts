@@ -1,5 +1,9 @@
 import { notNullable } from "@/lib/util";
-import { ProductDetailsFragment, ProductVariantDetailsFragment } from "@/saleor/api";
+import { ProductVariantDetailsFragment } from "@/saleor/api";
+import {
+  ProductMediaFragmentBlurred,
+  ProductWithBlurredMedia,
+} from "../pages/[channel]/[locale]/products/[slug]";
 
 /**
  * If a variant has been selected by the user and this variant has media, return only those items.
@@ -12,12 +16,12 @@ export const getGalleryMedia = ({
   product,
   selectedVariant,
 }: {
-  product: ProductDetailsFragment;
+  product: ProductWithBlurredMedia;
   selectedVariant?: ProductVariantDetailsFragment;
 }) => {
   if (selectedVariant && selectedVariant.media?.length !== 0)
-    return selectedVariant.media?.filter(notNullable) || [];
-  return product?.media?.filter(notNullable) || [];
+    return (selectedVariant.media?.filter(notNullable) || []) as ProductMediaFragmentBlurred[];
+  return (product?.media?.filter(notNullable) || []) as ProductMediaFragmentBlurred[];
 };
 
 export const getYouTubeIDFromURL = (url: string) => {

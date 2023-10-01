@@ -32,7 +32,7 @@ const handler: Handler<AdyenRequestParams> = async (request) => {
   const saleorApiUrl = request.params.saleorApiUrl;
 
   const [error] = await unpackPromise(
-    notificationHandler({ saleorApiUrl, notification: notificationItem, apiKey })
+    notificationHandler({ saleorApiUrl, notification: notificationItem, apiKey }),
   );
 
   if (error) {
@@ -81,7 +81,7 @@ async function notificationHandler({
   // Check if originalReference exists, if it does append a new event
   if (notification.originalReference) {
     const transaction = transactions.find(
-      ({ reference }) => reference === notification.originalReference
+      ({ reference }) => reference === notification.originalReference,
     );
 
     if (!transaction) {

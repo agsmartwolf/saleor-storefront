@@ -6,7 +6,7 @@ import { KnownPaymentError } from "./errors";
 
 export const createOrderFromBodyOrId = async (
   saleorApiUrl: string,
-  body: PayRequestBody
+  body: PayRequestBody,
 ): Promise<OrderFragment> => {
   const provider = body.provider;
 

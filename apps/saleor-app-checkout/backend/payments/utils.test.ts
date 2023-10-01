@@ -20,8 +20,8 @@ describe("payments/utils", () => {
     return fc.assert(
       fc.property(
         fc.integer(),
-        (value) => value === getIntegerAmountFromSaleor(getSaleorAmountFromInteger(value))
-      )
+        (value) => value === getIntegerAmountFromSaleor(getSaleorAmountFromInteger(value)),
+      ),
     );
   });
 
@@ -29,8 +29,8 @@ describe("payments/utils", () => {
     return fc.assert(
       fc.property(
         fc.integer().map((cents) => cents / 100),
-        (value) => value === getSaleorAmountFromInteger(getIntegerAmountFromSaleor(value))
-      )
+        (value) => value === getSaleorAmountFromInteger(getIntegerAmountFromSaleor(value)),
+      ),
     );
   });
 });

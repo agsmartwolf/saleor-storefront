@@ -1,0 +1,21 @@
+.animatedHorisontalScroller {
+  @apply relative;
+}
+.animatedHorisontalScroller > svg:first-of-type {
+  @apply -ml-[2%];
+}
+.animatedHorisontalScroller > svg:last-of-type {
+  @apply -mr-[2%];
+}
+
+@screen sm {
+  .animatedHorisontalScroller {
+  }
+}
+
+.container {
+  @apply -ml-[2%];
+  width: 102%;
+  height: 102%;
+  padding: 2%;
+}

@@ -8,7 +8,7 @@ import * as Apl from "@/saleor-app-checkout/config/apl";
 
 export const updateTransactionProcessedEvents = async (
   saleorApiUrl: string,
-  args: TransactionUpdateProcessedEventsMutationVariables
+  args: TransactionUpdateProcessedEventsMutationVariables,
 ) => {
   const authData = await Apl.get(saleorApiUrl);
   const client = getClientForAuthData(authData);

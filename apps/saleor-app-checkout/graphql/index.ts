@@ -26892,7 +26892,7 @@ export const ChannelsDocument = gql`
 `;
 
 export function useChannelsQuery(
-  options?: Omit<Urql.UseQueryArgs<ChannelsQueryVariables>, "query">
+  options?: Omit<Urql.UseQueryArgs<ChannelsQueryVariables>, "query">,
 ) {
   return Urql.useQuery<ChannelsQuery, ChannelsQueryVariables>({
     query: ChannelsDocument,
@@ -26917,7 +26917,7 @@ export const CheckoutDocument = gql`
 `;
 
 export function useCheckoutQuery(
-  options: Omit<Urql.UseQueryArgs<CheckoutQueryVariables>, "query">
+  options: Omit<Urql.UseQueryArgs<CheckoutQueryVariables>, "query">,
 ) {
   return Urql.useQuery<CheckoutQuery, CheckoutQueryVariables>({
     query: CheckoutDocument,
@@ -26952,7 +26952,7 @@ export const PublicMetafieldsDocument = gql`
 `;
 
 export function usePublicMetafieldsQuery(
-  options: Omit<Urql.UseQueryArgs<PublicMetafieldsQueryVariables>, "query">
+  options: Omit<Urql.UseQueryArgs<PublicMetafieldsQueryVariables>, "query">,
 ) {
   return Urql.useQuery<PublicMetafieldsQuery, PublicMetafieldsQueryVariables>({
     query: PublicMetafieldsDocument,
@@ -26969,7 +26969,7 @@ export const PrivateMetafieldsDocument = gql`
 `;
 
 export function usePrivateMetafieldsQuery(
-  options: Omit<Urql.UseQueryArgs<PrivateMetafieldsQueryVariables>, "query">
+  options: Omit<Urql.UseQueryArgs<PrivateMetafieldsQueryVariables>, "query">,
 ) {
   return Urql.useQuery<PrivateMetafieldsQuery, PrivateMetafieldsQueryVariables>({
     query: PrivateMetafieldsDocument,
@@ -26986,7 +26986,7 @@ export const PublicMetafieldsInferedDocument = gql`
 `;
 
 export function usePublicMetafieldsInferedQuery(
-  options?: Omit<Urql.UseQueryArgs<PublicMetafieldsInferedQueryVariables>, "query">
+  options?: Omit<Urql.UseQueryArgs<PublicMetafieldsInferedQueryVariables>, "query">,
 ) {
   return Urql.useQuery<PublicMetafieldsInferedQuery, PublicMetafieldsInferedQueryVariables>({
     query: PublicMetafieldsInferedDocument,
@@ -27003,7 +27003,7 @@ export const PrivateMetafieldsInferedDocument = gql`
 `;
 
 export function usePrivateMetafieldsInferedQuery(
-  options?: Omit<Urql.UseQueryArgs<PrivateMetafieldsInferedQueryVariables>, "query">
+  options?: Omit<Urql.UseQueryArgs<PrivateMetafieldsInferedQueryVariables>, "query">,
 ) {
   return Urql.useQuery<PrivateMetafieldsInferedQuery, PrivateMetafieldsInferedQueryVariables>({
     query: PrivateMetafieldsInferedDocument,
@@ -27026,7 +27026,7 @@ export const UpdatePublicMetadataDocument = gql`
 
 export function useUpdatePublicMetadataMutation() {
   return Urql.useMutation<UpdatePublicMetadataMutation, UpdatePublicMetadataMutationVariables>(
-    UpdatePublicMetadataDocument
+    UpdatePublicMetadataDocument,
   );
 }
 export const UpdatePrivateMetadataDocument = gql`
@@ -27045,7 +27045,7 @@ export const UpdatePrivateMetadataDocument = gql`
 
 export function useUpdatePrivateMetadataMutation() {
   return Urql.useMutation<UpdatePrivateMetadataMutation, UpdatePrivateMetadataMutationVariables>(
-    UpdatePrivateMetadataDocument
+    UpdatePrivateMetadataDocument,
   );
 }
 export const OrderCreateDocument = gql`
@@ -27076,7 +27076,7 @@ export const OrderDetailsDocument = gql`
 `;
 
 export function useOrderDetailsQuery(
-  options: Omit<Urql.UseQueryArgs<OrderDetailsQueryVariables>, "query">
+  options: Omit<Urql.UseQueryArgs<OrderDetailsQueryVariables>, "query">,
 ) {
   return Urql.useQuery<OrderDetailsQuery, OrderDetailsQueryVariables>({
     query: OrderDetailsDocument,
@@ -27096,7 +27096,7 @@ export const OrderPaymentDetailsDocument = gql`
 `;
 
 export function useOrderPaymentDetailsQuery(
-  options: Omit<Urql.UseQueryArgs<OrderPaymentDetailsQueryVariables>, "query">
+  options: Omit<Urql.UseQueryArgs<OrderPaymentDetailsQueryVariables>, "query">,
 ) {
   return Urql.useQuery<OrderPaymentDetailsQuery, OrderPaymentDetailsQueryVariables>({
     query: OrderPaymentDetailsDocument,
@@ -27135,7 +27135,7 @@ export const OrderTransactionsDocument = gql`
 `;
 
 export function useOrderTransactionsQuery(
-  options: Omit<Urql.UseQueryArgs<OrderTransactionsQueryVariables>, "query">
+  options: Omit<Urql.UseQueryArgs<OrderTransactionsQueryVariables>, "query">,
 ) {
   return Urql.useQuery<OrderTransactionsQuery, OrderTransactionsQueryVariables>({
     query: OrderTransactionsDocument,
@@ -27162,7 +27162,7 @@ export const TransactionCreateDocument = gql`
 
 export function useTransactionCreateMutation() {
   return Urql.useMutation<TransactionCreateMutation, TransactionCreateMutationVariables>(
-    TransactionCreateDocument
+    TransactionCreateDocument,
   );
 }
 export const TransactionUpdateDocument = gql`
@@ -27185,7 +27185,7 @@ export const TransactionUpdateDocument = gql`
 
 export function useTransactionUpdateMutation() {
   return Urql.useMutation<TransactionUpdateMutation, TransactionUpdateMutationVariables>(
-    TransactionUpdateDocument
+    TransactionUpdateDocument,
   );
 }
 export const TransactionProcessedEventsDocument = gql`
@@ -27197,7 +27197,7 @@ export const TransactionProcessedEventsDocument = gql`
 `;
 
 export function useTransactionProcessedEventsQuery(
-  options: Omit<Urql.UseQueryArgs<TransactionProcessedEventsQueryVariables>, "query">
+  options: Omit<Urql.UseQueryArgs<TransactionProcessedEventsQueryVariables>, "query">,
 ) {
   return Urql.useQuery<TransactionProcessedEventsQuery, TransactionProcessedEventsQueryVariables>({
     query: TransactionProcessedEventsDocument,
@@ -27254,13 +27254,13 @@ export const TransactionActionRequestSubscriptionDocument = gql`
 `;
 
 export function useTransactionActionRequestSubscription<
-  TData = TransactionActionRequestSubscription
+  TData = TransactionActionRequestSubscription,
 >(
   options: Omit<
     Urql.UseSubscriptionArgs<TransactionActionRequestSubscriptionVariables>,
     "query"
   > = {},
-  handler?: Urql.SubscriptionHandler<TransactionActionRequestSubscription, TData>
+  handler?: Urql.SubscriptionHandler<TransactionActionRequestSubscription, TData>,
 ) {
   return Urql.useSubscription<
     TransactionActionRequestSubscription,
@@ -27289,7 +27289,7 @@ export const CreateWebhooksDocument = gql`
 
 export function useCreateWebhooksMutation() {
   return Urql.useMutation<CreateWebhooksMutation, CreateWebhooksMutationVariables>(
-    CreateWebhooksDocument
+    CreateWebhooksDocument,
   );
 }
 export const CheckWebhooksDocument = gql`
@@ -27304,7 +27304,7 @@ export const CheckWebhooksDocument = gql`
 `;
 
 export function useCheckWebhooksQuery(
-  options?: Omit<Urql.UseQueryArgs<CheckWebhooksQueryVariables>, "query">
+  options?: Omit<Urql.UseQueryArgs<CheckWebhooksQueryVariables>, "query">,
 ) {
   return Urql.useQuery<CheckWebhooksQuery, CheckWebhooksQueryVariables>({
     query: CheckWebhooksDocument,

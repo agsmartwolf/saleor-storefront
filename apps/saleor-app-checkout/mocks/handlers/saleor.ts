@@ -18,7 +18,7 @@ export const saleorHandlers = [
               message: "Missing keys",
               errorType: "TestError",
             },
-          ])
+          ]),
         );
       }
 
@@ -28,8 +28,8 @@ export const saleorHandlers = [
             id: "123",
             privateMetafields: prepareGraphqlMetafields(keys, appPrivateMetafields),
           },
-        })
+        }),
       );
-    }
+    },
   ),
 ];

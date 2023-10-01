@@ -6,7 +6,7 @@ import { useFetch, UseFetchOptionalProps } from "./useFetch";
 import { usePrivateSettings } from "./usePrivateSettings";
 
 export const useSetPaymentProviderSettings = <TArgs>(
-  optionalProps?: UseFetchOptionalProps<TArgs>
+  optionalProps?: UseFetchOptionalProps<TArgs>,
 ) => {
   const { privateSettings, setPrivateSettings } = usePrivateSettings();
 

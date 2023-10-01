@@ -3,10 +3,10 @@ import "@saleor/checkout-storefront/dist/index.css";
 import invariant from "ts-invariant";
 
 const checkoutApiUrl =
-  typeof process.env["REACT_APP_CHECKOUT_APP_URL"] === "string"
-    ? process.env["REACT_APP_CHECKOUT_APP_URL"] + `/api`
+  typeof process.env.REACT_APP_CHECKOUT_APP_URL === "string"
+    ? process.env.REACT_APP_CHECKOUT_APP_URL + `/api`
     : "";
-const checkoutAppUrl = process.env["REACT_APP_CHECKOUT_APP_URL"];
+const checkoutAppUrl = process.env.REACT_APP_CHECKOUT_APP_URL;
 
 const allowedSaleorApiRegex = process.env.REACT_APP_ALLOWED_SALEOR_API_REGEX;
 

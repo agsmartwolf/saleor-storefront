@@ -23,7 +23,7 @@ import {
 import { serverApolloClient } from "@/lib/ssr/common";
 
 export const getStaticProps = async (
-  context: GetStaticPropsContext<{ channel: string; locale: string; slug: string }>
+  context: GetStaticPropsContext<{ channel: string; locale: string; slug: string }>,
 ) => {
   if (!context.params) {
     return {
@@ -56,7 +56,7 @@ export const getStaticProps = async (
     });
 
   const attributes: AttributeFilterFragment[] = mapEdgesToItems(
-    attributesResponse.data.attributes
+    attributesResponse.data.attributes,
   ).filter((attribute) => attribute.choices?.edges.length);
 
   return {

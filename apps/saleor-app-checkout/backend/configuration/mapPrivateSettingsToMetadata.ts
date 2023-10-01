@@ -6,7 +6,7 @@ import { encryptSetting } from "./encryption";
 
 const encryptSubSettings = (
   subSetting: Record<string, string> | undefined,
-  subSettingsFieldsInput?: CommonField[]
+  subSettingsFieldsInput?: CommonField[],
 ) => {
   const subSettingsFields = Array.isArray(subSettingsFieldsInput) ? subSettingsFieldsInput : [];
 
@@ -29,7 +29,7 @@ const encryptSubSettings = (
         },
       };
     },
-    {} as Record<string, SettingValue>
+    {} as Record<string, SettingValue>,
   );
 
   return encryptedSubSetting;
@@ -37,7 +37,7 @@ const encryptSubSettings = (
 
 const encryptSettings = (
   settingsValues: Partial<Record<string, Record<string, string>>> | undefined,
-  settingsFields: Record<string, CommonField[]>
+  settingsFields: Record<string, CommonField[]>,
 ) => {
   const encrypteSettings = reduce(
     settingsValues,
@@ -51,19 +51,19 @@ const encryptSettings = (
         [settingKey]: encryptedSubSetting,
       };
     },
-    {} as Partial<PrivateSettingsValues<"encrypted">[keyof PrivateSettingsValues<"unencrypted">]>
+    {} as Partial<PrivateSettingsValues<"encrypted">[keyof PrivateSettingsValues<"unencrypted">]>,
   );
   return encrypteSettings;
 };
 
 export const mapPrivateSettingsToMetadata = (
-  settingsValues: Partial<PrivateSettingsValues<"unencrypted">>
+  settingsValues: Partial<PrivateSettingsValues<"unencrypted">>,
 ) => {
   return Object.keys(settingsValues).reduce(
     (metadata, settingsValuesKey) => {
       const settingsValuesObject = encryptSettings(
         settingsValues[settingsValuesKey as keyof PrivateSettingsValues<"unencrypted">],
-        fields[settingsValuesKey as PrivateSettingID[number]]
+        fields[settingsValuesKey as PrivateSettingID[number]],
       );
       const settingsValuesValue = JSON.stringify(settingsValuesObject);
 
@@ -78,6 +78,6 @@ export const mapPrivateSettingsToMetadata = (
     [] as Array<{
       key: string;
       value: string;
-    }>
+    }>,
   );
 };

@@ -3,13 +3,12 @@
  */
 module.exports = {
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "formatjs", "require-form-method"],
+  // plugins: ["@typescript-eslint", "formatjs", "require-form-method"],
+  plugins: ["prettier", "@typescript-eslint", "require-form-method"],
   extends: [
-    "next",
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier",
+    "airbnb-typescript",
+    "plugin:prettier/recommended",
+    "plugin:@next/next/recommended"
   ],
   parserOptions: {
     project: ["tsconfig.json"],

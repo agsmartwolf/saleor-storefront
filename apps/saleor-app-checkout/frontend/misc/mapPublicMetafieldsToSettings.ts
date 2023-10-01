@@ -15,7 +15,7 @@ import reduce from "lodash-es/reduce";
  */
 export const mergeSettingsValues = (
   defaultSettings: UnknownPublicSettingsValues,
-  savedSettings: UnknownPublicSettingsValues
+  savedSettings: UnknownPublicSettingsValues,
 ) => {
   return reduce(
     defaultSettings,
@@ -31,12 +31,12 @@ export const mergeSettingsValues = (
         [settingKey]: udpatedSetting,
       };
     },
-    savedSettings
+    savedSettings,
   );
 };
 
 export const mapPublicMetafieldsToSettings = (
-  metafields: PublicMetafieldsValues
+  metafields: PublicMetafieldsValues,
 ): PublicSettingsValues => {
   return reduce(
     metafields,
@@ -61,6 +61,6 @@ export const mapPublicMetafieldsToSettings = (
         };
       }
     },
-    defaultPublicSettings
+    defaultPublicSettings,
   );
 };

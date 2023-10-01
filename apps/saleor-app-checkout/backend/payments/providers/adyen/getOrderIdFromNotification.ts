@@ -2,7 +2,7 @@ import { Client, CheckoutAPI, Types } from "@adyen/api-library";
 
 export const getOrderIdFromNotification = async (
   notification: Types.notification.NotificationRequestItem,
-  apiKey: string
+  apiKey: string,
 ) => {
   const { additionalData } = notification;
   if (!additionalData) {
@@ -13,7 +13,7 @@ export const getOrderIdFromNotification = async (
 
 export const getOrderId = async (
   additionalData: Types.notification.AdditionalData,
-  apiKey: string
+  apiKey: string,
 ) => {
   const paymentLinkId = additionalData.paymentLinkId;
   if (!paymentLinkId) {
@@ -44,7 +44,7 @@ export const getOrderId = async (
 export const getOrderIdFromAdditionalData = (
   additionalData: Types.notification.AdditionalData & {
     ["metadata.orderId"]?: string | null | undefined;
-  }
+  },
 ) => {
   return "metadata.orderId" in additionalData ? additionalData["metadata.orderId"] : null;
 };

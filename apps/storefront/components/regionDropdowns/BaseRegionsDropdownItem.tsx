@@ -18,7 +18,7 @@ export function BaseRegionsDropdownItem({ label, chosen, onClick }: BaseRegionsD
           onClick={onClick}
           className={clsx(
             active ? "border-brand text-brand" : "border-transparent text-gray-900",
-            "group px-2 py-2 text-sm border-2 w-full"
+            "group px-2 py-2 text-sm border-2 w-full",
           )}
         >
           <div className="flex gap-2">

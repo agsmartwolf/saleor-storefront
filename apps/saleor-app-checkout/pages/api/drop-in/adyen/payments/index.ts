@@ -34,7 +34,7 @@ const DropInAdyenPaymentsHandler: NextApiHandler<
   }
 
   const [orderCrationError, order] = await unpackPromise(
-    createOrderFromBodyOrId(saleorApiUrl, body)
+    createOrderFromBodyOrId(saleorApiUrl, body),
   );
 
   if (orderCrationError) {

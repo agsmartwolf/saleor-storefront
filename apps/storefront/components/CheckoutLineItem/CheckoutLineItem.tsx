@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import React, { SyntheticEvent } from "react";
 import { useIntl } from "react-intl";
@@ -136,7 +136,7 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
                 type="number"
                 className={clsx(
                   "h-8 md:mt-2 w-10 md:w-16 block border-gray-300 rounded-md shadow-sm text-base",
-                  errors && "border-red-500"
+                  errors && "border-red-500",
                 )}
                 defaultValue={quantity}
                 onFocus={() => {

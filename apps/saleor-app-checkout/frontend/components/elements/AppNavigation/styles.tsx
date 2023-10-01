@@ -6,5 +6,5 @@ export const useStyles = makeStyles(
       marginBottom: theme.spacing(2),
     },
   }),
-  { name: "AppNavigation" }
+  { name: "AppNavigation" },
 );

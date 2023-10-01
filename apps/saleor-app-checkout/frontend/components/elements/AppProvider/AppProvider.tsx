@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 const ClientAppBridgeProvider = dynamic(
   () => import("./ClientAppBridgeProvider").then((m) => m.ClientAppBridgeProvider),
-  { ssr: false }
+  { ssr: false },
 );
 
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {

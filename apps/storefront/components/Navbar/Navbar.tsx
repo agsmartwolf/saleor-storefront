@@ -64,22 +64,22 @@ export function Navbar() {
     checkout?.lines?.reduce(
       (amount: number, line?: CheckoutLineDetailsFragment | null) =>
         line ? amount + line.quantity : amount,
-      0
+      0,
     ) || 0;
 
   return (
     <>
       <div className={clsx(styles.navbar)}>
         <div className={clsx(styles.inner)}>
-          <div className="flex-1 h-full hidden xs:flex">
-            <Menu />
-          </div>
           <div className="flex-1 flex xs:justify-center">
             <Link href={paths.$url()} passHref legacyBehavior>
               <a href="pass" className={styles.logo}>
                 <Stamp />
               </a>
             </Link>
+          </div>
+          <div className="flex-1 h-full hidden xs:flex">
+            <Menu />
           </div>
           <div className="flex-1 flex justify-end">
             {!authenticated ? (

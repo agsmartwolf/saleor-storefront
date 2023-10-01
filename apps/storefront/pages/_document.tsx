@@ -14,10 +14,11 @@ class MyDocument extends Document<{ lang?: string }> {
     return (
       <Html lang={this.props.lang}>
         <Head>
+          <link rel="icon" href="/favicon.png" sizes="any" />
           <link rel="preconnect" href={`//${hostname}`} crossOrigin="true" />
           <link rel="dns-prefetch" href={`//${hostname}`} />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
           />
         </Head>

@@ -37,7 +37,7 @@ const getReqHeaders = (): IncomingHttpHeaders => {
   return {
     authorization: `Basic ${encodeBasicAuth(
       testingVars.adyenWebhookUsername,
-      testingVars.adyenWebhookPassword
+      testingVars.adyenWebhookPassword,
     )}`,
   };
 };
@@ -128,7 +128,7 @@ describe("/api/webhooks/adyen", () => {
             currency: ADYEN_TRANSACTION_CURRENCY,
           },
         },
-      })
+      }),
     );
   });
 
@@ -168,7 +168,7 @@ describe("/api/webhooks/adyen", () => {
             currency: ADYEN_TRANSACTION_CURRENCY,
           },
         },
-      })
+      }),
     );
   });
 
@@ -184,7 +184,7 @@ describe("/api/webhooks/adyen", () => {
         "authorized",
         getSaleorAmountFromInteger(ADYEN_TRANSACTION_AMOUNT),
         ADYEN_TRANSACTION_CURRENCY,
-        { reference: ADYEN_ORIGINAL_REFERENCE, id: ADYEN_ORDER_ID }
+        { reference: ADYEN_ORIGINAL_REFERENCE, id: ADYEN_ORDER_ID },
       ),
     ]);
 
@@ -213,7 +213,7 @@ describe("/api/webhooks/adyen", () => {
           status: "SUCCESS",
           reference: expect.any(String),
         },
-      })
+      }),
     );
   });
 
@@ -229,7 +229,7 @@ describe("/api/webhooks/adyen", () => {
         "charged",
         getSaleorAmountFromInteger(ADYEN_TRANSACTION_AMOUNT),
         ADYEN_TRANSACTION_CURRENCY,
-        { reference: ADYEN_ORIGINAL_REFERENCE, id: ADYEN_ORDER_ID }
+        { reference: ADYEN_ORIGINAL_REFERENCE, id: ADYEN_ORDER_ID },
       ),
     ]);
 
@@ -258,7 +258,7 @@ describe("/api/webhooks/adyen", () => {
           status: "SUCCESS",
           reference: expect.any(String),
         },
-      })
+      }),
     );
   });
 });

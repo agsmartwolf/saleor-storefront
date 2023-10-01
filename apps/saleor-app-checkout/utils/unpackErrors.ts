@@ -12,7 +12,7 @@ export const unknownToError = (maybeError: unknown) => {
 
 type PromiseToTupleResult<T> = [Error, null] | [null, Awaited<T>];
 export const unpackPromise = async <T extends Promise<any>>(
-  promise: T
+  promise: T,
 ): Promise<PromiseToTupleResult<T>> => {
   try {
     const result = await promise;

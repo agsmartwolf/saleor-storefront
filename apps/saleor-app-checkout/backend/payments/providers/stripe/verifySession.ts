@@ -27,7 +27,7 @@ export const verifyStripeSession = async ({
 
 export const reuseExistingStripeSession: ReuseExistingVendorSessionFn = async (
   saleorApiUrl,
-  { payment, orderId }
+  { payment, orderId },
 ) => {
   const session = await verifyStripeSession({ saleorApiUrl, session: payment.session });
 

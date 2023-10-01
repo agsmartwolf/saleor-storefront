@@ -24,7 +24,7 @@ const MollieIconDark = createSvgIcon(
       fillRule="evenodd"
     />
   </g>,
-  "MollieDark"
+  "MollieDark",
 );
 
 const MollieIconLight = createSvgIcon(
@@ -49,7 +49,7 @@ const MollieIconLight = createSvgIcon(
       fillRule="evenodd"
     />
   </g>,
-  "MollieLight"
+  "MollieLight",
 );
 
 interface MollieProps extends SvgIconProps {

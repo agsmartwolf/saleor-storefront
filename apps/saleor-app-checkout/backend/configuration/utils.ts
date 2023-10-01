@@ -7,7 +7,7 @@ import {
 
 export const mergeChannelsWithPaymentProvidersSettings = (
   settings: PublicSettingsValues,
-  channels?: ChannelFragment[] | null
+  channels?: ChannelFragment[] | null,
 ): ChannelActivePaymentProviders =>
   channels?.reduce((assignedSettings, channel) => {
     const channelSettings = assignedSettings[channel.id] || defaultActiveChannelPaymentProviders;

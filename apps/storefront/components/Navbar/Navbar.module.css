@@ -1,5 +1,5 @@
 .navbar {
-  @apply bg-white text-main sticky top-0 z-50;
+  @apply bg-black text-main sticky top-0 z-[100];
 }
 
 .inner {
@@ -27,7 +27,7 @@
 }
 
 .dropdown-trigger {
-  @apply flex items-center text-center text-md font-bold hover:text-brand h-full px-4;
+  @apply flex items-center text-center text-md font-bold text-white hover:text-brand h-full px-4;
 }
 
 .dropdown-menu {
@@ -56,7 +56,7 @@
 }
 
 .nav-icon-button {
-  @apply relative hover:text-brand w-8 h-8 flex justify-center items-center;
+  @apply relative hover:text-brand w-8 h-8 flex justify-center items-center text-white;
 }
 
 .nav-icon-counter {
@@ -77,5 +77,5 @@
 }
 
 .user-menu-item {
-  @apply px-4 pt-[14px] pb-[13px] text-base font-medium cursor-pointer flex items-center whitespace-nowrap hover:text-brand;
+  @apply px-4 pt-[14px] pb-[13px] text-base font-medium cursor-pointer flex items-center whitespace-nowrap hover:text-brand text-white;
 }

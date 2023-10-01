@@ -11,7 +11,7 @@ const CheckoutStoreFront = Dynamic(
   {
     ssr: false,
     loading: () => null,
-  }
+  },
 );
 
 export default function CheckoutSpa() {

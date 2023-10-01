@@ -7,5 +7,5 @@ export const useStyles = makeStyles(
       height: theme.spacing(spacing || 0),
     }),
   }),
-  { name: "VerticalSpacer" }
+  { name: "VerticalSpacer" },
 );

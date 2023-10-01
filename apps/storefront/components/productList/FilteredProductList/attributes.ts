@@ -12,14 +12,14 @@ export interface UrlFilter {
 
 export const getPillsData = (
   urlFilters: UrlFilter[],
-  attributeFiltersData: AttributeFilterFragment[]
+  attributeFiltersData: AttributeFilterFragment[],
 ): FilterPill[] =>
   urlFilters.reduce((result: FilterPill[], filter: UrlFilter) => {
     const choiceAttribute = attributeFiltersData.find((attr) => attr.slug === filter.slug);
     const attrName = choiceAttribute ? choiceAttribute.name : filter.slug;
     const newPills = filter.values.map((value) => {
       const attrChoice = choiceAttribute?.choices?.edges.find(
-        (choice) => choice.node.slug === value
+        (choice) => choice.node.slug === value,
       );
       const choiceName = attrChoice?.node.name || value;
       return {
@@ -33,13 +33,13 @@ export const getPillsData = (
 
 export const getFilterOptions = (
   attribute: AttributeFilterFragment,
-  appliedFilters: FilterPill[]
+  appliedFilters: FilterPill[],
 ): FilterDropdownOption[] => {
   const choices = mapEdgesToItems(attribute.choices);
 
   return choices.map((choice) => ({
     chosen: !!appliedFilters.find(
-      (pill) => pill.attributeSlug === attribute.slug && pill.choiceSlug === choice.slug
+      (pill) => pill.attributeSlug === attribute.slug && pill.choiceSlug === choice.slug,
     ),
     id: choice.id,
     label: translate(choice, "name") || choice.id,

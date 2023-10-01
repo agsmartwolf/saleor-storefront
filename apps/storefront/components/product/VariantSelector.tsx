@@ -1,79 +1,86 @@
 import { RadioGroup } from "@headlessui/react";
 import clsx from "clsx";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 import { usePaths } from "@/lib/paths";
 import { translate } from "@/lib/translations";
-import { ProductDetailsFragment } from "@/saleor/api";
+import { ProductDetailsFragment, ProductVariantDetailsFragment } from "@/saleor/api";
 
 import { useRegions } from "../RegionsProvider";
+import { notNullable } from "@/lib/util";
+import { getAttributeOptionsForVariantSelector, getPrimaryAttribute } from "@/lib/product";
+import { GenericAttribute } from "@/components/product/GenericAttribute";
 
 export interface VariantSelectorProps {
   product: ProductDetailsFragment;
-  selectedVariantID?: string;
+  selectedVariant?: ProductVariantDetailsFragment;
 }
 
-export function VariantSelector({ product, selectedVariantID }: VariantSelectorProps) {
+export function VariantSelector({ product, selectedVariant }: VariantSelectorProps) {
   const paths = usePaths();
   const router = useRouter();
   const { formatPrice } = useRegions();
 
-  const [selectedVariant, setSelectedVariant] = useState(selectedVariantID);
-
   const { variants } = product;
+
+  const primaryAttribute = useMemo(() => getPrimaryAttribute(attributeOptions), []);
 
   // Skip displaying selector when theres less than 2 variants
   if (!variants || variants.length === 1) {
     return null;
   }
 
-  const onChange = (value: string) => {
-    setSelectedVariant(value);
-    void router.replace(
-      paths.products._slug(product.slug).$url({ ...(value && { query: { variant: value } }) }),
-      undefined,
-      {
-        shallow: true,
-        scroll: false,
-      }
-    );
-  };
+  const onChange = useCallback(
+    (value: string, attributeId: string) => {
+      // setSelectedVariant(value);
+      // TODO
+      // attributeOptions
+      void router.replace(
+        paths.products._slug(product.slug).$url({
+          ...(value && {
+            query: {
+              ...router.query,
+              [attributeId]: value,
+            },
+          }),
+        }),
+        undefined,
+        {
+          shallow: true,
+          scroll: false,
+        },
+      );
+    },
+    [attributeOptions, router.query, product.slug],
+  );
 
   return (
     <div className="w-full">
-      <RadioGroup value={selectedVariant} onChange={onChange}>
-        <div className="space-y-4">
-          {variants.map((variant) => (
-            <RadioGroup.Option
-              key={variant.id}
-              value={variant.id}
-              className={({ checked }) =>
-                clsx("bg-main w-full", checked && "bg-brand", !checked && "")
-              }
+      <div className="space-y-4">
+        {primaryAttribute ? (
+          <GenericAttribute
+            attribute={primaryAttribute}
+            selectedVariant={selectedVariant}
+            onChange={(v) => onChange(v, primaryAttribute?.attribute.id)}
+          />
+        ) : null}
+        {Object.keys(attributeOptions)
+          .filter((ao) => ao !== primaryAttribute?.attribute.id)
+          .map((k) => (
+            <RadioGroup
+              value={selectedVariant?.attributes.find((a) => a.attribute.id === k)?.values[0]?.id}
+              onChange={(v) => onChange(v, attributeOptions[k].attribute.id)}
+              name={attributeOptions[k].attribute.id}
             >
-              {({ checked }) => (
-                <div
-                  className={clsx(
-                    "bg-white w-full h-full relative cursor-pointer object-contain border-2",
-                    checked && "border-brand",
-                    !checked && "hover:border-main border-main-2"
-                  )}
-                >
-                  <RadioGroup.Label as="div" className="w-full justify-between p-4">
-                    <div className="flex flex-row gap-2 w-full font-semibold text-md">
-                      <div className="grow" data-testid={`variantOf${variant.name}`}>
-                        {translate(variant, "name")}
-                      </div>
-                      <div>{formatPrice(variant.pricing?.price?.gross)}</div>
-                    </div>
-                  </RadioGroup.Label>
-                </div>
-              )}
-            </RadioGroup.Option>
+              <GenericAttribute
+                attribute={attributeOptions[k]}
+                selectedVariant={selectedVariant}
+                onChange={(v) => onChange(v, k)}
+              />
+            </RadioGroup>
           ))}
-        </div>
-      </RadioGroup>
+      </div>
     </div>
   );
 }

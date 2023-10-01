@@ -17,6 +17,15 @@ fragment ProductCardFragment on Product {
       name
     }
   }
+  pricing {
+    priceRange {
+      start {
+        gross {
+          ...PriceFragment
+        }
+      }
+    }
+  }
   media {
     url
     alt

@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Custom404 from "pages/404";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useMemo, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { Layout, RichText, VariantSelector } from "@/components";
@@ -14,7 +14,7 @@ import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductPageSeo } from "@/components/seo/ProductPageSeo";
 import { messages } from "@/components/translations";
 import { usePaths } from "@/lib/paths";
-import { getSelectedVariantID } from "@/lib/product";
+import { getAttributeOptionsForVariantSelector, getSelectedVariant } from "@/lib/product";
 import { useCheckout } from "@/lib/providers/CheckoutProvider";
 import { contextToRegionQuery } from "@/lib/regions";
 import { translate } from "@/lib/translations";
@@ -24,13 +24,25 @@ import {
   ProductBySlugDocument,
   ProductBySlugQuery,
   ProductBySlugQueryVariables,
+  ProductDetailsFragment,
+  ProductMediaFragment,
   useCheckoutAddProductLineMutation,
   useCreateCheckoutMutation,
 } from "@/saleor/api";
 import { serverApolloClient } from "@/lib/ssr/common";
+import getBase64ImageUrl from "@/lib/generateBlurPlaceholder";
+import { useLastViewedProduct } from "@/lib/useLastViewedProduct";
 
 export type OptionalQuery = {
   variant?: string;
+};
+
+export type ProductMediaFragmentBlurred = ProductMediaFragment & {
+  blurDataUrl: string;
+};
+
+export type ProductWithBlurredMedia = ProductDetailsFragment & {
+  media: ProductMediaFragmentBlurred[];
 };
 
 export const getStaticPaths: GetStaticPaths = async () => ({
@@ -39,7 +51,7 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 });
 
 export const getStaticProps = async (
-  context: GetStaticPropsContext<{ channel: string; locale: string; slug: string }>
+  context: GetStaticPropsContext<{ channel: string; locale: string; slug: string }>,
 ) => {
   if (!context.params) {
     return {
@@ -59,13 +71,30 @@ export const getStaticProps = async (
       ...contextToRegionQuery(context),
     },
   });
+  const updatedMedia: ProductMediaFragmentBlurred[] = [];
+  if (response.data.product?.media?.length && response.data.product?.media?.length > 0) {
+    const promises = response.data.product?.media?.map((m) => getBase64ImageUrl(m));
+    const blurDataList = await Promise.all(promises ?? []);
+    blurDataList.forEach((data, ind) => {
+      if (typeof response.data.product?.media?.[ind] !== "undefined") {
+        updatedMedia.push({
+          ...response.data.product.media[ind],
+          blurDataUrl: data,
+        });
+      }
+    });
+  }
   return {
     props: {
-      product: response.data.product,
+      product: {
+        ...(response.data.product as unknown as ProductWithBlurredMedia),
+        media: updatedMedia,
+      },
     },
     revalidate: 60, // value in seconds, how often ISR will trigger on the server
   };
 };
+
 function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
   const paths = usePaths();
@@ -77,17 +106,27 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   const [createCheckout] = useCreateCheckoutMutation();
   const { user } = useUser();
 
+  const [, setLastViewedProduct] = useLastViewedProduct();
+
+  useEffect(() => {
+    // @ts-ignore
+    setLastViewedProduct(product);
+  });
+
   const [addProductToCheckout] = useCheckoutAddProductLineMutation();
   const [loadingAddToCheckout, setLoadingAddToCheckout] = useState(false);
   const [addToCartError, setAddToCartError] = useState("");
+  const attributeOptions = useMemo(() => getAttributeOptionsForVariantSelector(product), [product]);
 
   if (!product?.id) {
     return <Custom404 />;
   }
-
-  const selectedVariantID = getSelectedVariantID(product, router);
-
-  const selectedVariant = product?.variants?.find((v) => v?.id === selectedVariantID) || undefined;
+  const selectedVariant = getSelectedVariant({
+    product,
+    router,
+    attributes: attributeOptions,
+  });
+  const selectedVariantID = selectedVariant?.id;
 
   const onAddToCart = async () => {
     // Clear previous error messages
@@ -164,7 +203,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
       <ProductPageSeo product={product} />
       <main
         className={clsx(
-          "grid grid-cols-1 gap-[3rem] max-h-full overflow-auto md:overflow-hidden container pt-8 px-8 md:grid-cols-3"
+          "grid grid-cols-1 gap-[3rem] max-h-full overflow-auto md:overflow-hidden container pt-8 px-8 md:grid-cols-3",
         )}
       >
         <div className="col-span-2">
@@ -198,7 +237,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
             )}
           </div>
 
-          <VariantSelector product={product} selectedVariantID={selectedVariantID} />
+          <VariantSelector product={product} selectedVariant={selectedVariant} />
 
           <button
             onClick={onAddToCart}
@@ -206,7 +245,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
             disabled={isAddToCartButtonDisabled}
             className={clsx(
               "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent  focus:outline-none",
-              !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
+              !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1",
             )}
             data-testid="addToCartButton"
           >

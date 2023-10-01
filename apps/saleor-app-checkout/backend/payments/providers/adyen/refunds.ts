@@ -29,7 +29,7 @@ export async function handleAdyenRefund({
         value: getIntegerAmountFromSaleor(amount),
       },
       merchantAccount: config.merchantAccount,
-    })
+    }),
   );
 
   const updateSucceeded = await updateTransaction(saleorApiUrl, {

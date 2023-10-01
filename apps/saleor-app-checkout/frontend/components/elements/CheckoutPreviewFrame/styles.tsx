@@ -7,5 +7,5 @@ export const useStyles = makeStyles(
       border: "none",
     },
   }),
-  { name: "CheckoutPreviewFrame" }
+  { name: "CheckoutPreviewFrame" },
 );

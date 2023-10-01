@@ -8,7 +8,7 @@ import * as Apl from "@/saleor-app-checkout/config/apl";
 
 export const updateTransaction = async (
   saleorApiUrl: string,
-  args: TransactionUpdateMutationVariables
+  args: TransactionUpdateMutationVariables,
 ) => {
   const authData = await Apl.get(saleorApiUrl);
   const client = getClientForAuthData(authData);
@@ -17,7 +17,7 @@ export const updateTransaction = async (
   const { data, error: _error } = await client
     .mutation<TransactionUpdateMutation, TransactionUpdateMutationVariables>(
       TransactionUpdateDocument,
-      args
+      args,
     )
     .toPromise();
 

@@ -20,5 +20,5 @@ export const useStyles = makeStyles(
       gap: theme.spacing(2),
     },
   }),
-  { name: "PaymentProviderDetails" }
+  { name: "PaymentProviderDetails" },
 );

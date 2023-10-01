@@ -19,8 +19,8 @@ export const envVars = {};
 export const envVarsNames: EnvVars = {};
 
 export const serverEnvVars: ServerEnvVars = {
-  appToken: process.env["SALEOR_APP_TOKEN"]!,
-  settingsEncryptionSecret: process.env["SETTINGS_ENCRYPTION_SECRET"],
+  appToken: process.env.SALEOR_APP_TOKEN!,
+  settingsEncryptionSecret: process.env.SETTINGS_ENCRYPTION_SECRET,
 };
 export const serverEnvVarNames: Record<ServerEnvVar, string> = {
   appToken: "SALEOR_APP_TOKEN",

@@ -83,7 +83,7 @@ describe("getTransactionAmountFromAdyen", () => {
   const DEFAULT_CURRENCY = "EUR";
   const prepareAdyenNotification = (
     amount: number,
-    eventCode: EventCodeEnum
+    eventCode: EventCodeEnum,
   ): NotificationRequestItem => ({
     amount: {
       currency: DEFAULT_CURRENCY,
@@ -130,7 +130,7 @@ describe("getTransactionAmountFromAdyen", () => {
       return getTransactionAmountFromAdyen(
         // @ts-expect-error We check for runtime errors that TypeScript will complain about
         notification,
-        null
+        null,
       );
     }).toThrow();
   });
