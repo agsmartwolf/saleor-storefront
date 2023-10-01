@@ -15,9 +15,14 @@ import { GenericAttribute } from "@/components/product/GenericAttribute";
 export interface VariantSelectorProps {
   product: ProductDetailsFragment;
   selectedVariant?: ProductVariantDetailsFragment;
+  attributeOptions: ReturnType<typeof getAttributeOptionsForVariantSelector>;
 }
 
-export function VariantSelector({ product, selectedVariant }: VariantSelectorProps) {
+export function VariantSelector({
+  product,
+  selectedVariant,
+  attributeOptions,
+}: VariantSelectorProps) {
   const paths = usePaths();
   const router = useRouter();
   const { formatPrice } = useRegions();
@@ -49,10 +54,10 @@ export function VariantSelector({ product, selectedVariant }: VariantSelectorPro
         {
           shallow: true,
           scroll: false,
-        },
+        }
       );
     },
-    [attributeOptions, router.query, product.slug],
+    [attributeOptions, router.query, product.slug]
   );
 
   return (

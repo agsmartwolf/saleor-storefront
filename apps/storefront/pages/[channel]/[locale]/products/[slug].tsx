@@ -51,7 +51,7 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 });
 
 export const getStaticProps = async (
-  context: GetStaticPropsContext<{ channel: string; locale: string; slug: string }>,
+  context: GetStaticPropsContext<{ channel: string; locale: string; slug: string }>
 ) => {
   if (!context.params) {
     return {
@@ -203,7 +203,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
       <ProductPageSeo product={product} />
       <main
         className={clsx(
-          "grid grid-cols-1 gap-[3rem] max-h-full overflow-auto md:overflow-hidden container pt-8 px-8 md:grid-cols-3",
+          "grid grid-cols-1 gap-[3rem] max-h-full overflow-auto md:overflow-hidden container pt-8 px-8 md:grid-cols-3"
         )}
       >
         <div className="col-span-2">
@@ -237,7 +237,11 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
             )}
           </div>
 
-          <VariantSelector product={product} selectedVariant={selectedVariant} />
+          <VariantSelector
+            product={product}
+            selectedVariant={selectedVariant}
+            attributeOptions={attributeOptions}
+          />
 
           <button
             onClick={onAddToCart}
@@ -245,7 +249,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
             disabled={isAddToCartButtonDisabled}
             className={clsx(
               "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent  focus:outline-none",
-              !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1",
+              !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
             )}
             data-testid="addToCartButton"
           >
