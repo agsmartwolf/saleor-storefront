@@ -20,7 +20,7 @@
     "eslint-config-checkout": "workspace:*",
     "react-scripts": "5.0.1",
     "tsconfig": "workspace:*",
-    "typescript": "4.8.4"
+    "typescript": "5.0.4"
   },
   "scripts": {
     "dev": "react-scripts start",

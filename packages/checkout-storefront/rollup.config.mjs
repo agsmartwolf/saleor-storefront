@@ -44,7 +44,7 @@ export default [
         sourceMap: true,
         jsx: isProd ? "react-jsx" : "react-jsxdev",
         // Let Rollup resolve JSON modules via the @rollup/plugin-json
-        resolveJsonModule: true,
+        resolveJsonModule: false,
       }),
       json({ preferConst: true, compact: true }),
       image(),
