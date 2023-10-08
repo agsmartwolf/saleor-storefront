@@ -4,27 +4,27 @@ import { PaymentMethodID } from "checkout-common";
 export const paymentMethodsMessages = defineMessages<PaymentMethodID>({
   creditCard: {
     defaultMessage: "Credit card",
-    id: "messages/paymentMethods/IKIBYk",
+    id: "IKIBYk",
     description: "payment method",
   },
   applePay: {
     defaultMessage: "Apple Pay",
-    id: "messages/paymentMethods/BFIFWS",
+    id: "BFIFWS",
     description: "payment method",
   },
   paypal: {
     defaultMessage: "PayPal",
-    id: "messages/paymentMethods/nXqPc7",
+    id: "nXqPc7",
     description: "payment method",
   },
   dropin: {
     defaultMessage: "Drop-in",
-    id: "messages/paymentMethods/6bexF4",
+    id: "6bexF4",
     description: "payment method",
   },
   dummy: {
     defaultMessage: "Dummy Payment",
-    id: "messages/paymentMethods/2dP9Gd",
+    id: "2dP9Gd",
     description: "dummy payment method",
   },
 });

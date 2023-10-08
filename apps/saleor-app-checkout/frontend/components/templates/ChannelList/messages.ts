@@ -3,7 +3,7 @@ import { defineMessages } from "react-intl";
 export const messages = defineMessages({
   channelName: {
     defaultMessage: "Channel name",
-    id: "ChannelList/messages/vOL1vk",
+    id: "vOL1vk",
     description: "label",
   },
 });
