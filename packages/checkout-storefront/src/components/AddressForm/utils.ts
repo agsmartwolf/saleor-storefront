@@ -62,7 +62,7 @@ export const getAddressInputData = ({
 });
 
 export const getAddressInputDataFromAddress = (
-  address: OptionalAddress | Partial<AddressFragment>
+  address: OptionalAddress | Partial<AddressFragment>,
 ): AddressInput => {
   if (!address) {
     return {};
@@ -91,7 +91,7 @@ export const getAddressFormDataFromAddress = (address: OptionalAddress): Address
   const parsedAddressBase = reduce(
     rest,
     (result, val, key) => ({ ...result, [key]: val || "" }),
-    {}
+    {},
   ) as Omit<AddressFormData, "countryCode">;
 
   return pick(
@@ -99,14 +99,14 @@ export const getAddressFormDataFromAddress = (address: OptionalAddress): Address
       ...parsedAddressBase,
       countryCode: country.code as CountryCode,
     },
-    getAllAddressFieldKeys()
+    getAllAddressFieldKeys(),
   ) as AddressFormData;
 };
 
 // checks for address related data and id
 export const isMatchingAddress = (
   address?: Partial<AddressFragment> | null,
-  addressToMatch?: Partial<AddressFragment> | null
+  addressToMatch?: Partial<AddressFragment> | null,
 ) => {
   const isTheSameAddressById =
     typeof address?.id === "string" &&
@@ -123,7 +123,7 @@ export const isMatchingAddress = (
 // checks only for address related data
 export const isMatchingAddressData = (
   address?: Partial<AddressFragment> | null,
-  addressToMatch?: Partial<AddressFragment> | null
+  addressToMatch?: Partial<AddressFragment> | null,
 ) =>
   isEqual(pick(address, getAllAddressFieldKeys()), pick(addressToMatch, getAllAddressFieldKeys()));
 
@@ -133,7 +133,7 @@ export const getByMatchingAddress =
 
 export const isMatchingAddressFormData = (
   address?: Partial<AddressFormData> | null,
-  addressToMatch?: Partial<AddressFormData> | null
+  addressToMatch?: Partial<AddressFormData> | null,
 ) => {
   const propsToOmit = ["id", "autoSave", "__typename"];
 
@@ -141,7 +141,7 @@ export const isMatchingAddressFormData = (
 };
 
 export const getAddressValidationRulesVariables = (
-  { autoSave }: { autoSave: boolean } = { autoSave: false }
+  { autoSave }: { autoSave: boolean } = { autoSave: false },
 ): CheckoutAddressValidationRules =>
   autoSave
     ? {
@@ -168,7 +168,7 @@ export const getOrderedAddressFields = (addressFields: AddressField[] = []): Add
   const filteredAddressFields = getFilteredAddressFields(addressFields);
 
   return addressFieldsOrder.filter((orderedAddressField) =>
-    filteredAddressFields.includes(orderedAddressField)
+    filteredAddressFields.includes(orderedAddressField),
   );
 };
 
@@ -182,8 +182,9 @@ export const getRequiredAddressFields = (requiredFields: AddressField[] = []): A
 // and "lastName"
 export const getFilteredAddressFields = (addressFields: ApiAddressField[]): AddressField[] => {
   const filteredAddressFields = addressFields.filter(
-    (addressField: ApiAddressField) => addressField !== "name"
+    (addressField: ApiAddressField) => addressField !== "name",
   ) as AddressField[];
 
+  // @ts-ignore
   return uniq([...filteredAddressFields, "firstName", "lastName", "phone"]);
 };
