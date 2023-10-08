@@ -14,6 +14,15 @@ const handler = createManifestHandler({
       name: appName,
       about: "Saleor checkout app to quickly configure and customize checkout in your store.",
       permissions: ["HANDLE_PAYMENTS", "HANDLE_CHECKOUTS", "MANAGE_ORDERS", "MANAGE_CHECKOUTS"],
+      extensions: [
+        {
+          label: "Payments and checkouts",
+          mount: "NAVIGATION_ORDERS",
+          target: "APP_PAGE",
+          permissions: ["MANAGE_CHECKOUTS"],
+          url: "/",
+        },
+      ],
       appUrl: appBaseUrl,
       dataPrivacyUrl: `${appBaseUrl}/data-privacy`,
       supportUrl: `${appBaseUrl}/support`,
