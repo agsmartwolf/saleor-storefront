@@ -44,7 +44,7 @@ export default [
         noEmit: false,
         jsx: "react-jsx",
         // Let Rollup resolve JSON modules via the @rollup/plugin-json
-        resolveJsonModule: false,
+        resolveJsonModule: true,
       }),
       json(),
       image(),

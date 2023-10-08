@@ -25,6 +25,7 @@ export const Checkout = () => {
   ) : isInitiallyAuthenticating ? (
     <CheckoutSkeleton />
   ) : (
+    // @ts-ignore
     <ErrorBoundary FallbackComponent={PageNotFound}>
       <div className="page" id={PAGE_ID}>
         <PageHeader />

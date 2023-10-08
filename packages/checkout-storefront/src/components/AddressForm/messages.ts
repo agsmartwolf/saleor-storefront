@@ -14,86 +14,86 @@ export type AddressFieldLabel = Exclude<AddressField, "countryCode"> | "country"
 export const localizedAddressFieldMessages = defineMessages<LocalizedAddressFieldLabel>({
   province: {
     defaultMessage: "Province",
-    id: "AddressForm/messages/XI2F1P",
+    id: "XI2F1P",
     description: "province",
   },
   district: {
     defaultMessage: "District",
-    id: "AddressForm/messages/X/8oa4",
+    id: "X/8oa4",
     description: "district",
   },
   state: {
     defaultMessage: "State",
-    id: "AddressForm/messages/Zdvjjr",
+    id: "Zdvjjr",
     description: "state",
   },
   zip: {
     defaultMessage: "Zip code",
-    id: "AddressForm/messages/tGSbvd",
+    id: "tGSbvd",
     description: "zip code",
   },
   postal: {
     defaultMessage: "Postal code",
-    id: "AddressForm/messages/0KU6nT",
+    id: "0KU6nT",
     description: "postal code",
   },
   postTown: {
     defaultMessage: "Post town",
-    id: "AddressForm/messages/OxxX1m",
+    id: "OxxX1m",
     description: "post town",
   },
 });
 
 export const addressFieldMessages = defineMessages<AddressFieldLabel>({
-  city: { defaultMessage: "City", id: "AddressForm/messages/X51P1g", description: "city" },
+  city: { defaultMessage: "City", id: "X51P1g", description: "city" },
   firstName: {
     defaultMessage: "First name",
-    id: "AddressForm/messages/Jbz2k6",
+    id: "Jbz2k6",
     description: "first name",
   },
   countryArea: {
     defaultMessage: "Country area",
-    id: "AddressForm/messages/dxC3yk",
+    id: "dxC3yk",
     description: "country area",
   },
   lastName: {
     defaultMessage: "Last name",
-    id: "AddressForm/messages/K/a8rS",
+    id: "K/a8rS",
     description: "last name",
   },
   country: {
     defaultMessage: "Country",
-    id: "AddressForm/messages/KyH9NK",
+    id: "KyH9NK",
     description: "country",
   },
   cityArea: {
     defaultMessage: "City area",
-    id: "AddressForm/messages/7bJ7Hd",
+    id: "7bJ7Hd",
     description: "city area",
   },
   postalCode: {
     defaultMessage: "Postal code",
-    id: "AddressForm/messages/0KU6nT",
+    id: "0KU6nT",
     description: "postal code",
   },
   companyName: {
     defaultMessage: "Company",
-    id: "AddressForm/messages/QXvSmh",
+    id: "QXvSmh",
     description: "company",
   },
   streetAddress1: {
     defaultMessage: "Street address",
-    id: "AddressForm/messages/Y6dLvp",
+    id: "Y6dLvp",
     description: "street address",
   },
   streetAddress2: {
     defaultMessage: "Street address (continue)",
-    id: "AddressForm/messages/mbEUWh",
+    id: "mbEUWh",
     description: "street address continue",
   },
   phone: {
     defaultMessage: "Phone number",
-    id: "AddressForm/messages/ljLaVr",
+    id: "ljLaVr",
     description: "phone number",
   },
 });

@@ -3,12 +3,12 @@ import { defineMessages } from "react-intl";
 export const manualSaveAddressFormMessages = defineMessages({
   cancel: {
     defaultMessage: "Cancel",
-    id: "ManualSaveAddressForm/messages/js69XA",
+    id: "js69XA",
     description: "cancel",
   },
   save: {
     defaultMessage: "Save address",
-    id: "ManualSaveAddressForm/messages/BfROpq",
+    id: "BfROpq",
     description: "save address",
   },
 });
@@ -16,17 +16,17 @@ export const manualSaveAddressFormMessages = defineMessages({
 export const manualSaveAddressFormLabels = defineMessages({
   delete: {
     defaultMessage: "Delete address",
-    id: "ManualSaveAddressForm/messages/NeZoqm",
+    id: "NeZoqm",
     description: "delete address accessibility label",
   },
   save: {
     defaultMessage: "Save address",
-    id: "ManualSaveAddressForm/messages/khhC7s",
+    id: "khhC7s",
     description: "save accessibility label",
   },
   cancel: {
     defaultMessage: "Cancel editing",
-    id: "ManualSaveAddressForm/messages/a4P38R",
+    id: "a4P38R",
     description: "cancel accessibility label",
   },
 });

@@ -22,7 +22,7 @@ export const Radio = forwardRef(
     return (
       <Label className={clsx(styles.label, classNames?.label)} htmlFor={id}>
         <div className={clsx(styles.radio, classNames?.container)}>
-          <div className={clsx(styles["box"])}>
+          <div className={clsx(styles.box)}>
             <input
               ref={ref}
               type="radio"

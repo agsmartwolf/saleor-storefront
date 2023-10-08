@@ -31,7 +31,8 @@
   },
   "resolutions": {
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "@types/react": "^18.2.7"
   },
   "devDependencies": {
     "@babel/core": "7.19.6",

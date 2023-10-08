@@ -19,7 +19,7 @@ export const Checkbox = ({ label, checked, value, classNames, ...rest }: Checkbo
     <Label className={clsx(styles.label, classNames?.label)} htmlFor={id}>
       <>
         <div className={clsx(styles.checkbox, classNames?.container)}>
-          <div className={clsx(styles["box"], "select-none")}>
+          <div className={clsx(styles.box, "select-none")}>
             <input
               {...rest}
               type="checkbox"

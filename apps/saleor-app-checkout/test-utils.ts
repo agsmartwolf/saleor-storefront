@@ -43,7 +43,7 @@ interface MockRequestStreamParams {
  */
 export const mockRequestStream = (
   method: RequestMethod = "GET",
-  { body, ...params }: MockRequestStreamParams = { body: undefined },
+  { body, ...params }: MockRequestStreamParams = { body: undefined }
 ) => {
   const { req, res } = mockRequest(method);
 
@@ -77,7 +77,7 @@ const VARIABLES_BLACKLIST = [
 ];
 
 export const removeBlacklistedVariables = (
-  obj: {} | undefined | string,
+  obj: {} | undefined | string
 ): {} | undefined | string => {
   if (!obj || typeof obj === "string") return obj;
 
@@ -100,12 +100,12 @@ export const setupPollyMiddleware = (server: PollyServer) => {
   server.any().on("beforePersist", (_, recording) => {
     const requestJson = tryParse(recording.request.postData?.text);
     const requestHeaders = recording.request.headers.filter(
-      (el: Record<string, string>) => !HEADERS_BLACKLIST.has(el.name),
+      (el: Record<string, string>) => !HEADERS_BLACKLIST.has(el.name)
     );
 
     const responseJson = tryParse(recording.response.content?.text);
     const responseHeaders = recording.response.headers.filter(
-      (el: Record<string, string>) => !HEADERS_BLACKLIST.has(el.name),
+      (el: Record<string, string>) => !HEADERS_BLACKLIST.has(el.name)
     );
 
     const filteredRequestJson = removeBlacklistedVariables(requestJson);
@@ -165,7 +165,7 @@ export const setupPollyMiddleware = (server: PollyServer) => {
           statusText: "",
           delay: 0,
         }),
-      } as MockedRequest;
+      } as unknown as MockedRequest;
 
       const isHandledByMsw = handlers.some((handler) => handler.test(fakeReq));
 
@@ -243,7 +243,7 @@ export const setupRecording = () => {
 };
 
 export const consoleTypes = ["log", "debug", "info", "warn", "error"] as const;
-type ConsoleType = (typeof consoleTypes)[number];
+type ConsoleType = typeof consoleTypes[number];
 
 export function disableConsole(logType: ConsoleType | ConsoleType[]) {
   if (process.env.DEBUG) return;

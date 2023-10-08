@@ -15,12 +15,13 @@
     "test": "jest",
     "test:dev": "jest --watch",
     "clean": "rm -rf .turbo .next .rollup.cache dist",
-    "i18n:extract": "formatjs extract 'src/**/*.{js,jsx,ts,tsx}' --format transifex --id-interpolation-pattern '[folder]/[name]/[sha512:contenthash:base64:6]' --out-file content/locales/en-US.json",
+    "i18n:extract": "formatjs extract \"src/**/*.{js,jsx,ts,tsx}\" --format transifex --id-interpolation-pattern \"[folder]/[name]/[sha512:contenthash:base64:6]\" --out-file content/locales/en-US.json",
     "i18n:compile": "formatjs compile-folder --ast --format transifex content/locales content/compiled-locales",
     "i18n": "pnpm run i18n:extract && pnpm run i18n:compile"
   },
   "resolutions": {
-    "graphql": "15.8.0"
+    "graphql": "15.8.0",
+    "@types/react": "^18.2.7"
   },
   "peerDependencies": {
     "graphql": "15.8.0",
@@ -28,7 +29,7 @@
     "react-dom": "18.2.0"
   },
   "overrides": {
-    "@types/react": "18.0.15"
+    "@types/react": "^18.2.7"
   },
   "dependencies": {
     "@adyen/adyen-web": "5.35.0",
@@ -48,7 +49,7 @@
     "lodash-es": "4.17.21",
     "query-string": "7.1.1",
     "react": "18.2.0",
-    "react-error-boundary": "3.1.4",
+    "react-error-boundary": "4.0.11",
     "react-intl": "6.2.1",
     "react-spinners": "0.13.8",
     "react-test-renderer": "18.2.0",
@@ -81,7 +82,7 @@
     "@types/jest": "27.5.2",
     "@types/lodash-es": "4.17.6",
     "@types/node": "16.11.22",
-    "@types/react": "18.0.23",
+    "@types/react": "18.2.25",
     "@types/react-dom": "18.0.7",
     "@types/url-join": "4.0.1",
     "@types/webpack-env": "1.18.0",

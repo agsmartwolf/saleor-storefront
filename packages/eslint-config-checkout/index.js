@@ -4,11 +4,13 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
   // plugins: ["@typescript-eslint", "formatjs", "require-form-method"],
-  plugins: ["prettier", "@typescript-eslint", "require-form-method"],
+  plugins: ["prettier", "@typescript-eslint", "require-form-method", "import"],
   extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
     "airbnb-typescript",
     "plugin:prettier/recommended",
-    "plugin:@next/next/recommended"
+    "plugin:@next/next/recommended",
   ],
   parserOptions: {
     project: ["tsconfig.json"],
@@ -23,8 +25,22 @@ module.exports = {
   },
   ignorePatterns: ["build/", ".turbo/", "dist/", "node_modules/", "*.js", "*.jsx", "*.d.ts"],
   rules: {
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx", ".ts", ".tsx"] }],
+    "formatjs/enforce-id": [
+      "error",
+      {
+        idInterpolationPattern: "[sha512:contenthash:base64:6]",
+      },
+    ],
     "@next/next/no-html-link-for-pages": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "import/extensions": "off",
+    "@typescript-eslint/no-redeclare": "off",
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "react/react-in-jsx-scope": "off",
     "react/jsx-key": "off",
+    "react/prop-types": "off",
     "array-callback-return": "error",
     "no-alert": ["error"],
     "no-debugger": ["error"],

@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   ignorePatterns: ["next-env.d.ts"],
   extends: ["checkout"],
+  plugins: ["formatjs"],
   rules: {
     "@next/next/no-img-element": "off",
     "formatjs/enforce-id": [

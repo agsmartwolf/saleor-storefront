@@ -10,7 +10,8 @@
     "paths": {
       "@/checkout-storefront/icons": ["./src/assets/icons"],
       "@/checkout-storefront/images": ["./src/assets/images"],
-      "@/checkout-storefront/*": ["./src/*"]
+      "@/checkout-storefront/*": ["./src/*"],
+      "react": ["node_modules/@types/react"]
     },
     "outDir": "dist",
     "composite": false,

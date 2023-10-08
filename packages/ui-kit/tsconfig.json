@@ -6,7 +6,8 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "paths": {
       "@components/*": ["./src/components/*"],
-      "@lib/*": ["./src/lib/*"]
+      "@lib/*": ["./src/lib/*"],
+      "react": ["node_modules/@types/react"]
     },
     "emitDeclarationOnly": true,
     "declarationMap": false,
