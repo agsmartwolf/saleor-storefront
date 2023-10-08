@@ -43,7 +43,6 @@ const CheckoutPreviewFrame: React.FC<CheckoutPreviewFrameProps> = ({
     return () => {
       window.removeEventListener("message", mountListener);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings, checkoutUrl, iframeRef.current]);
 
   useEffect(() => {
@@ -51,7 +50,6 @@ const CheckoutPreviewFrame: React.FC<CheckoutPreviewFrameProps> = ({
       sendMessage();
       window.removeEventListener("message", mountListener);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appMounted]);
 
   return (

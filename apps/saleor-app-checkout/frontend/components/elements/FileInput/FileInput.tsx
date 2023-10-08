@@ -25,7 +25,6 @@ const FileInput: React.FC<FileInputProps> = ({ name, label, alt, value, onChange
     if (value !== src) {
       setSrc(value);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   const handleFileUploadButtonClick = () => anchor.current!.click();
@@ -103,7 +102,7 @@ const FileInput: React.FC<FileInputProps> = ({ name, label, alt, value, onChange
             src={src}
             alt={alt}
             layout="fill"
-            loader={({ src }) => src}
+            loader={({ src: s }) => s}
           />
           <div className={classes.mediaOverlay}>
             <div className={classes.mediaToolbar}>

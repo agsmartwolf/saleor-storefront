@@ -45,7 +45,7 @@ interface CustomizationDetailsProps {
   onSubmit: (
     data: CustomizationSettingsValues,
     dataFiles?: CustomizationSettingsFiles,
-    checkoutUrl?: string,
+    checkoutUrl?: string
   ) => Promise<void>;
 }
 
@@ -69,7 +69,7 @@ const CustomizationDetails: React.FC<CustomizationDetailsProps> = ({
   const handleFileChange = <T extends CustomizationID>(
     optionId: T,
     settingId: CustomizationSettingID<T>,
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const inputFiles = event.target.files;
     if (inputFiles?.length) {
@@ -86,7 +86,7 @@ const CustomizationDetails: React.FC<CustomizationDetailsProps> = ({
     await onSubmit(
       unflattenSettings("customizations", flattenedValues, options) as CustomizationSettingsValues,
       files,
-      unflattenValue("customizationsCheckoutUrl", flattenedValues),
+      unflattenValue("customizationsCheckoutUrl", flattenedValues)
     );
     setFiles(undefined);
   };
@@ -140,8 +140,8 @@ const CustomizationDetails: React.FC<CustomizationDetailsProps> = ({
         <div className={classes.design}>
           <ErrorAlert
             errors={errors}
-            getErrorMessage={(error, intl) =>
-              error.code ? getMetadataErrorMessage(error.code, intl) : error.message
+            getErrorMessage={(error, _intl) =>
+              error.code ? getMetadataErrorMessage(error.code, _intl) : error.message
             }
           />
           <Typography variant="subtitle1">

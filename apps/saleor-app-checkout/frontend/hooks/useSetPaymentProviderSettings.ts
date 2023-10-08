@@ -6,7 +6,7 @@ import { useFetch, UseFetchOptionalProps } from "./useFetch";
 import { usePrivateSettings } from "./usePrivateSettings";
 
 export const useSetPaymentProviderSettings = <TArgs>(
-  optionalProps?: UseFetchOptionalProps<TArgs>,
+  optionalProps?: UseFetchOptionalProps<TArgs>
 ) => {
   const { privateSettings, setPrivateSettings } = usePrivateSettings();
 
@@ -35,7 +35,6 @@ export const useSetPaymentProviderSettings = <TArgs>(
         },
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.data]);
 
   return [

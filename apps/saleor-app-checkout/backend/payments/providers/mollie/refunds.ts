@@ -4,7 +4,7 @@ import {
   getMollieClient,
 } from "@/saleor-app-checkout/backend/payments/providers/mollie/utils";
 import { TransactionActionPayloadFragment } from "@/saleor-app-checkout/graphql";
-import { PaymentStatus } from "@mollie/api-client";
+import { Payment, PaymentStatus } from "@mollie/api-client";
 import { getActionsAfterRefund } from "@/saleor-app-checkout/backend/payments/utils";
 import { unpackPromise } from "@/saleor-app-checkout/utils/unpackErrors";
 import { updateTransaction } from "../../updateTransaction";
@@ -27,8 +27,8 @@ export async function handleMolieRefund({
 
   const order = await mollieClient.orders.get(id);
   const payments = await order.getPayments();
-  const payment = payments.find(
-    (payment) => payment.status === PaymentStatus.paid && payment.isRefundable(),
+  const payment: Payment | undefined = payments.find(
+    (p) => p.status === PaymentStatus.paid && p.isRefundable()
   );
 
   if (!payment) {
@@ -44,7 +44,7 @@ export async function handleMolieRefund({
         value: String(amount),
         currency,
       },
-    }),
+    })
   );
 
   const updateSucceeded = await updateTransaction(saleorApiUrl, {

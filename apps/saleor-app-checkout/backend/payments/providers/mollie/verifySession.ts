@@ -16,7 +16,7 @@ export const verifyMollieSession = async ({
   } = await getPrivateSettings({ saleorApiUrl, obfuscateEncryptedData: false });
 
   if (!mollie.apiKey) {
-    throw "API key not defined";
+    throw Error("API key not defined");
   }
 
   const client = await getMollieClient(saleorApiUrl);
@@ -27,7 +27,7 @@ export const verifyMollieSession = async ({
 
 export const reuseExistingMollieSession: ReuseExistingVendorSessionFn = async (
   saleorApiUrl,
-  { payment, orderId },
+  { payment, orderId }
 ) => {
   const session = await verifyMollieSession({ saleorApiUrl, session: payment.session });
 

@@ -5,10 +5,10 @@ export const useFetch = <
   TError,
   TFetchFn extends FetchFn<any, any>,
   TData = GetDataType<TFetchFn>,
-  TArgs = GetArgsType<TFetchFn>,
+  TArgs = GetArgsType<TFetchFn>
 >(
   fetchFn: TFetchFn,
-  optionalProps?: UseFetchOptionalProps<TArgs>,
+  optionalProps?: UseFetchOptionalProps<TArgs>
 ): UseFetchResult<TError, TData, TArgs> => {
   const { args, skip = false } = optionalProps || {};
 
@@ -23,12 +23,12 @@ export const useFetch = <
 
     try {
       const response = await fetchFn((immediateArgs || args) as TArgs);
-      const result = await response.json();
-      if (result?.error) {
-        throw result.error;
+      const r = await response.json();
+      if (r?.error) {
+        throw r.error;
       }
-      setResult(result as TData);
-      return result;
+      setResult(r as TData);
+      return r;
     } catch (e) {
       setError(e as TError);
       return null;
@@ -44,7 +44,6 @@ export const useFetch = <
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skip, ...useFetchArgsDeps]);
 
   return [{ data: result, loading, error }, fetchData];

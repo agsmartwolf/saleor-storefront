@@ -35,7 +35,7 @@ const Customization = () => {
 
   const checkoutUrl = getMetafield(
     metafieldsQuery.data?.app?.metafields || {},
-    "customizationsCheckoutUrl",
+    "customizationsCheckoutUrl"
   );
 
   const handleCancel = () => {
@@ -45,7 +45,7 @@ const Customization = () => {
   const handleSubmit = async (
     data: CustomizationSettingsValues,
     dataFiles?: CustomizationSettingsFiles,
-    checkoutUrl?: string,
+    _checkoutUrl?: string
   ) => {
     const newData = await uploadSettingsFiles({ data, dataFiles, uploadFile });
 
@@ -54,7 +54,7 @@ const Customization = () => {
         customizations: newData,
       }),
       ...mapPublicMetafieldsToMetadata({
-        customizationsCheckoutUrl: checkoutUrl,
+        customizationsCheckoutUrl: _checkoutUrl,
       }),
     ];
 

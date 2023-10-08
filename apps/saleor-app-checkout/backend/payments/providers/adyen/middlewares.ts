@@ -21,7 +21,7 @@ export const withAdyenWebhookCredentials =
       getPrivateSettings({
         saleorApiUrl: request.params.saleorApiUrl,
         obfuscateEncryptedData: false,
-      }),
+      })
     );
 
     if (error) {
@@ -35,9 +35,9 @@ export const withAdyenWebhookCredentials =
 
     const missingKeys = adyenProviderSettingIDs.filter((key) => !adyen[key]);
     if (missingKeys.length > 0) {
-      const error = new MissingPaymentProviderSettingsError("adyen", missingKeys);
-      console.error(error);
-      return Response.InternalServerError({ error: error.message });
+      const e = new MissingPaymentProviderSettingsError("adyen", missingKeys);
+      console.error(e);
+      return Response.InternalServerError({ error: e.message });
     }
 
     return handler({
@@ -92,7 +92,7 @@ export const isAdyenWebhookHmacValid: Middleware = (handler) => async (request) 
 
   // first validate the origin
   const [validationError, isValid] = await unpackPromise(
-    validateHmac(notificationRequestItem, hmac),
+    validateHmac(notificationRequestItem, hmac)
   );
 
   if (!isValid || validationError) {

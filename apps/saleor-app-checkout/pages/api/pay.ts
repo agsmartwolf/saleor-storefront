@@ -36,7 +36,7 @@ import { getSaleorApiUrlFromRequest } from "@/saleor-app-checkout/backend/auth";
 
 const reuseExistingSession = (
   saleorApiUrl: string,
-  { orderId, provider, method, privateMetafield }: ReuseExistingSessionParams,
+  { orderId, provider, method, privateMetafield }: ReuseExistingSessionParams
 ): ReuseExistingSessionResult => {
   const payment: OrderPaymentMetafield = JSON.parse(privateMetafield);
 
@@ -98,7 +98,7 @@ const getPaymentResponse = async ({
   }
 
   const [paymentUrlError, data] = await unpackPromise(
-    getPaymentUrlIdForProvider({ saleorApiUrl, body, order, appUrl }),
+    getPaymentUrlIdForProvider({ saleorApiUrl, body, order, appUrl })
   );
 
   if (paymentUrlError) {
@@ -214,7 +214,7 @@ const getPaymentUrlIdForProvider = ({
       return createAdyenCheckoutPaymentLinks(createPaymentData);
     case "stripe":
       return createStripePayment(createPaymentData);
-    case "dummy":
+    case "dummy": {
       const url = new URL(body.redirectUrl);
       url.searchParams.set("order", order.id);
       url.searchParams.set("dummyPayment", "true");
@@ -228,6 +228,7 @@ const getPaymentUrlIdForProvider = ({
         ...createPaymentData,
         redirectUrl: url.toString(),
       });
+    }
     default:
       assertUnreachable(body.provider);
   }

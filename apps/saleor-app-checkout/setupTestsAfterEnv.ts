@@ -7,7 +7,7 @@ beforeAll(() =>
   server.listen({
     // if not handled by msw, it will be by Polly.js
     onUnhandledRequest: "bypass",
-  }),
+  })
 );
 
 // Reset any request handlers that we may add during the tests,
@@ -19,7 +19,7 @@ afterEach(() => {
   consoleTypes.forEach((type) => {
     // @ts-expect-error
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    typeof console[type]?.mockClear === "function" && console[type].mockClear();
+    if (typeof console[type]?.mockClear === "function") console[type].mockClear();
   });
 });
 

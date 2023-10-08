@@ -1,9 +1,12 @@
 module.exports = {
   extends: ["checkout"],
+  plugins: ["formatjs"],
   parserOptions: {
     tsconfigRootDir: __dirname,
   },
+  ignorePatterns: ["__tests__"],
   rules: {
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx", ".ts", ".tsx"] }],
     "formatjs/enforce-id": [
       "error",
       {

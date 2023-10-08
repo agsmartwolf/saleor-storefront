@@ -9,7 +9,7 @@ export const verifyAdyenSession = async (saleorApiUrl: string, session: string) 
   } = await getPrivateSettings({ saleorApiUrl, obfuscateEncryptedData: false });
 
   if (!adyen.apiKey) {
-    throw "API key not defined";
+    throw Error("API key not defined");
   }
 
   // TODO: Remove hardcoded environment value
@@ -28,7 +28,7 @@ export const verifyAdyenSession = async (saleorApiUrl: string, session: string) 
 
 export const reuseExistingAdyenSession: ReuseExistingVendorSessionFn = async (
   saleorApiUrl,
-  { payment, orderId },
+  { payment, orderId }
 ) => {
   const session = await verifyAdyenSession(saleorApiUrl, payment.session);
   const StatusEnum = AdyenTypes.checkout.PaymentLinkResponse.StatusEnum;
