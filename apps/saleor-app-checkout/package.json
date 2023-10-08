@@ -1,6 +1,6 @@
 {
   "name": "saleor-app-checkout",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "pnpm run i18n && NODE_OPTIONS='--inspect --require env-vars' next dev -p 3001",
@@ -101,8 +101,8 @@
   },
   "engines": {
     "npm": ">=7.0.0",
-    "node": ">=16.0.0",
+    "node": ">=18.0.0",
     "pnpm": ">=8"
   },
-  "packageManager": "pnpm@8.6.6"
+  "packageManager": "pnpm@8.6.7"
 }
