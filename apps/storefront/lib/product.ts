@@ -83,7 +83,7 @@ export const PRIMARY_ATTRIBUTE_FIELD = "isPrimaryAttribute";
 
 export const getProductAttributes = (
   product: ProductDetailsFragment,
-  selectedVariant?: ProductVariantDetailsFragment,
+  selectedVariant?: ProductVariantDetailsFragment
 ): SelectedAttributeDetailsFragment[] => {
   if (selectedVariant) return product.attributes.concat(selectedVariant.attributes);
   return product.attributes;
@@ -115,12 +115,15 @@ export const getSelectedVariant = ({
   attributes: ReturnType<typeof getAttributeOptionsForVariantSelector>;
 }) => {
   // Check, if variant is already in the url
-  const isAllRequiredAttributesInURL = Object.keys(attributes).every((k) => !!router?.query?.[k]);
+  const attrsKeys = Object.keys(attributes);
+  const isAllRequiredAttributesInURL = attrsKeys.every((k) => !!router?.query?.[k]);
   const curVar = product?.variants?.find((v) =>
-    v.attributes.every((a) => {
-      const curAttrQueryVal = router?.query?.[a.attribute.id];
-      return !!a.values.find((val) => val.id === curAttrQueryVal);
-    }),
+    v.attributes
+      .filter((a) => attrsKeys.includes(a.attribute.id))
+      .every((a) => {
+        const curAttrQueryVal = router?.query?.[a.attribute.id];
+        return !!a.values.find((val) => val.id === curAttrQueryVal);
+      })
   );
   if (isAllRequiredAttributesInURL && curVar) {
     // case, where url contain valid variant id
@@ -135,7 +138,7 @@ export const getSelectedVariant = ({
 };
 
 export const getAttributeOptionsForVariantSelector = (
-  product: ProductDetailsFragment | undefined,
+  product: ProductDetailsFragment | undefined
 ) => {
   const attrs: {
     [key: string]: {
@@ -166,11 +169,11 @@ export const getAttributeOptionsForVariantSelector = (
 };
 
 export const getPrimaryAttribute = (
-  attributeOptions: ReturnType<typeof getAttributeOptionsForVariantSelector>,
+  attributeOptions: ReturnType<typeof getAttributeOptionsForVariantSelector>
 ) => {
   const primAttrKey = Object.keys(attributeOptions).find(
     (k) =>
-      !!attributeOptions[k].attribute.metadata?.find((mf) => mf.key === PRIMARY_ATTRIBUTE_FIELD),
+      !!attributeOptions[k].attribute.metadata?.find((mf) => mf.key === PRIMARY_ATTRIBUTE_FIELD)
   );
   return primAttrKey ? attributeOptions[primAttrKey] : undefined;
 };

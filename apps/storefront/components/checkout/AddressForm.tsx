@@ -38,7 +38,7 @@ export function AddressForm({
       firstName: existingAddressData?.firstName || "",
       lastName: existingAddressData?.lastName || "",
       phone: existingAddressData?.phone || "",
-      country: "PL",
+      country: "GE",
       streetAddress1: existingAddressData?.streetAddress1 || "",
       city: existingAddressData?.city || "",
       postalCode: existingAddressData?.postalCode || "",
@@ -53,7 +53,7 @@ export function AddressForm({
       errors.forEach((e) =>
         setErrorAddress(e.field as keyof AddressFormData, {
           message: e.message || "",
-        }),
+        })
       );
       return;
     }
@@ -75,8 +75,11 @@ export function AddressForm({
               className="w-full border-gray-300 rounded-md shadow-sm text-base"
               spellCheck={false}
               {...registerAddress("phone", {
-                required: true,
-                pattern: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i,
+                required: "Phone number is required",
+                pattern: {
+                  value: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i,
+                  message: "Invalid phone number",
+                },
               })}
             />
             {!!errorsAddress.phone && <p>{errorsAddress.phone.message}</p>}
@@ -94,7 +97,7 @@ export function AddressForm({
               className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base"
               spellCheck={false}
               {...registerAddress("firstName", {
-                required: true,
+                required: "Your name is required",
               })}
             />
             {!!errorsAddress.firstName && <p>{errorsAddress.firstName.message}</p>}
@@ -112,7 +115,7 @@ export function AddressForm({
               className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base"
               spellCheck={false}
               {...registerAddress("lastName", {
-                required: true,
+                required: "Your lastname is required",
               })}
             />
             {!!errorsAddress.lastName && <p>{errorsAddress.lastName.message}</p>}
@@ -130,7 +133,7 @@ export function AddressForm({
               className="w-full border-gray-300 rounded-md shadow-sm text-base"
               spellCheck={false}
               {...registerAddress("streetAddress1", {
-                required: true,
+                required: "Your address is required",
               })}
             />
             {!!errorsAddress.streetAddress1 && <p>{errorsAddress.streetAddress1.message}</p>}
@@ -147,7 +150,7 @@ export function AddressForm({
               id="city"
               className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base"
               spellCheck={false}
-              {...registerAddress("city", { required: true })}
+              {...registerAddress("city", { required: "City is required" })}
             />
             {!!errorsAddress.city && <p>{errorsAddress.city.message}</p>}
           </div>
@@ -182,7 +185,7 @@ export function AddressForm({
               className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base"
               spellCheck={false}
               {...registerAddress("postalCode", {
-                required: true,
+                required: "We need postal code to detect address more accurate",
               })}
             />
             {!!errorsAddress.postalCode && <p>{errorsAddress.postalCode.message}</p>}

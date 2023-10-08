@@ -33,6 +33,23 @@ html {
   font-size: 62.5%;
 }
 
-input, label {
+input,
+label {
   display: block;
+}
+
+.strikethrough-diagonal {
+  position: relative;
+  font-weight: bold;
+}
+
+.strikethrough-diagonal:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 45%;
+  right: 0;
+  border-top: 1px solid;
+  border-color: inherit;
+  transform: skewY(-10deg);
 }

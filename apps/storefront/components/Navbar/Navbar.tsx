@@ -49,7 +49,9 @@ export function Navbar() {
       })
     : new URLSearchParams();
 
-  const externalCheckoutUrl = checkout ? `/checkout/?${checkoutParams.toString()}` : "#";
+  const externalCheckoutUrl = checkout
+    ? `/${currentChannel.slug}/${currentLocale}/checkout/?${checkoutParams.toString()}`
+    : "#";
 
   useEffect(() => {
     // Close side menu after changing the page
@@ -64,7 +66,7 @@ export function Navbar() {
     checkout?.lines?.reduce(
       (amount: number, line?: CheckoutLineDetailsFragment | null) =>
         line ? amount + line.quantity : amount,
-      0,
+      0
     ) || 0;
 
   return (

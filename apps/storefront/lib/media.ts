@@ -12,15 +12,9 @@ import {
  * @param selectedVariant   The selected variant object
  */
 
-export const getGalleryMedia = ({
-  product,
-  selectedVariant,
-}: {
-  product: ProductWithBlurredMedia;
-  selectedVariant?: ProductVariantDetailsFragment;
-}) => {
-  if (selectedVariant && selectedVariant.media?.length !== 0)
-    return (selectedVariant.media?.filter(notNullable) || []) as ProductMediaFragmentBlurred[];
+export const getGalleryMedia = ({ product }: { product: ProductWithBlurredMedia }) => {
+  // if (selectedVariant && selectedVariant.media?.length !== 0)
+  //   return (selectedVariant.media?.filter(notNullable) || []) as ProductMediaFragmentBlurred[];
   return (product?.media?.filter(notNullable) || []) as ProductMediaFragmentBlurred[];
 };
 

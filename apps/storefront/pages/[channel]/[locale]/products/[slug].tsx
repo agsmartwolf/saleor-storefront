@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from "@apollo/client";
+import type { ApolloQueryResult } from "@apollo/client";
 import clsx from "clsx";
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Link from "next/link";
@@ -14,7 +14,11 @@ import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductPageSeo } from "@/components/seo/ProductPageSeo";
 import { messages } from "@/components/translations";
 import { usePaths } from "@/lib/paths";
-import { getAttributeOptionsForVariantSelector, getSelectedVariant } from "@/lib/product";
+import {
+  getAttributeOptionsForVariantSelector,
+  getPrimaryAttribute,
+  getSelectedVariant,
+} from "@/lib/product";
 import { useCheckout } from "@/lib/providers/CheckoutProvider";
 import { contextToRegionQuery } from "@/lib/regions";
 import { translate } from "@/lib/translations";
@@ -128,6 +132,12 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   });
   const selectedVariantID = selectedVariant?.id;
 
+  const primaryAttribute = useMemo(() => getPrimaryAttribute(attributeOptions), []);
+  const selectedPrimaryAttrValue = useMemo(
+    () => (primaryAttribute?.attribute?.id ? router.query[primaryAttribute?.attribute?.id] : null),
+    [primaryAttribute, router.query]
+  );
+
   const onAddToCart = async () => {
     // Clear previous error messages
     setAddToCartError("");
@@ -207,7 +217,10 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
         )}
       >
         <div className="col-span-2">
-          <ProductGallery product={product} selectedVariant={selectedVariant} />
+          <ProductGallery
+            product={product}
+            selectedImageAttributeValue={selectedPrimaryAttrValue}
+          />
         </div>
         <div className="space-y-5 mt-10 md:mt-0">
           <div>

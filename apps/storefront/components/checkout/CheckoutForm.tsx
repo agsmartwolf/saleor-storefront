@@ -10,7 +10,7 @@ import { ShippingAddressSection } from "./ShippingAddressSection";
 import { ShippingMethodSection } from "./ShippingMethodSection";
 
 interface CollapsedSections {
-  billingAddress: boolean;
+  // billingAddress: boolean;
   shippingAddress: boolean;
   shippingMethod: boolean;
   payment: boolean;
@@ -20,7 +20,7 @@ const sectionsManager = (checkout?: CheckoutDetailsFragment): CollapsedSections 
   // Will hide sections which cannot be set yet during the checkout
   // Start with all the sections hidden
   const state: CollapsedSections = {
-    billingAddress: true,
+    // billingAddress: true,
     shippingAddress: true,
     shippingMethod: true,
     payment: true,
@@ -28,10 +28,10 @@ const sectionsManager = (checkout?: CheckoutDetailsFragment): CollapsedSections 
   if (!checkout || !checkout.email) {
     return state;
   }
-  state.billingAddress = false;
-  if (!checkout.billingAddress) {
-    return state;
-  }
+  // state.billingAddress = false;
+  // if (!checkout.billingAddress) {
+  //   return state;
+  // }
   state.shippingAddress = false;
   if (checkout.isShippingRequired && !checkout.shippingAddress) {
     return state;
@@ -58,9 +58,9 @@ export function CheckoutForm() {
       <div className="checkout-section-container">
         <EmailSection checkout={checkout} />
       </div>
-      <div className="checkout-section-container">
-        <BillingAddressSection active={!collapsedSections.billingAddress} checkout={checkout} />
-      </div>
+      {/*<div className="checkout-section-container">*/}
+      {/*  <BillingAddressSection active={!collapsedSections.billingAddress} checkout={checkout} />*/}
+      {/*</div>*/}
 
       {checkout.isShippingRequired && (
         <div className="checkout-section-container">

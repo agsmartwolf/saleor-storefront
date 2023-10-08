@@ -41,7 +41,7 @@ export function ShippingAddressSection({ active, checkout }: ShippingAddressSect
           firstName: billingAddress.firstName || "",
           lastName: billingAddress.lastName || "",
           phone: billingAddress.phone || "",
-          country: (billingAddress.country.code as CountryCode) || "PL",
+          country: (billingAddress.country.code as CountryCode) || "GE",
           streetAddress1: billingAddress.streetAddress1 || "",
           city: billingAddress.city || "",
           postalCode: billingAddress.postalCode || "",
@@ -67,7 +67,7 @@ export function ShippingAddressSection({ active, checkout }: ShippingAddressSect
         locale: query.locale,
       },
     });
-    setEditing(false);
+    // setEditing(false);
     return data?.checkoutShippingAddressUpdate?.errors.filter(notNullable) || [];
   };
 
@@ -88,11 +88,12 @@ export function ShippingAddressSection({ active, checkout }: ShippingAddressSect
                 updateAddressMutation={(address: AddressFormData) => updateMutation(address)}
               />
             )}
-            <div className="col-span-full pb-4">
-              <button type="button" className="btn-checkout-section" onClick={onSameAsBilling}>
-                {t.formatMessage(messages.sameAsBillingButton)}
-              </button>
-            </div>
+            {/* Button for using billing address for shipping one */}
+            {/*<div className="col-span-full pb-4">*/}
+            {/*  <button type="button" className="btn-checkout-section" onClick={onSameAsBilling}>*/}
+            {/*    {t.formatMessage(messages.sameAsBillingButton)}*/}
+            {/*  </button>*/}
+            {/*</div>*/}
             <AddressForm
               existingAddressData={checkout.shippingAddress || undefined}
               toggleEdit={() => setEditing(false)}

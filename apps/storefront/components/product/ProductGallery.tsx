@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import useKeypress from "react-use-keypress";
 
 import { ImageExpand } from "@/components/product/ImageExpand";
@@ -15,18 +15,18 @@ import { images } from "next/dist/build/webpack/config/blocks/images";
 export interface ProductGalleryProps {
   // product: ProductDetailsFragment;
   product: ProductWithBlurredMedia;
-  selectedVariant?: ProductVariantDetailsFragment;
+  selectedImageAttributeValue?: string;
 }
 
-export function ProductGallery({ product, selectedVariant }: ProductGalleryProps) {
+export function ProductGallery({ product, selectedImageAttributeValue }: ProductGalleryProps) {
   const [expandedImage, setExpandedImage] = useState<ProductMediaFragmentBlurred | undefined>(
-    undefined,
+    undefined
   );
   const [videoToPlay, setVideoToPlay] = useState<ProductMediaFragmentBlurred | undefined>(
-    undefined,
+    undefined
   );
 
-  const galleryMedia = getGalleryMedia({ product, selectedVariant });
+  const galleryMedia = getGalleryMedia({ product });
 
   const [currentImage, setCurrentImage] = useState<ProductMediaFragmentBlurred>(galleryMedia?.[0]);
   const [direction, setDirection] = useState(0);
@@ -47,8 +47,18 @@ export function ProductGallery({ product, selectedVariant }: ProductGalleryProps
       setCurrentImage(galleryMedia[ind]);
       setCurrentImageInd(ind);
     },
-    [currentImage, galleryMedia, setCurrentImage],
+    [currentImage, galleryMedia, setCurrentImage]
   );
+
+  useEffect(() => {
+    const curVar = product.variants?.find((_var) =>
+      _var.attributes.some((a) => a.values.some((v) => v.id === selectedImageAttributeValue))
+    );
+    if (curVar && curVar?.media?.[0]) {
+      const ind = galleryMedia.findIndex((m) => m.url === curVar?.media?.[0]?.url);
+      setCurrentImageCB(ind);
+    }
+  }, [product, selectedImageAttributeValue]);
 
   return (
     <>

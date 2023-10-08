@@ -36,29 +36,27 @@ export function VariantSelector({
     return null;
   }
 
-  const onChange = useCallback(
-    (value: string, attributeId: string) => {
-      // setSelectedVariant(value);
-      // TODO
-      // attributeOptions
-      void router.replace(
-        paths.products._slug(product.slug).$url({
-          ...(value && {
-            query: {
-              ...router.query,
-              [attributeId]: value,
-            },
-          }),
+  const onChange = (value: string, attributeId: string) => {
+    // setSelectedVariant(value);
+    // TODO
+    if (attributeId !== primaryAttribute?.attribute.id) {
+    }
+    void router.replace(
+      paths.products._slug(product.slug).$url({
+        ...(value && {
+          query: {
+            ...(attributeId !== primaryAttribute?.attribute.id ? router.query : {}),
+            [attributeId]: value,
+          },
         }),
-        undefined,
-        {
-          shallow: true,
-          scroll: false,
-        }
-      );
-    },
-    [attributeOptions, router.query, product.slug]
-  );
+      }),
+      undefined,
+      {
+        shallow: true,
+        scroll: false,
+      }
+    );
+  };
 
   return (
     <div className="w-full">
@@ -79,6 +77,8 @@ export function VariantSelector({
               name={attributeOptions[k].attribute.id}
             >
               <GenericAttribute
+                product={product}
+                primaryAttribute={primaryAttribute}
                 attribute={attributeOptions[k]}
                 selectedVariant={selectedVariant}
                 onChange={(v) => onChange(v, k)}

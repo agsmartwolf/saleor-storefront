@@ -9,6 +9,10 @@ fragment SelectedAttributeDetailsFragment on SelectedAttribute {
     type
     unit
     slug
+    metadata {
+      key
+      value
+    }
   }
   values {
     id

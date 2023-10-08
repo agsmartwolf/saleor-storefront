@@ -37,7 +37,7 @@ export function SavedAddressSelectionList({
       firstName: address?.firstName,
       lastName: address?.lastName,
       phone: address?.phone || "",
-      country: "PL",
+      country: "GE",
       streetAddress1: address.streetAddress1,
       city: address.city,
       postalCode: address.postalCode,
@@ -59,7 +59,7 @@ export function SavedAddressSelectionList({
           }}
           className={clsx(
             "border-2 p-3 mr-2 rounded-md",
-            address?.id === selectedSavedAddress?.id && "border-blue-500",
+            address?.id === selectedSavedAddress?.id && "border-blue-500"
           )}
           key={address?.id}
         >

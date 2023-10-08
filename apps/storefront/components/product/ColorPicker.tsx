@@ -17,6 +17,7 @@ import { AnimatedHorizontalScroller } from "@/components/AnimatedHorisontalScrol
 
 interface ColorPickerProps {
   colors: Array<{
+    id?: string;
     name?: string;
     active?: boolean;
     disabled?: boolean;
@@ -43,7 +44,7 @@ export function ColorPicker({ colors, onColorChanged }: ColorPickerProps) {
           <input
             id={c.name}
             name={c.name}
-            value={c.name}
+            value={c.id}
             onChange={onOptionChanged}
             disabled={c.disabled}
             className="peer sr-only"
@@ -57,7 +58,7 @@ export function ColorPicker({ colors, onColorChanged }: ColorPickerProps) {
               { "border-black": c.active },
               { "border-gray-100": !c.active },
               { "opacity-20 strikethrough-diagonal cursor-not-allowed": c.disabled },
-              { [styles.colorDisabled]: c.disabled },
+              { [styles.colorDisabled]: c.disabled }
             )}
           >
             <div
