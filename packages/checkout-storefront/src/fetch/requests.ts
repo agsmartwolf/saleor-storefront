@@ -13,7 +13,7 @@ export const getAppConfig = ({
   fetch(
     urlJoinTrailingSlash(checkoutApiUrl, "customization-settings") +
       `?` +
-      new URLSearchParams({ saleorApiUrl }).toString()
+      new URLSearchParams({ saleorApiUrl }).toString(),
   );
 
 export const dummyPay = ({
@@ -28,5 +28,5 @@ export const dummyPay = ({
     {
       method: "POST",
       body: JSON.stringify(body),
-    }
+    },
   );

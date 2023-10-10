@@ -44,21 +44,21 @@ export const createAdyenCheckoutConfig = ({
       onPaymentMethodSelected: (
         resolve: ApplePayCallback,
         reject: ApplePayCallback,
-        event: ApplePayJS.ApplePayPaymentMethodSelectedEvent
+        event: ApplePayJS.ApplePayPaymentMethodSelectedEvent,
       ) => {
         resolve(event.paymentMethod);
       },
       onShippingContactSelected: (
         resolve: ApplePayCallback,
         reject: ApplePayCallback,
-        event: ApplePayJS.ApplePayShippingContactSelectedEvent
+        event: ApplePayJS.ApplePayShippingContactSelectedEvent,
       ) => {
         resolve(event.shippingContact);
       },
       onShippingMethodSelected: (
         resolve: ApplePayCallback,
         reject: ApplePayCallback,
-        event: ApplePayJS.ApplePayShippingMethodSelectedEvent
+        event: ApplePayJS.ApplePayShippingMethodSelectedEvent,
       ) => {
         resolve(event.shippingMethod);
       },

@@ -31,7 +31,7 @@ export const Root = ({ env, saleorApiUrlRegex }: RootProps) => {
 Provided saleorApiUrl doesn't match allowed regex!
 Provided: ${saleorApiUrl}
 Allowed: ${String(saleorApiUrlRegex)}
-    `.trim()
+    `.trim(),
   );
 
   const { locale, messages } = useLocale();

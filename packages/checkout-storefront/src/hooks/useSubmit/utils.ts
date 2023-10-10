@@ -20,7 +20,7 @@ type SuccessDataReturn<TMutationFn extends MutationBaseFn> =
     };
 
 export const extractMutationData = <TMutationFn extends MutationBaseFn>(
-  result: MutationData<TMutationFn>
+  result: MutationData<TMutationFn>,
 ): SuccessDataReturn<TMutationFn> => {
   const failedResponse: SuccessDataReturn<TMutationFn> = { success: false, data: null };
 
@@ -29,7 +29,7 @@ export const extractMutationData = <TMutationFn extends MutationBaseFn>(
 
     try {
       const mutationNameKey = Object.keys(data as Record<string, any>).filter(
-        (key) => !["__typename"].includes(key)
+        (key) => !["__typename"].includes(key),
       )?.[0];
 
       if (mutationNameKey) {
@@ -49,7 +49,7 @@ export const extractMutationData = <TMutationFn extends MutationBaseFn>(
 
 export type ExtractedMutationErrors<
   TData extends FormDataBase,
-  TErrorCodes extends string = string
+  TErrorCodes extends string = string,
 > = {
   hasErrors: boolean;
   apiErrors: ApiErrors<TData, TErrorCodes>;
@@ -60,16 +60,16 @@ export type ExtractedMutationErrors<
 export const extractMutationErrors = <
   TData extends FormDataBase,
   TMutationFn extends MutationBaseFn,
-  TErrorCodes extends string = string
+  TErrorCodes extends string = string,
 >(
   result: MutationData<TMutationFn>,
-  extractCustomErrors?: (result: MutationData<TMutationFn>) => MightNotExist<any[]>
+  extractCustomErrors?: (result: MutationData<TMutationFn>) => MightNotExist<any[]>,
 ): ExtractedMutationErrors<TData, TErrorCodes> => {
   const graphqlErrors = result?.error ? [result.error] : [];
 
   const apiErrors = result?.data
     ? Object.values(
-        result.data as Record<string, { errors: ApiErrors<TData, TErrorCodes> }>
+        result.data as Record<string, { errors: ApiErrors<TData, TErrorCodes> }>,
       ).reduce((result, { errors }) => [...result, ...errors], [] as ApiErrors<TData, TErrorCodes>)
     : [];
 

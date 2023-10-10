@@ -7,6 +7,6 @@ export const useFormattedMessages = () => {
   return useCallback(
     (message: MessageDescriptor, values?: Record<string, number | string>) =>
       Intl.formatMessage(message, values),
-    [Intl]
+    [Intl],
   );
 };

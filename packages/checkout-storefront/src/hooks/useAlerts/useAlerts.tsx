@@ -35,7 +35,7 @@ function useAlerts(globalScope?: any): any {
     ({ code, field, scope }: AlertErrorData): string => {
       const messageKey = getMessageKey(
         { code, field, scope },
-        { error: true }
+        { error: true },
       ) as keyof typeof errorMessages;
 
       try {
@@ -47,7 +47,7 @@ function useAlerts(globalScope?: any): any {
         return formatMessage(errorMessages.somethingWentWrong);
       }
     },
-    [formatMessage]
+    [formatMessage],
   );
 
   const getParsedAlert = useCallback(
@@ -60,7 +60,7 @@ function useAlerts(globalScope?: any): any {
         type,
       };
     },
-    [getErrorMessage]
+    [getErrorMessage],
   );
 
   const showAlert = useCallback(
@@ -70,7 +70,7 @@ function useAlerts(globalScope?: any): any {
       ...rest
     }: Pick<Alert, "message"> & { type?: AlertType; id?: string }) =>
       toast(<Text>{message}</Text>, { type, ...rest }),
-    []
+    [],
   );
 
   const showDefaultAlert = useCallback(
@@ -78,15 +78,15 @@ function useAlerts(globalScope?: any): any {
       const parsedAlert = getParsedAlert(alertErrorData, type);
       showAlert(parsedAlert);
     },
-    [showAlert, getParsedAlert]
+    [showAlert, getParsedAlert],
   );
 
   const showErrors = useCallback(
     (errors: ApiErrors<any>, scope: CheckoutScope = globalScope) =>
       getParsedApiErrors(errors).forEach((error) =>
-        showDefaultAlert({ ...error, scope } as AlertErrorData)
+        showDefaultAlert({ ...error, scope } as AlertErrorData),
       ),
-    [getParsedApiErrors, showDefaultAlert, globalScope]
+    [getParsedApiErrors, showDefaultAlert, globalScope],
   );
 
   const showCustomErrors = useCallback(
@@ -103,14 +103,14 @@ function useAlerts(globalScope?: any): any {
         }
       });
     },
-    [formatMessage, globalScope, showAlert, showDefaultAlert]
+    [formatMessage, globalScope, showAlert, showDefaultAlert],
   );
 
   const showSuccess = useCallback(
     (message: string) => {
       showAlert({ message, type: "success" });
     },
-    [showAlert]
+    [showAlert],
   );
 
   return { showErrors, showCustomErrors, showSuccess };

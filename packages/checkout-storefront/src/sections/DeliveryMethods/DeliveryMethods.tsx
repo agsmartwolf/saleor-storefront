@@ -63,7 +63,7 @@ export const DeliveryMethods: React.FC<CommonSectionProps> = ({ collapsed }) => 
                     </Text>
                   </div>
                 </SelectBox>
-              )
+              ),
             )}
           </SelectBoxGroup>
         )}

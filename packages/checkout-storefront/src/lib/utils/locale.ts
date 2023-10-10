@@ -9,7 +9,7 @@ export const localeToLanguageCode = (locale: Locale) =>
 export const getCurrentHref = () => location.href;
 
 export const getParsedLocaleData = (
-  locale: Locale
+  locale: Locale,
 ): { locale: Locale; countryCode: CountryCode; languageCode: LanguageCodeEnum } => {
   const [languageCode, countryCode] = locale?.split("-");
 
@@ -23,7 +23,7 @@ export const getParsedLocaleData = (
 export const createGetCountryNames = () => {
   const countryNames = new Intl.DisplayNames(
     [getParsedLocaleData(getQueryParams().locale).languageCode],
-    { type: "region" }
+    { type: "region" },
   );
 
   return (countryCode: CountryCode): string => countryNames.of(countryCode) || countryCode;

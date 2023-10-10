@@ -29054,7 +29054,7 @@ export const CheckoutDocument = gql`
 `;
 
 export function useCheckoutQuery(
-  options: Omit<Urql.UseQueryArgs<CheckoutQueryVariables>, "query">
+  options: Omit<Urql.UseQueryArgs<CheckoutQueryVariables>, "query">,
 ) {
   return Urql.useQuery<CheckoutQuery, CheckoutQueryVariables>({
     query: CheckoutDocument,
@@ -29095,7 +29095,7 @@ export const CheckoutLinesUpdateDocument = gql`
 
 export function useCheckoutLinesUpdateMutation() {
   return Urql.useMutation<CheckoutLinesUpdateMutation, CheckoutLinesUpdateMutationVariables>(
-    CheckoutLinesUpdateDocument
+    CheckoutLinesUpdateDocument,
   );
 }
 export const CheckoutLineDeleteDocument = gql`
@@ -29115,7 +29115,7 @@ export const CheckoutLineDeleteDocument = gql`
 
 export function useCheckoutLineDeleteMutation() {
   return Urql.useMutation<CheckoutLineDeleteMutation, CheckoutLineDeleteMutationVariables>(
-    CheckoutLineDeleteDocument
+    CheckoutLineDeleteDocument,
   );
 }
 export const CheckoutEmailUpdateDocument = gql`
@@ -29139,7 +29139,7 @@ export const CheckoutEmailUpdateDocument = gql`
 
 export function useCheckoutEmailUpdateMutation() {
   return Urql.useMutation<CheckoutEmailUpdateMutation, CheckoutEmailUpdateMutationVariables>(
-    CheckoutEmailUpdateDocument
+    CheckoutEmailUpdateDocument,
   );
 }
 export const CheckoutCustomerAttachDocument = gql`
@@ -29159,7 +29159,7 @@ export const CheckoutCustomerAttachDocument = gql`
 
 export function useCheckoutCustomerAttachMutation() {
   return Urql.useMutation<CheckoutCustomerAttachMutation, CheckoutCustomerAttachMutationVariables>(
-    CheckoutCustomerAttachDocument
+    CheckoutCustomerAttachDocument,
   );
 }
 export const CheckoutShippingAddressUpdateDocument = gql`
@@ -29257,7 +29257,7 @@ export const AddressValidationRulesDocument = gql`
 `;
 
 export function useAddressValidationRulesQuery(
-  options: Omit<Urql.UseQueryArgs<AddressValidationRulesQueryVariables>, "query">
+  options: Omit<Urql.UseQueryArgs<AddressValidationRulesQueryVariables>, "query">,
 ) {
   return Urql.useQuery<AddressValidationRulesQuery, AddressValidationRulesQueryVariables>({
     query: AddressValidationRulesDocument,
@@ -29285,7 +29285,7 @@ export const CheckoutAddPromoCodeDocument = gql`
 
 export function useCheckoutAddPromoCodeMutation() {
   return Urql.useMutation<CheckoutAddPromoCodeMutation, CheckoutAddPromoCodeMutationVariables>(
-    CheckoutAddPromoCodeDocument
+    CheckoutAddPromoCodeDocument,
   );
 }
 export const CheckoutRemovePromoCodeDocument = gql`
@@ -29334,7 +29334,7 @@ export const CheckoutCompleteDocument = gql`
 
 export function useCheckoutCompleteMutation() {
   return Urql.useMutation<CheckoutCompleteMutation, CheckoutCompleteMutationVariables>(
-    CheckoutCompleteDocument
+    CheckoutCompleteDocument,
   );
 }
 export const OrderDocument = gql`
@@ -29412,7 +29412,7 @@ export const TransactionInitializeDocument = gql`
 
 export function useTransactionInitializeMutation() {
   return Urql.useMutation<TransactionInitializeMutation, TransactionInitializeMutationVariables>(
-    TransactionInitializeDocument
+    TransactionInitializeDocument,
   );
 }
 export const TransactionProcessDocument = gql`
@@ -29438,7 +29438,7 @@ export const TransactionProcessDocument = gql`
 
 export function useTransactionProcessMutation() {
   return Urql.useMutation<TransactionProcessMutation, TransactionProcessMutationVariables>(
-    TransactionProcessDocument
+    TransactionProcessDocument,
   );
 }
 export const UserDocument = gql`
@@ -29467,7 +29467,7 @@ export const UserRegisterDocument = gql`
 
 export function useUserRegisterMutation() {
   return Urql.useMutation<UserRegisterMutation, UserRegisterMutationVariables>(
-    UserRegisterDocument
+    UserRegisterDocument,
   );
 }
 export const RequestPasswordResetDocument = gql`
@@ -29484,7 +29484,7 @@ export const RequestPasswordResetDocument = gql`
 
 export function useRequestPasswordResetMutation() {
   return Urql.useMutation<RequestPasswordResetMutation, RequestPasswordResetMutationVariables>(
-    RequestPasswordResetDocument
+    RequestPasswordResetDocument,
   );
 }
 export const UserAddressDeleteDocument = gql`
@@ -29508,7 +29508,7 @@ export const UserAddressDeleteDocument = gql`
 
 export function useUserAddressDeleteMutation() {
   return Urql.useMutation<UserAddressDeleteMutation, UserAddressDeleteMutationVariables>(
-    UserAddressDeleteDocument
+    UserAddressDeleteDocument,
   );
 }
 export const UserAddressUpdateDocument = gql`
@@ -29532,7 +29532,7 @@ export const UserAddressUpdateDocument = gql`
 
 export function useUserAddressUpdateMutation() {
   return Urql.useMutation<UserAddressUpdateMutation, UserAddressUpdateMutationVariables>(
-    UserAddressUpdateDocument
+    UserAddressUpdateDocument,
   );
 }
 export const UserAddressCreateDocument = gql`
@@ -29556,6 +29556,6 @@ export const UserAddressCreateDocument = gql`
 
 export function useUserAddressCreateMutation() {
   return Urql.useMutation<UserAddressCreateMutation, UserAddressCreateMutationVariables>(
-    UserAddressCreateDocument
+    UserAddressCreateDocument,
   );
 }

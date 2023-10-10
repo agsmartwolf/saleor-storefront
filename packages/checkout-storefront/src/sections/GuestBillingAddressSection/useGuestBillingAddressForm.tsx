@@ -62,8 +62,8 @@ export const useGuestBillingAddressForm = ({ skipValidation }: GuestBillingAddre
         checkoutBillingAddressUpdate,
         setChangingBillingCountry,
         setCheckoutFormValidationState,
-      ]
-    )
+      ],
+    ),
   );
 
   const form = useAutoSaveAddressForm({

@@ -61,7 +61,7 @@ export const useAutoSaveAddressForm = ({
       setCheckoutUpdateState("loading");
       void debouncedSubmit(
         { ...initialValues, countryCode: values.countryCode, ...values },
-        formHelpers
+        formHelpers,
       );
     }
   }, [

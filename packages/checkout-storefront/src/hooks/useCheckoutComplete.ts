@@ -26,8 +26,8 @@ export const useCheckoutComplete = () => {
           }
         },
       }),
-      [checkoutComplete, checkoutId]
-    )
+      [checkoutComplete, checkoutId],
+    ),
   );
   return { completingCheckout: fetching, onCheckoutComplete };
 };

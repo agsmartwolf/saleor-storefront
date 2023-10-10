@@ -42,8 +42,8 @@ export const useGuestShippingAddressForm = () => {
           });
         },
       }),
-      [checkoutShippingAddressUpdate, setCheckoutFormValidationState]
-    )
+      [checkoutShippingAddressUpdate, setCheckoutFormValidationState],
+    ),
   );
 
   const form = useAutoSaveAddressForm({

@@ -13,7 +13,7 @@ const CheckoutStoreFront = Dynamic(
   {
     ssr: false,
     loading: () => null,
-  }
+  },
 );
 
 const checkoutApiUrl = process.env.NEXT_PUBLIC_CHECKOUT_APP_URL

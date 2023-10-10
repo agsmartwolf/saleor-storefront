@@ -22,12 +22,12 @@ export const useSetCheckoutFormValidationState = (scope: CheckoutFormScope) => {
       }
 
       await setTouched(
-        Object.keys(formErrors).reduce((result, key) => ({ ...result, [key]: true }), {})
+        Object.keys(formErrors).reduce((result, key) => ({ ...result, [key]: true }), {}),
       );
 
       setValidationState(scope, "invalid");
     },
-    [scope, setValidationState]
+    [scope, setValidationState],
   );
 
   return {

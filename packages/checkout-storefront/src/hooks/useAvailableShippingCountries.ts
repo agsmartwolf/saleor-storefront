@@ -15,7 +15,7 @@ export const useAvailableShippingCountries = (): UseAvailableShippingCountries =
 
   const availableShippingCountries: CountryCode[] = useMemo(
     () => (data?.channel?.countries?.map(({ code }) => code) as CountryCode[]) || [],
-    [data?.channel?.countries]
+    [data?.channel?.countries],
   );
 
   return { availableShippingCountries };

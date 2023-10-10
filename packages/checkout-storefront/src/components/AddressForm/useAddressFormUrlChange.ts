@@ -10,7 +10,7 @@ export const useAddressFormUrlChange = (form: UseFormReturn<{ countryCode?: Coun
   const { countryCode } = values;
 
   const hasFilledAnyData = Object.values(omit(values, ["id", "countryCode"])).some(
-    (value) => !!value
+    (value) => !!value,
   );
 
   const handleUrlChange = useCallback(
@@ -27,7 +27,7 @@ export const useAddressFormUrlChange = (form: UseFormReturn<{ countryCode?: Coun
         void setFieldValue("countryCode", newCountryCode);
       }
     },
-    [countryCode, hasFilledAnyData, setFieldValue]
+    [countryCode, hasFilledAnyData, setFieldValue],
   );
 
   useUrlChange(handleUrlChange);

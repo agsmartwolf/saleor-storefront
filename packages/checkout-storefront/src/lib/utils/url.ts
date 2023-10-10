@@ -24,7 +24,7 @@ const queryParamsMap = {
 
 type UnmappedQueryParam = keyof typeof queryParamsMap;
 
-type QueryParam = typeof queryParamsMap[UnmappedQueryParam];
+type QueryParam = (typeof queryParamsMap)[UnmappedQueryParam];
 
 interface CustomTypedQueryParams {
   countryCode: CountryCode;
@@ -113,7 +113,7 @@ export const replaceUrl = ({
       as: newUrl,
     },
     "",
-    newUrl
+    newUrl,
   );
 
   return newUrl;

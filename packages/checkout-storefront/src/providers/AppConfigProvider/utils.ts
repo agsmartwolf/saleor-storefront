@@ -33,7 +33,7 @@ export const getParsedCssBody = (brandingColors: BrandingColors) => {
 
       return cssString.concat(nextLineHex, "\n", nextLineRGB, "\n");
     },
-    ""
+    "",
   );
 
   return `body {

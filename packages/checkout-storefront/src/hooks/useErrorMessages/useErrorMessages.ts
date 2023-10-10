@@ -8,7 +8,7 @@ import { fieldErrorMessages as errorMessages } from "./messages";
 export type ErrorMessages = Record<ErrorCode, string>;
 
 export const useErrorMessages = <TKey extends string = ErrorCode>(
-  customMessages?: Record<TKey, MessageDescriptor>
+  customMessages?: Record<TKey, MessageDescriptor>,
 ) => {
   const formatMessage = useFormattedMessages();
 
@@ -18,7 +18,7 @@ export const useErrorMessages = <TKey extends string = ErrorCode>(
     (errorCode: string) => {
       try {
         const formattedMessage = formatMessage(
-          messagesToUse[errorCode as keyof typeof messagesToUse] as MessageDescriptor
+          messagesToUse[errorCode as keyof typeof messagesToUse] as MessageDescriptor,
         );
         return formattedMessage;
       } catch (e) {
@@ -26,7 +26,7 @@ export const useErrorMessages = <TKey extends string = ErrorCode>(
         return "";
       }
     },
-    [formatMessage, messagesToUse]
+    [formatMessage, messagesToUse],
   );
 
   const translatedErrorMessages = useMemo(
@@ -36,9 +36,9 @@ export const useErrorMessages = <TKey extends string = ErrorCode>(
           ...result,
           [key]: getMessageByErrorCode(key as TKey),
         }),
-        {} as Record<TKey, string>
+        {} as Record<TKey, string>,
       ),
-    [getMessageByErrorCode, messagesToUse]
+    [getMessageByErrorCode, messagesToUse],
   );
 
   return {

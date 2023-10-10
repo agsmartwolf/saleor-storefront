@@ -37,13 +37,13 @@ export const useUserShippingAddressForm = () => {
           checkoutId,
           validationRules: getAddressValidationRulesVariables(),
           shippingAddress: getAddressInputDataFromAddress(
-            addressList.find(getByMatchingAddress({ id: selectedAddressId })) as AddressFragment
+            addressList.find(getByMatchingAddress({ id: selectedAddressId })) as AddressFragment,
           ),
         }),
         onSuccess: ({ formHelpers: { resetForm }, formData }) => resetForm({ values: formData }),
       }),
-      [checkoutShippingAddressUpdate, shippingAddress]
-    )
+      [checkoutShippingAddressUpdate, shippingAddress],
+    ),
   );
 
   const { form, userAddressActions } = useAddressListForm({

@@ -15,7 +15,7 @@ describe("useSummaryLineAttributesText", () => {
       () => useSummaryLineLineAttributesText(line as CheckoutLineFragment),
       {
         wrapper: getMockProviders(),
-      }
+      },
     );
 
     expect(hook.current).toEqual("White, 45cm x 45cm, aaaa, 1, 700ml, XS");
@@ -31,7 +31,7 @@ describe("useSummaryLineAttributesText", () => {
       () => useSummaryLineLineAttributesText(line as CheckoutLineFragment),
       {
         wrapper: getMockProviders(),
-      }
+      },
     );
 
     expect(hook.current).toEqual("");

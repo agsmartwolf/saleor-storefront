@@ -86,7 +86,7 @@ export const Summary: FC<SummaryProps> = ({
             "summary-items",
             allItemsHeight > maxSummaryHeight
               ? "border-b border-border-secondary lg:overflow-y-scroll"
-              : ""
+              : "",
           )}
         >
           {lines.map((line) => (

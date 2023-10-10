@@ -4,7 +4,7 @@ import compact from "lodash-es/compact";
 import { useIntl } from "react-intl";
 
 export const isCheckoutLine = (
-  line: CheckoutLineFragment | OrderLineFragment
+  line: CheckoutLineFragment | OrderLineFragment,
 ): line is CheckoutLineFragment => line.__typename === "CheckoutLine";
 
 export const getThumbnailFromLine = (line: CheckoutLineFragment) =>
@@ -25,7 +25,7 @@ export const getSummaryLineProps = (line: OrderLineFragment | CheckoutLineFragme
       };
 
 export const useSummaryLineLineAttributesText = (
-  line: CheckoutLineFragment | OrderLineFragment
+  line: CheckoutLineFragment | OrderLineFragment,
 ): string => {
   const intl = useIntl();
 
@@ -45,7 +45,7 @@ export const useSummaryLineLineAttributesText = (
           return name;
         }),
       ],
-      []
+      [],
     ) || [];
 
   return compact(parsedValues).join(", ");

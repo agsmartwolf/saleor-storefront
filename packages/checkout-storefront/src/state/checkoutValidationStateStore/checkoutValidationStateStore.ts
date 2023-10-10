@@ -23,13 +23,13 @@ const useCheckoutValidationStateStore = create<UseCheckoutValidationStateStore>(
     validateAllForms: (signedIn: boolean) =>
       set((state) => {
         const keysToValidate = Object.keys(state.validationState).filter(
-          (val) => !signedIn || val !== "guestUser"
+          (val) => !signedIn || val !== "guestUser",
         ) as CheckoutFormScope[];
 
         return {
           validationState: keysToValidate.reduce(
             (result, key) => ({ ...result, [key]: "validating" }),
-            {} as ValidationState
+            {} as ValidationState,
           ),
         };
       }),
@@ -48,5 +48,5 @@ export const useCheckoutValidationState = (): CheckoutValidationState =>
     ({ validationState }) => ({
       validationState,
     }),
-    shallow
+    shallow,
   );

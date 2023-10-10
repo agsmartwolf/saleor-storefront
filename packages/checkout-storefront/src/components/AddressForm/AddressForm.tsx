@@ -71,9 +71,9 @@ export const AddressForm: FC<PropsWithChildren<AddressFormProps>> = ({
             ...result,
             [field]: emptyAddressFormData[field],
           }),
-          values
+          values,
         ),
-        true
+        true,
       );
     }
   }, [allowedFields, dirty, setValues, values]);

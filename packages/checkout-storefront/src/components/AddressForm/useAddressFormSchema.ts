@@ -18,16 +18,16 @@ export const useAddressFormSchema = (initialCountryCode?: CountryCode) => {
 
       return requiredFields.includes(field) ? string().required(errorMessages.required) : string();
     },
-    [errorMessages.required, requiredFields]
+    [errorMessages.required, requiredFields],
   );
 
   const validationSchema = useMemo(
     () =>
       allowedFields.reduce(
         (schema, field) => schema.concat(object().shape({ [field]: getFieldValidator(field) })),
-        object().shape({})
+        object().shape({}),
       ),
-    [allowedFields, getFieldValidator]
+    [allowedFields, getFieldValidator],
   );
 
   return { validationSchema, setCountryCode };

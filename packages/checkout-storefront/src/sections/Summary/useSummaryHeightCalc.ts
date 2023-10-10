@@ -50,6 +50,6 @@ export const useSummaryHeightCalc = ({ linesCount, onBreakpointChange }: UseSumm
       maxSummaryHeight,
       allItemsHeight,
     }),
-    [allItemsHeight, maxSummaryHeight]
+    [allItemsHeight, maxSummaryHeight],
   );
 };

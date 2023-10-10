@@ -45,10 +45,10 @@ export type AdyenCheckoutInstanceState = {
 
 export type AdyenCheckoutInstanceOnSubmit = (
   state: AdyenCheckoutInstanceState,
-  component: DropinElement
+  component: DropinElement,
 ) => Promise<void> | void;
 
 export type AdyenCheckoutInstanceOnAdditionalDetails = (
   state: AdyenCheckoutInstanceState,
-  component: DropinElement
+  component: DropinElement,
 ) => Promise<void> | void;

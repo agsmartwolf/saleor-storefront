@@ -10,7 +10,7 @@ import { useCallback } from "react";
 
 const getPhoneNumberInstance = (
   phone: string,
-  countryCode: CountryCode | undefined
+  countryCode: CountryCode | undefined,
 ): PhoneNumber | null => {
   try {
     const phoneNumber = parsePhoneNumberWithError(phone, countryCode as PhoneNumberLibCountryCode);
@@ -35,7 +35,7 @@ export const usePhoneNumberValidator = (countryCode: CountryCode) => {
       const valid = isValidPhoneNumber(phone, countryCode);
       return valid ? undefined : errorMessages.invalid;
     },
-    [countryCode, errorMessages.invalid]
+    [countryCode, errorMessages.invalid],
   );
 
   return isValid;

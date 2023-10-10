@@ -42,7 +42,7 @@ export const usePaymentGatewaysInitialize = () => {
             ({ config, id }) => ({
               id,
               data: config,
-            })
+            }),
           ),
         }),
         onSuccess: ({ data }) => {
@@ -58,8 +58,8 @@ export const usePaymentGatewaysInitialize = () => {
           console.log({ errors });
         },
       }),
-      [availablePaymentGateways, checkoutId, paymentGatewaysInitialize]
-    )
+      [availablePaymentGateways, checkoutId, paymentGatewaysInitialize],
+    ),
   );
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export const usePaymentGatewaysInitialize = () => {
         void onSubmit();
       }
     },
-    [onSubmit]
+    [onSubmit],
   );
 
   useUrlChange(handleLocaleChange);

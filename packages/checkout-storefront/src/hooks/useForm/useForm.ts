@@ -39,7 +39,7 @@ export const useForm = <TData extends FormDataBase>({
         handleFormikSubmit(event);
       }
     },
-    [dirty, handleFormikSubmit]
+    [dirty, handleFormikSubmit],
   );
 
   const setValues = useCallback(
@@ -48,7 +48,7 @@ export const useForm = <TData extends FormDataBase>({
       setDirty(!isEqual(formProps.initialValues, updatedValues));
       setFormValues(updatedValues);
     },
-    [formProps.initialValues, formValues]
+    [formProps.initialValues, formValues],
   );
 
   const handleChange: ChangeHandler = useCallback(
@@ -59,7 +59,7 @@ export const useForm = <TData extends FormDataBase>({
 
       formikHandleChange(event);
     },
-    [setValues, formikHandleChange]
+    [setValues, formikHandleChange],
   );
 
   const setFieldValue = async (field: FormDataField<TData>, value: TData[FormDataField<TData>]) => {
@@ -91,7 +91,7 @@ export const useForm = <TData extends FormDataBase>({
 
       const parsedErrors = errors.inner.reduce(
         (result, { path, message }) => (path ? { ...result, [path]: message } : result),
-        {}
+        {},
       );
       setFormikErrors(parsedErrors);
       return parsedErrors;

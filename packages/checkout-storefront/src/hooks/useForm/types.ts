@@ -17,7 +17,7 @@ export type UseFormReturn<TData extends FormDataBase> = Omit<
   // we use keyof FormData instead of plain string
   setFieldValue: <TFieldName extends FormDataField<TData>>(
     field: TFieldName,
-    value: TData[TFieldName]
+    value: TData[TFieldName],
   ) => void;
   validateForm: (values: TData) => FormErrors<TData>;
   setValues: (values: Partial<TData>) => void;

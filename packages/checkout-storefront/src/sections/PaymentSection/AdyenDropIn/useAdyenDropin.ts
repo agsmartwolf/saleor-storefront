@@ -68,7 +68,7 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
   const { setIsProcessingPayment } = usePaymentProcessingScreen();
 
   const [currentTransactionId, setCurrentTransactionId] = useState<ParamBasicValue>(
-    getQueryParams().transaction
+    getQueryParams().transaction,
   );
   const [, transactionInitialize] = useTransactionInitializeMutation();
   const [, transactionProccess] = useTransactionProcessMutation();
@@ -132,7 +132,7 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
       getMessageByErrorCode,
       onCheckoutComplete,
       showCustomErrors,
-    ]
+    ],
   );
 
   const onTransactionInitialize = useSubmit<
@@ -173,8 +173,8 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
         handlePaymentResult,
         showCustomErrors,
         transactionInitialize,
-      ]
-    )
+      ],
+    ),
   );
 
   const onTransactionProccess = useSubmit<
@@ -223,8 +223,8 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
         setIsProcessingPayment,
         showCustomErrors,
         transactionProccess,
-      ]
-    )
+      ],
+    ),
   );
 
   // handler for when user presses submit in the dropin
@@ -300,7 +300,7 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
         adyenCheckoutSubmitParams?.component?.setStatus("loading");
         setSubmitInProgress(true);
       }
-    }
+    },
   );
 
   // handle when page is opened from previously redirected payment

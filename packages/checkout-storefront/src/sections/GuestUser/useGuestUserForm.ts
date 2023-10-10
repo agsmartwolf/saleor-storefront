@@ -47,7 +47,7 @@ export const useGuestUserForm = ({ initialEmail }: GuestUserFormProps) => {
     password: string().when(["createAccount"], ([createAccount], field) =>
       createAccount
         ? field.min(8, formatMessage(passwordMessages.passwordAtLeastCharacters)).required()
-        : field
+        : field,
     ),
   }) as Schema<GuestUserFormData>;
 
@@ -87,8 +87,8 @@ export const useGuestUserForm = ({ initialEmail }: GuestUserFormProps) => {
         },
         onSuccess: () => setUserRegistrationDisabled(true),
       }),
-      [setRegisterState, setShouldRegisterUser, setSubmitInProgress, userRegister]
-    )
+      [setRegisterState, setShouldRegisterUser, setSubmitInProgress, userRegister],
+    ),
   );
 
   const form = useForm<GuestUserFormData>({

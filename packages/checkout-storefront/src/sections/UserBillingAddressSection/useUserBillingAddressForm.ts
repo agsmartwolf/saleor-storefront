@@ -41,13 +41,13 @@ export const useUserBillingAddressForm = () => {
           checkoutId,
           validationRules: getAddressValidationRulesVariables(),
           billingAddress: getAddressInputDataFromAddress(
-            addressList.find(getByMatchingAddress({ id: selectedAddressId })) as AddressFragment
+            addressList.find(getByMatchingAddress({ id: selectedAddressId })) as AddressFragment,
           ),
         }),
         onFinished: () => setChangingBillingCountry(false),
       }),
-      [billingAddress, checkoutBillingAddressUpdate, setChangingBillingCountry]
-    )
+      [billingAddress, checkoutBillingAddressUpdate, setChangingBillingCountry],
+    ),
   );
 
   const { form, userAddressActions } = useAddressListForm({

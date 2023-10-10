@@ -11,7 +11,7 @@ export interface ApiError<TFormData extends FormDataBase, TErrorCodes extends st
 
 export type ApiErrors<
   TFormData extends FormDataBase,
-  TErrorCodes extends string = string
+  TErrorCodes extends string = string,
 > = ApiError<TFormData, TErrorCodes>[];
 
 export interface ParsedApiError<TFormData extends FormDataBase> {

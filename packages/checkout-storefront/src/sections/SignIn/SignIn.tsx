@@ -88,7 +88,7 @@ export const SignIn: React.FC<SignInProps> = ({
             ariaLabel={formatMessage(contactLabels.sendResetLink)}
             variant="tertiary"
             label={formatMessage(
-              passwordResetSent ? contactMessages.resend : contactMessages.forgotPassword
+              passwordResetSent ? contactMessages.resend : contactMessages.forgotPassword,
             )}
             className="ml-1 mr-4"
             onClick={onPasswordResetRequest}

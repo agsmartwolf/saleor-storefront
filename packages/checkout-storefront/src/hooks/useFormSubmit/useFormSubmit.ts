@@ -14,7 +14,7 @@ import { CombinedError } from "urql";
 
 export type FormSubmitFn<TData extends FormDataBase> = (
   formData: TData,
-  formHelpers: FormHelpers<TData>
+  formHelpers: FormHelpers<TData>,
 ) => SubmitReturnWithErrors<TData>;
 
 interface CallbackProps<TData extends FormDataBase> {
@@ -25,7 +25,7 @@ interface CallbackProps<TData extends FormDataBase> {
 interface UseFormSubmitProps<
   TData extends FormDataBase,
   TMutationFn extends MutationBaseFn,
-  TErrorCodes extends string = string
+  TErrorCodes extends string = string,
 > {
   hideAlerts?: boolean;
   scope: CheckoutUpdateStateScope;
@@ -39,7 +39,7 @@ interface UseFormSubmitProps<
       errors: ApiErrors<TData, TErrorCodes>;
       customErrors: any[];
       graphqlErrors: CombinedError[];
-    }
+    },
   ) => void;
   extractCustomErrors?: (data: MutationData<TMutationFn>) => any[];
   onStart?: (props: CallbackProps<TData>) => void;
@@ -51,12 +51,12 @@ interface UseFormSubmitProps<
 const useFormSubmit = <
   TData extends FormDataBase,
   TMutationFn extends MutationBaseFn,
-  TErrorCodes extends string = string
+  TErrorCodes extends string = string,
 >(
-  props: UseFormSubmitProps<TData, TMutationFn, TErrorCodes>
+  props: UseFormSubmitProps<TData, TMutationFn, TErrorCodes>,
 ): FormSubmitFn<TData> => {
   const handleSubmit: FormSubmitFn<TData> = useSubmit<TData, TMutationFn, TErrorCodes>(
-    props as UseSubmitProps<TData, TMutationFn, TErrorCodes>
+    props as UseSubmitProps<TData, TMutationFn, TErrorCodes>,
   );
 
   return handleSubmit;

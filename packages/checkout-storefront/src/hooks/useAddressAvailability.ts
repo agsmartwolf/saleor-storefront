@@ -13,7 +13,7 @@ export const useAddressAvailability = (skipCheck = false) => {
 
       return availableShippingCountries.includes(country?.code as CountryCode);
     },
-    [skipCheck, availableShippingCountries]
+    [skipCheck, availableShippingCountries],
   );
 
   return { isAvailable, availableShippingCountries };

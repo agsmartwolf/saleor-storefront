@@ -111,7 +111,7 @@ describe.only("getUrl", () => {
           b: "aaa",
         },
       }).newUrl,
-      "https://example.com?a=123&b=aaa"
+      "https://example.com?a=123&b=aaa",
     );
   });
 
@@ -124,7 +124,7 @@ describe.only("getUrl", () => {
           b: "aaa",
         },
       }).newUrl,
-      "https://example.com?a=123&b=aaa&test=123"
+      "https://example.com?a=123&b=aaa&test=123",
     );
   });
 
@@ -136,7 +136,7 @@ describe.only("getUrl", () => {
           token: undefined,
         },
       }).newUrl,
-      "https://example.com?b=cccc&test=123"
+      "https://example.com?b=cccc&test=123",
     );
   });
 });

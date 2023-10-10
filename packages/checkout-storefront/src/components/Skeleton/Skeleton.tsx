@@ -14,7 +14,7 @@ export const Skeleton: React.FC<PropsWithChildren<SkeletonProps>> = ({
   const classes = clsx(
     "skeleton",
     { "mb-6 w-1/3": variant === "title", "h-3": variant === "paragraph" },
-    className
+    className,
   );
 
   return <div className={classes}>{children}</div>;

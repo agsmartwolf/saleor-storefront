@@ -20,18 +20,19 @@ export const useCustomerAttach = () => {
         parse: ({ languageCode, checkoutId }) => ({ languageCode, checkoutId }),
         onError: ({ errors }) => {
           if (
-            errors.some((error) =>
-              error?.message?.includes(
-                "[GraphQL] You cannot reassign a checkout that is already attached to a user."
-              )
+            errors.some(
+              (error) =>
+                error?.message?.includes(
+                  "[GraphQL] You cannot reassign a checkout that is already attached to a user.",
+                ),
             )
           ) {
             refetch();
           }
         },
       }),
-      [authenticated, checkout?.user?.id, customerAttach, fetching, loading, refetch]
-    )
+      [authenticated, checkout?.user?.id, customerAttach, fetching, loading, refetch],
+    ),
   );
 
   useEffect(() => {

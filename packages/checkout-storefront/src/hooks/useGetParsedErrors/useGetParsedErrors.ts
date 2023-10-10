@@ -7,7 +7,7 @@ import { ApiError, ApiErrors, FormErrors, ParsedApiError, ParsedApiErrors } from
 
 export const useGetParsedErrors = <
   TFormData extends FormDataBase,
-  TErrorCodes extends string = string
+  TErrorCodes extends string = string,
 >() => {
   const { getMessageByErrorCode } = useErrorMessages();
 
@@ -21,22 +21,22 @@ export const useGetParsedErrors = <
         message: getMessageByErrorCode(errorCode as GenericErrorCode),
       };
     },
-    [getMessageByErrorCode]
+    [getMessageByErrorCode],
   );
 
   const getParsedApiErrors = useCallback(
     (apiErrors: ApiErrors<TFormData, TErrorCodes>) =>
       apiErrors.map(getParsedApiError) as ParsedApiErrors<TFormData>,
-    [getParsedApiError]
+    [getParsedApiError],
   );
 
   const getFormErrorsFromApiErrors = useCallback(
     (apiErrors: ApiErrors<TFormData, TErrorCodes>) =>
       getParsedApiErrors(apiErrors).reduce(
         (result, { field, message }) => ({ ...result, [field]: message }),
-        {}
+        {},
       ) as FormErrors<TFormData>,
-    [getParsedApiErrors]
+    [getParsedApiErrors],
   );
 
   return { getParsedApiError, getParsedApiErrors, getFormErrorsFromApiErrors };

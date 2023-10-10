@@ -23,7 +23,7 @@ const paymentGatewayMap: Record<PaymentGatewayId, keyof ParsedPaymentGateways> =
 };
 
 export const getParsedPaymentGatewayConfigs = (
-  gatewayConfigs: MightNotExist<PaymentGatewayConfig[]>
+  gatewayConfigs: MightNotExist<PaymentGatewayConfig[]>,
 ): ParsedPaymentGateways => {
   if (!gatewayConfigs) {
     return {};
@@ -49,7 +49,7 @@ export const getParsedPaymentGatewayConfigs = (
 };
 
 export const getFilteredPaymentGateways = (
-  paymentGateways: MightNotExist<PaymentGateway[]>
+  paymentGateways: MightNotExist<PaymentGateway[]>,
 ): PaymentGateway[] => {
   if (!paymentGateways) {
     return [];

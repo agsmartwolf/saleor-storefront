@@ -6,7 +6,7 @@ import { Section } from "./Section";
 import { deliveryMethodsMessages } from "@/checkout-storefront/sections/DeliveryMethods/messages";
 
 const isShipping = (
-  deliveryMethod: OrderFragment["deliveryMethod"]
+  deliveryMethod: OrderFragment["deliveryMethod"],
 ): deliveryMethod is ShippingFragment => deliveryMethod?.__typename === "ShippingMethod";
 
 export const DeliverySection = ({

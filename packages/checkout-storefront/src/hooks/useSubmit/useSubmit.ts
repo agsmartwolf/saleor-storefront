@@ -32,7 +32,7 @@ interface CallbackProps<TData> {
 export interface UseSubmitProps<
   TData extends FormDataBase,
   TMutationFn extends MutationBaseFn,
-  TErrorCodes extends string = string
+  TErrorCodes extends string = string,
 > {
   hideAlerts?: boolean;
   scope?: CheckoutUpdateStateScope;
@@ -46,7 +46,7 @@ export interface UseSubmitProps<
       errors: ApiErrors<TData, TErrorCodes>;
       customErrors: any[];
       graphqlErrors: CombinedError[];
-    }
+    },
   ) => void;
   extractCustomErrors?: (data: MutationData<TMutationFn>) => any[];
   onStart?: (props: CallbackProps<TData>) => void;
@@ -58,7 +58,7 @@ export interface UseSubmitProps<
 export const useSubmit = <
   TData extends FormDataBase,
   TMutationFn extends MutationBaseFn,
-  TErrorCodes extends string = string
+  TErrorCodes extends string = string,
 >({
   onSuccess,
   onError,
@@ -73,7 +73,7 @@ export const useSubmit = <
   hideAlerts = false,
 }: UseSubmitProps<TData, TMutationFn, TErrorCodes>): SimpleSubmitFn<TData, TErrorCodes> => {
   const { setCheckoutUpdateState } = useCheckoutUpdateStateChange(
-    scope as CheckoutUpdateStateScope
+    scope as CheckoutUpdateStateScope,
   );
   const { showErrors } = useAlerts();
   const { checkout } = useCheckout();
@@ -109,7 +109,7 @@ export const useSubmit = <
       const result = await onSubmit(
         typeof parse === "function"
           ? parse(unparsedMutationVars)
-          : (unparsedMutationVars as MutationVars<TMutationFn>)
+          : (unparsedMutationVars as MutationVars<TMutationFn>),
       );
 
       const { hasErrors, apiErrors, ...errorsRest } = extractMutationErrors<
@@ -156,7 +156,7 @@ export const useSubmit = <
       onAbort,
       onSuccess,
       showErrors,
-    ]
+    ],
   );
 
   return handleSubmit;

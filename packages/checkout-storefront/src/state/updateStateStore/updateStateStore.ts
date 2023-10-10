@@ -23,7 +23,7 @@ export interface CheckoutUpdateStateStore extends CheckoutUpdateState {
     setShouldRegisterUser: (shouldRegisterUser: boolean) => void;
     setLoadingCheckout: (loading: boolean) => void;
     setUpdateState: (
-      scope: CheckoutUpdateStateScope
+      scope: CheckoutUpdateStateScope,
     ) => (status: CheckoutUpdateStateStatus) => void;
   };
 }
@@ -70,7 +70,7 @@ const useCheckoutUpdateStateStore = create<CheckoutUpdateStateStore>((set) => ({
           // are no rerenders in between where there's no state updating
           // also we might not need this once we get better caching
           loadingCheckout: status === "success" || state.loadingCheckout,
-        }))
+        })),
     ),
   },
 }));
@@ -84,7 +84,7 @@ export const useCheckoutUpdateState = (): CheckoutUpdateState => {
         loadingCheckout,
         submitInProgress,
       }),
-      shallow
+      shallow,
     );
 
   return { updateState, loadingCheckout, submitInProgress, changingBillingCountry };

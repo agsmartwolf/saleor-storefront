@@ -22,6 +22,6 @@ export const useCheckout = ({ pause = false } = {}) => {
 
   return useMemo(
     () => ({ checkout: data?.checkout as Checkout, loading: loading || stale, refetch }),
-    [data?.checkout, loading, refetch, stale]
+    [data?.checkout, loading, refetch, stale],
   );
 };

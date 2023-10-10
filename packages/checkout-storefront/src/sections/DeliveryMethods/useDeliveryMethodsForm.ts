@@ -23,7 +23,7 @@ export const useDeliveryMethodsForm = (): UseFormReturn<DeliveryMethodsFormData>
   const { setCheckoutUpdateState } = useCheckoutUpdateStateChange("checkoutDeliveryMethodUpdate");
 
   const previousShippingCountry = useRef<MightNotExist<CountryCode>>(
-    shippingAddress?.country?.code as CountryCode | undefined
+    shippingAddress?.country?.code as CountryCode | undefined,
   );
 
   const getAutoSetMethod = useCallback(() => {
@@ -34,7 +34,7 @@ export const useDeliveryMethodsForm = (): UseFormReturn<DeliveryMethodsFormData>
     const cheapestMethod = shippingMethods.reduce(
       (resultMethod, currentMethod) =>
         currentMethod.price.amount < resultMethod.price.amount ? currentMethod : resultMethod,
-      shippingMethods[0] as ShippingMethod
+      shippingMethods[0] as ShippingMethod,
     );
 
     return cheapestMethod;
@@ -60,8 +60,8 @@ export const useDeliveryMethodsForm = (): UseFormReturn<DeliveryMethodsFormData>
           setValues({ selectedMethodId });
         },
       }),
-      [checkout.deliveryMethod?.id, updateDeliveryMethod]
-    )
+      [checkout.deliveryMethod?.id, updateDeliveryMethod],
+    ),
   );
 
   const debouncedSubmit = useDebouncedSubmit(onSubmit);

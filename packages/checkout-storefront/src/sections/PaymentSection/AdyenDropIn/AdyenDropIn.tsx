@@ -27,7 +27,7 @@ export const AdyenDropIn: FC<AdyenDropinProps> = ({ config }) => {
   const createAdyenCheckoutInstance = useCallback(
     async (locale: Locale, container: HTMLDivElement, data: AdyenGatewayInitializePayload) => {
       const adyenCheckout = await AdyenCheckout(
-        createAdyenCheckoutConfig({ ...data, locale, onSubmit, onAdditionalDetails })
+        createAdyenCheckoutConfig({ ...data, locale, onSubmit, onAdditionalDetails }),
       );
 
       dropinComponentRef.current?.unmount();
@@ -36,7 +36,7 @@ export const AdyenDropIn: FC<AdyenDropinProps> = ({ config }) => {
 
       dropinComponentRef.current = dropin;
     },
-    [onAdditionalDetails, onSubmit]
+    [onAdditionalDetails, onSubmit],
   );
 
   useEffect(() => {

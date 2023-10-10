@@ -62,7 +62,7 @@ export const useAddressListForm = ({
 
   const addressListUpdate = async (
     selectedAddress: OptionalAddress,
-    addressList: AddressFragment[]
+    addressList: AddressFragment[],
   ) => {
     if (!selectedAddress) {
       return;
@@ -83,8 +83,8 @@ export const useAddressListForm = ({
     addressListUpdate(
       address,
       addressList.map((existingAddress) =>
-        existingAddress.id === address?.id ? address : existingAddress
-      )
+        existingAddress.id === address?.id ? address : existingAddress,
+      ),
     );
 
   const onAddressDeleteSuccess = (id: string) =>
@@ -96,7 +96,7 @@ export const useAddressListForm = ({
 
     const hasCheckoutAddressChanged = !isMatchingAddress(
       checkoutAddress,
-      previousCheckoutAddress.current
+      previousCheckoutAddress.current,
     );
 
     // currently selected address is the same as checkout or
@@ -106,7 +106,7 @@ export const useAddressListForm = ({
     }
 
     const matchingDefaultAddressInAddresses = addressList.find(
-      getByMatchingAddress(defaultAddress)
+      getByMatchingAddress(defaultAddress),
     );
     // if not, prefer user default address
     if (defaultAddress && matchingDefaultAddressInAddresses) {

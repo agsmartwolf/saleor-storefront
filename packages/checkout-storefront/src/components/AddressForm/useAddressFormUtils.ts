@@ -37,13 +37,13 @@ export const useAddressFormUtils = (countryCode: CountryCode = defaultCountry) =
       city: cityType,
       postalCode: postalCodeType,
     }),
-    [cityType, countryAreaType, postalCodeType]
+    [cityType, countryAreaType, postalCodeType],
   );
 
   const isRequiredField = useCallback(
     (field: AddressField) =>
       getRequiredAddressFields(validationRules?.requiredFields as AddressField[]).includes(field),
-    [validationRules?.requiredFields]
+    [validationRules?.requiredFields],
   );
 
   const getMissingFieldsFromAddress = useCallback(
@@ -60,19 +60,19 @@ export const useAddressFormUtils = (countryCode: CountryCode = defaultCountry) =
         return fieldValue ? result : ([...result, fieldName] as AddressField[]);
       }, [] as AddressField[]);
     },
-    [isRequiredField]
+    [isRequiredField],
   );
 
   const hasAllRequiredFields = useCallback(
     (address: OptionalAddress) => !getMissingFieldsFromAddress(address).length,
-    [getMissingFieldsFromAddress]
+    [getMissingFieldsFromAddress],
   );
 
   const getLocalizedFieldLabel = useCallback(
     (field: AddressField, localizedField?: string) => {
       try {
         const translatedLabel = formatMessage(
-          localizedAddressFieldMessages[camelCase(localizedField) as LocalizedAddressFieldLabel]
+          localizedAddressFieldMessages[camelCase(localizedField) as LocalizedAddressFieldLabel],
         );
         return translatedLabel;
       } catch (e) {
@@ -80,7 +80,7 @@ export const useAddressFormUtils = (countryCode: CountryCode = defaultCountry) =
         return formatMessage(addressFieldMessages[camelCase(field) as AddressFieldLabel]);
       }
     },
-    [formatMessage]
+    [formatMessage],
   );
 
   const getFieldLabel = useCallback(
@@ -92,17 +92,17 @@ export const useAddressFormUtils = (countryCode: CountryCode = defaultCountry) =
       if (isLocalizedField) {
         return getLocalizedFieldLabel(
           field,
-          localizedFields[field as keyof typeof localizedFields] as LocalizedAddressFieldLabel
+          localizedFields[field as keyof typeof localizedFields] as LocalizedAddressFieldLabel,
         );
       }
 
       return formatMessage(addressFieldMessages[field as AddressFieldLabel]);
     },
-    [formatMessage, getLocalizedFieldLabel, localizedFields]
+    [formatMessage, getLocalizedFieldLabel, localizedFields],
   );
 
   const orderedAddressFields = getOrderedAddressFields(
-    validationRules?.allowedFields as AddressField[]
+    validationRules?.allowedFields as AddressField[],
   );
 
   return {

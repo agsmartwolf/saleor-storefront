@@ -16,12 +16,12 @@ export type AdyenCheckoutInstanceState = {
 };
 export type AdyenCheckoutInstanceOnSubmit = (
   state: AdyenCheckoutInstanceState,
-  component: DropinElement
+  component: DropinElement,
 ) => Promise<void> | void;
 
 export type AdyenCheckoutInstanceOnAdditionalDetails = (
   state: AdyenCheckoutInstanceState,
-  component: DropinElement
+  component: DropinElement,
 ) => Promise<void> | void;
 
 type ApplePayCallback = <T>(value: T) => void;
@@ -36,7 +36,7 @@ export function createAdyenCheckoutInstance(
     onSubmit: AdyenCheckoutInstanceOnSubmit;
     onAdditionalDetails: AdyenCheckoutInstanceOnAdditionalDetails;
     locale: Locale;
-  }
+  },
 ) {
   return AdyenCheckout({
     locale,
@@ -88,7 +88,7 @@ export function createAdyenCheckoutInstance(
 export function handlePaymentResult(
   saleorApiUrl: string,
   result: PostAdyenDropInPaymentsResponse | PostAdyenDropInPaymentsDetailsResponse,
-  component: DropinElement
+  component: DropinElement,
 ) {
   switch (result.payment.resultCode) {
     // @todo https://docs.adyen.com/online-payments/payment-result-codes

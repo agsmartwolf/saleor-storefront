@@ -17,7 +17,7 @@ interface UseLocale {
   locale: Locale;
   countryCode: CountryCode;
   channel: string;
-  messages: typeof localeToMessages[keyof typeof localeToMessages];
+  messages: (typeof localeToMessages)[keyof typeof localeToMessages];
 }
 
 export const useLocale = (): UseLocale => {
@@ -32,7 +32,7 @@ export const useLocale = (): UseLocale => {
       currentLocale in localeToMessages
         ? localeToMessages[currentLocale]
         : localeToMessages[DEFAULT_LOCALE],
-    [currentLocale]
+    [currentLocale],
   );
 
   if (!messages) {
@@ -55,6 +55,6 @@ export const useLocale = (): UseLocale => {
       messages,
       channel: currentChannel,
     }),
-    [currentCountryCode, currentLocale, messages, currentChannel]
+    [currentCountryCode, currentLocale, messages, currentChannel],
   );
 };

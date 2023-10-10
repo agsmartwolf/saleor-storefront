@@ -28,7 +28,7 @@ interface BillingSameAsShippingFormProps {
 }
 
 export const useBillingSameAsShippingForm = (
-  { autoSave, onSetBillingSameAsShipping }: BillingSameAsShippingFormProps = { autoSave: false }
+  { autoSave, onSetBillingSameAsShipping }: BillingSameAsShippingFormProps = { autoSave: false },
 ) => {
   const { checkout } = useCheckout();
   const { billingAddress, shippingAddress, isShippingRequired } = checkout;
@@ -154,7 +154,7 @@ export const useBillingSameAsShippingForm = (
     const handleShippingAddressChanged = async () => {
       const hasShippingAddressChanged = !isMatchingAddressData(
         shippingAddress,
-        previousShippingAddress.current
+        previousShippingAddress.current,
       );
 
       if (!hasShippingAddressChanged) {

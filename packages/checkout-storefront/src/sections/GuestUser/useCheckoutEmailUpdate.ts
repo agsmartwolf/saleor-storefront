@@ -25,8 +25,8 @@ export const useCheckoutEmailUpdate = ({ email }: CheckoutEmailUpdateFormData) =
         },
         parse: ({ languageCode, checkoutId, email }) => ({ languageCode, checkoutId, email }),
       }),
-      [updateEmail]
-    )
+      [updateEmail],
+    ),
   );
 
   const debouncedSubmit = useDebouncedSubmit(onSubmit);
