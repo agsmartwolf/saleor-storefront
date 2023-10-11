@@ -1,6 +1,6 @@
 import { Title } from "@/checkout-storefront/components";
 import { useFormattedMessages } from "@/checkout-storefront/hooks/useFormattedMessages";
-import { SaleorLogo } from "@/checkout-storefront/images";
+import { SWLogo } from "@/checkout-storefront/images";
 import { Children } from "@/checkout-storefront/lib/globalTypes";
 import { getSvgSrc } from "@/checkout-storefront/lib/svgSrc";
 import { paymentSectionMessages } from "@/checkout-storefront/sections/PaymentSection/messages";
@@ -52,7 +52,7 @@ export const PaymentProcessingScreen: React.FC<PaymentProcessingScreenProps> = (
     <Provider value={{ setIsProcessingPayment: handleSetProcessing }}>
       {isProcessingPayment && (
         <div className="m-auto left-0 top-0 w-screen h-screen absolute z-1000 bg-background-primary flex flex-col items-center">
-          <img src={getSvgSrc(SaleorLogo)} alt="logo" className="logo mt-20" />
+          <img src={getSvgSrc(SWLogo)} alt="logo" className="logo mt-20" />
           <div className="flex flex-col justify-center flex-grow pb-40">
             <Title>{formatMessage(paymentSectionMessages.processingPayment)}</Title>
             <BarLoader />

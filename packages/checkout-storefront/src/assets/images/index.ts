@@ -1,3 +1,3 @@
-import SaleorLogo from "./Saleor_logo.svg";
+import SWLogo from "./sw_logo.svg";
 
-export { SaleorLogo };
+export { SWLogo };

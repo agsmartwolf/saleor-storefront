@@ -61,14 +61,14 @@ export const checkout: CheckoutFragment = {
   user: null,
   availablePaymentGateways: [
     {
-      id: "mirumee.payments.dummy",
+      id: "sw.payments.dummy",
       currencies: ["EUR"],
       config: [],
       name: "Dummy",
       __typename: "PaymentGateway",
     },
     {
-      id: "mirumee.payments.stripe",
+      id: "sw.payments.stripe",
       name: "Stripe (Deprecated)",
       __typename: "PaymentGateway",
       currencies: ["EUR"],
@@ -82,7 +82,7 @@ export const checkout: CheckoutFragment = {
       config: [],
     },
     {
-      id: "mirumee.payments.adyen",
+      id: "sw.payments.adyen",
       name: "Adyen",
       __typename: "PaymentGateway",
       currencies: ["EUR"],

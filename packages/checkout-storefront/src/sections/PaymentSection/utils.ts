@@ -16,14 +16,14 @@ import {
 } from "@/checkout-storefront/sections/PaymentSection/types";
 import { compact } from "lodash-es";
 
-const PAYMENT_PLUGIN_PREFIX = "mirumee";
+const PAYMENT_PLUGIN_PREFIX = "sw";
 
 const paymentGatewayMap: Record<PaymentGatewayId, keyof ParsedPaymentGateways> = {
   [adyenGatewayId]: "adyen",
 };
 
 export const getParsedPaymentGatewayConfigs = (
-  gatewayConfigs: MightNotExist<PaymentGatewayConfig[]>,
+  gatewayConfigs: MightNotExist<PaymentGatewayConfig[]>
 ): ParsedPaymentGateways => {
   if (!gatewayConfigs) {
     return {};
@@ -49,7 +49,7 @@ export const getParsedPaymentGatewayConfigs = (
 };
 
 export const getFilteredPaymentGateways = (
-  paymentGateways: MightNotExist<PaymentGateway[]>,
+  paymentGateways: MightNotExist<PaymentGateway[]>
 ): PaymentGateway[] => {
   if (!paymentGateways) {
     return [];
