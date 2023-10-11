@@ -1,13 +1,5 @@
 import clsx from "clsx";
-import React, {
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { HTMLAttributes, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 
 import styles from "./AnimatedHorizontalScroller.module.css";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/solid";
@@ -47,7 +39,8 @@ export const AnimatedHorizontalScroller: React.FC<AnimatedHorizontalScrollerProp
       };
     }
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    const parentWidth = motionScrollerRef.current.parentNode.getBoundingClientRect().width;
+    const parentWidth =
+      motionScrollerRef.current?.parentElement?.getBoundingClientRect()?.width ?? 0;
 
     const itemsOnScreen = Math.ceil(parentWidth / largestItemWidth);
 
@@ -64,7 +57,8 @@ export const AnimatedHorizontalScroller: React.FC<AnimatedHorizontalScrollerProp
 
   useEffect(() => {
     if (motionScrollerRef.current) {
-      const parentWidth = motionScrollerRef.current.parentNode.getBoundingClientRect().width;
+      const parentWidth =
+        motionScrollerRef.current?.parentElement?.getBoundingClientRect().width ?? 0;
       const containerWidth = motionScrollerRef.current.getBoundingClientRect().width;
       if (containerWidth > parentWidth) {
         setRightControlVisible(true);
@@ -94,7 +88,8 @@ export const AnimatedHorizontalScroller: React.FC<AnimatedHorizontalScrollerProp
     }
 
     if (motionScrollerRef.current) {
-      const parentWidth = motionScrollerRef.current.parentNode.getBoundingClientRect().width;
+      const parentWidth =
+        motionScrollerRef.current?.parentElement?.getBoundingClientRect().width ?? 0;
       const containerWidth = motionScrollerRef.current.getBoundingClientRect().width;
       if (
         // (_latest > -(containerWidth - parentWidth + COLOR_GAP))) {
@@ -113,7 +108,7 @@ export const AnimatedHorizontalScroller: React.FC<AnimatedHorizontalScrollerProp
           hidden: !isLeftControlVisible,
         })}
         onClick={() => {
-          animate(x, x.get() + largestItemWidth);
+          void animate(x, x.get() + largestItemWidth);
         }}
       />
       <ArrowRightIcon
@@ -121,7 +116,7 @@ export const AnimatedHorizontalScroller: React.FC<AnimatedHorizontalScrollerProp
           hidden: !isRightControlVisible,
         })}
         onClick={() => {
-          animate(x, x.get() - largestItemWidth);
+          void animate(x, x.get() - largestItemWidth);
         }}
       />
       <div className={clsx(styles.container, "overflow-hidden")}>
