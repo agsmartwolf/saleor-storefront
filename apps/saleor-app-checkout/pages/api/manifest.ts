@@ -9,7 +9,7 @@ const handler = createManifestHandler({
     const { appBaseUrl } = context;
 
     return {
-      id: "saleor.checkout.app",
+      id: "sw.saleor.checkout.app",
       version: version,
       name: appName,
       about: "Saleor checkout app to quickly configure and customize checkout in your store.",
