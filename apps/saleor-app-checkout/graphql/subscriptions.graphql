@@ -52,3 +52,9 @@ fragment TransactionActionPayload on TransactionActionRequest {
     amount
   }
 }
+
+subscription PaymentGatewayInitializeSession {
+  event {
+    ...PaymentGatewayInitializeSessionEvent
+  }
+}

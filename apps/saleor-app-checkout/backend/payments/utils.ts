@@ -7,6 +7,13 @@ import currency from "currency.js";
 import { ADYEN_PAYMENT_PREFIX } from "./providers/adyen";
 import { DUMMY_PAYMENT_TYPE } from "./providers/dummy/refunds";
 import { MOLLIE_PAYMENT_PREFIX } from "./providers/mollie";
+import {
+  PaymentAppConfigEntry,
+  PaymentAppEncryptedConfig,
+  PaymentAppUserVisibleConfigEntry,
+  paymentAppUserVisibleConfigEntrySchema,
+} from "@/saleor-app-checkout/backend/payments/config-entry";
+import { obfuscateConfig } from "@/saleor-app-checkout/backend/configuration/utils";
 
 export const formatRedirectUrl = ({
   saleorApiUrl,
@@ -114,3 +121,22 @@ export const getIntegerAmountFromSaleor = (dollars: number) =>
 // Saleor provides and expects the amount to be in dollars (decimal format / floats)
 export const getSaleorAmountFromInteger = (cents: number) =>
   Number.parseFloat((cents / 100).toFixed(2));
+
+export const obfuscateConfigEntry = (
+  entry: PaymentAppConfigEntry | PaymentAppUserVisibleConfigEntry,
+): PaymentAppUserVisibleConfigEntry => {
+  const { secretKey, publishableKey, configurationName, configurationId, webhookId } = entry;
+
+  const configValuesToObfuscate = {
+    secretKey,
+  } satisfies PaymentAppEncryptedConfig;
+
+  const v = {
+    publishableKey,
+    configurationId,
+    configurationName,
+    webhookId,
+    ...obfuscateConfig(configValuesToObfuscate),
+  } satisfies PaymentAppUserVisibleConfigEntry;
+  return paymentAppUserVisibleConfigEntrySchema.parse(v);
+};

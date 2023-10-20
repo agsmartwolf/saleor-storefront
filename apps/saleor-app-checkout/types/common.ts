@@ -68,3 +68,11 @@ export type OrderPaymentMetafield = {
   provider: PaymentProviderID;
   method: PaymentMethodID;
 };
+
+type JSONArray = readonly JSONValue[];
+
+export type JSONObject = {
+  readonly [x in string]: JSONValue;
+};
+
+export type JSONValue = string | number | boolean | JSONObject | JSONArray | null;

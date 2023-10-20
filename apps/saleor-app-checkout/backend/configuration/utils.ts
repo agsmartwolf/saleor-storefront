@@ -4,6 +4,8 @@ import {
   ChannelActivePaymentProviders,
   PublicSettingsValues,
 } from "@/saleor-app-checkout/types/api";
+import { obfuscateValue } from "@/saleor-app-checkout/backend/configuration/encryption";
+import { isNotNullish, toStringOrEmpty } from "@/saleor-app-checkout/utils/common";
 
 export const mergeChannelsWithPaymentProvidersSettings = (
   settings: PublicSettingsValues,
@@ -17,3 +19,19 @@ export const mergeChannelsWithPaymentProvidersSettings = (
       [channel.id]: channelSettings,
     };
   }, settings.channelActivePaymentProviders) || settings.channelActivePaymentProviders;
+
+export const filterConfigValues = <T extends Record<string, unknown>>(values: T) => {
+  const entries = Object.entries(values).filter(
+    ([_, value]) => value !== null && value !== undefined,
+  );
+  return Object.fromEntries(entries);
+};
+
+export const obfuscateConfig = <T extends {}>(config: T): T => {
+  const entries = Object.entries(config).map(([key, value]) => [
+    key,
+    isNotNullish(value) ? obfuscateValue(toStringOrEmpty(value)) : value,
+  ]);
+
+  return Object.fromEntries(entries) as T;
+};

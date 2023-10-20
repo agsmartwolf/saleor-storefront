@@ -1,5 +1,9 @@
 overwrite: true
-schema: ${SALEOR_API_URL}
+schema:
+  - ${SALEOR_API_URL}:
+      headers:
+        Cache-Control: 'no-cache'
+        authorization: ${SALEOR_API_TOKEN}
 documents: "graphql/**/*.graphql"
 generates:
   graphql/index.ts:
