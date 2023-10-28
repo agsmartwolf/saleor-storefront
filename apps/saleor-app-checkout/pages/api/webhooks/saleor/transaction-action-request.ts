@@ -32,7 +32,7 @@ export const transactionActionRequestWebhook =
     webhookPath: "api/webhooks/saleor/transaction-action-request",
     asyncEvent: "TRANSACTION_ACTION_REQUEST",
     apl: saleorApp.apl,
-    subscriptionQueryAst: TransactionActionRequestSubscriptionDocument,
+    query: TransactionActionRequestSubscriptionDocument,
   });
 
 const handler: NextWebhookApiHandler<TransactionActionPayloadFragment> = async (

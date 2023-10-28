@@ -1,11 +1,16 @@
 {
   "extends": "tsconfig/nextjs.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ES2021",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "jsx": "preserve",
     "module": "commonjs",
-
+    "paths": {
+      "react": [
+        "./node_modules/@types/react"
+      ]
+    },
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

@@ -27,7 +27,8 @@ export const getEmptyAddressFormData = (): AddressFormData => ({
   countryArea: "",
   postalCode: "",
   phone: "",
-  countryCode: getParsedLocaleData(getQueryParams().locale).countryCode,
+  // countryCode: getParsedLocaleData(getQueryParams().locale).countryCode,
+  countryCode: "GE",
 });
 
 export const getEmptyAddress = (): AddressFragment => {

@@ -1,14 +1,23 @@
 import type { IconComponent } from "./icon";
 import type { SettingType } from "./settings";
 
-export const PaymentMethods = ["creditCard", "applePay", "paypal", "dropin", "dummy"] as const;
-export type PaymentMethodID = typeof PaymentMethods[number];
+export const PaymentMethods = [
+  "creditCard",
+  "applePay",
+  "paypal",
+  "dropin",
+  "dummy",
+  "cash",
+  "bankTransfer",
+] as const;
+export type PaymentMethodID = (typeof PaymentMethods)[number];
 export interface PaymentMethod {
   id: PaymentMethodID;
   name: string;
   logo?: IconComponent;
 }
 export type MollieProviderSettingID = "profileId" | "apiKey";
+export type SWProviderSettingID = "swId" | "swKey";
 
 export const adyenProviderSettingIDs = [
   "merchantAccount",
@@ -18,7 +27,7 @@ export const adyenProviderSettingIDs = [
   "apiKey",
   "clientKey",
 ] as const;
-export type AdyenProviderSettingID = typeof adyenProviderSettingIDs[number];
+export type AdyenProviderSettingID = (typeof adyenProviderSettingIDs)[number];
 export type StripeProviderSettingID = "publishableKey" | "secretKey" | "webhookSecret";
 
 export const PaymentProviders: readonly (keyof PaymentProviderToSettings)[] = [
@@ -26,14 +35,16 @@ export const PaymentProviders: readonly (keyof PaymentProviderToSettings)[] = [
   "adyen",
   "stripe",
   "dummy",
+  "sw",
 ] as const;
-export type PaymentProviderID = typeof PaymentProviders[number];
+export type PaymentProviderID = (typeof PaymentProviders)[number];
 
 export type PaymentProviderToSettings = {
   mollie: MollieProviderSettingID;
   adyen: AdyenProviderSettingID;
   stripe: StripeProviderSettingID;
   dummy: "dummyKey";
+  sw: SWProviderSettingID;
 };
 
 export type PaymentProviderSettingID<P extends PaymentProviderID> = PaymentProviderToSettings[P];

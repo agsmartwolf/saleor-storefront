@@ -1,60 +1,40 @@
-subscription TransactionActionRequestSubscription {
+subscription PaymentGatewayInitialize {
   event {
-    ... on TransactionActionRequest {
-      # temporary paste fragment due to Saleor validation issues
-      transaction {
-        id
-        reference
-        type
-        authorizedAmount {
-          amount
-          currency
+    ... on PaymentGatewayInitializeSession {
+      sourceObject {
+        __typename
+        ... on Checkout {
+          id
+          totalPrice {
+            gross {
+              amount
+            }
+          }
         }
-        chargedAmount {
-          amount
-        }
-        voidedAmount {
-          amount
-        }
-        refundedAmount {
-          amount
+        ... on Order {
+          id
+          total {
+            gross {
+              amount
+            }
+          }
         }
       }
-      action {
-        actionType
-        amount
-      }
+      data
+      amount
     }
   }
 }
 
-fragment TransactionActionPayload on TransactionActionRequest {
-  transaction {
-    id
-    reference
-    type
-    authorizedAmount {
-      amount
-      currency
-    }
-    chargedAmount {
-      amount
-    }
-    voidedAmount {
-      amount
-    }
-    refundedAmount {
-      amount
-    }
-  }
-  action {
-    actionType
-    amount
+
+subscription TransactionInitializeSession {
+  event {
+    ...TransactionInitializeSessionEvent
   }
 }
 
-subscription PaymentGatewayInitializeSession {
+subscription TransactionProcessSession {
   event {
-    ...PaymentGatewayInitializeSessionEvent
+    ...TransactionProcessSessionEvent
   }
 }

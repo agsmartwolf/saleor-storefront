@@ -22,6 +22,9 @@
     "tsconfig": "workspace:*",
     "typescript": "5.0.4"
   },
+  "resolutions": {
+    "@types/react": "^18.2.7"
+  },
   "scripts": {
     "dev": "react-scripts start",
     "build": "react-scripts build",

@@ -133,14 +133,14 @@ mutation OrderUpdatePaymentMetafield($orderId: ID!, $data: String!) {
 }
 
 fragment TransactionEvent on TransactionEvent {
-  name
-  reference
+  message
+  pspReference
 }
 
 fragment Transaction on TransactionItem {
   id
-  reference
-  voidedAmount {
+  pspReference
+  canceledAmount {
     ...Money
   }
   refundedAmount {

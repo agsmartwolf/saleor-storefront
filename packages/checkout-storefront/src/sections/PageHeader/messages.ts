@@ -7,9 +7,9 @@ export const languagesMessages = defineMessages<Locale>({
     id: "eXrxj4",
     description: "english usa",
   },
-  "pl-PL": {
-    defaultMessage: "Polish",
-    id: "kd+Ya5",
-    description: "polish",
+  en: {
+    defaultMessage: "English (USA)",
+    id: "eXrxj4",
+    description: "english usa",
   },
 });

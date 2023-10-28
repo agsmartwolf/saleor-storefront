@@ -26,7 +26,7 @@ export default function Carousel({
   setVideoToPlay: (v: ProductMediaFragmentBlurred) => void;
 }) {
   const [loaded, setLoaded] = useState(false);
-  const videoThumbnailUrl = getVideoThumbnail(currentImg.url);
+  const videoThumbnailUrl = getVideoThumbnail(currentImg?.url);
 
   const currentImageRef = useRef(null);
   const isCurrentImgVisible = useOnScreen(currentImageRef);

@@ -33,8 +33,11 @@ export function Navbar() {
   }, [actuallyAuthenticated]);
 
   const saleorApiUrl = process.env.NEXT_PUBLIC_API_URI;
+  const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL;
   invariant(saleorApiUrl, "Missing NEXT_PUBLIC_API_URI");
-  const domain = new URL(saleorApiUrl).hostname;
+  invariant(checkoutUrl, "Missing NEXT_PUBLIC_CHECKOUT_URL");
+  const domain = getDomain(saleorApiUrl);
+  const checkoutDomain = getDomain(checkoutUrl);
 
   const checkoutParams = checkout
     ? new URLSearchParams({
@@ -45,12 +48,14 @@ export function Navbar() {
         // @todo remove `domain`
         // https://github.com/saleor/saleor-dashboard/issues/2387
         // https://github.com/saleor/saleor-app-sdk/issues/87
-        domain,
+        domain: domain as string,
       })
     : new URLSearchParams();
 
   const externalCheckoutUrl = checkout
-    ? `/${currentChannel.slug}/${currentLocale}/checkout/?${checkoutParams.toString()}`
+    ? `${
+        checkoutDomain ? `` : `/${currentChannel.slug}/${currentLocale}`
+      }${checkoutUrl}?${checkoutParams.toString()}`
     : "#";
 
   useEffect(() => {
@@ -66,7 +71,7 @@ export function Navbar() {
     checkout?.lines?.reduce(
       (amount: number, line?: CheckoutLineDetailsFragment | null) =>
         line ? amount + line.quantity : amount,
-      0
+      0,
     ) || 0;
 
   return (
@@ -112,6 +117,14 @@ export function Navbar() {
       <BurgerMenu open={isBurgerOpen} onCloseClick={() => setBurgerOpen(false)} />
     </>
   );
+}
+
+function getDomain(url: string) {
+  try {
+    return new URL(url).hostname;
+  } catch (e) {
+    return null;
+  }
 }
 
 export default Navbar;

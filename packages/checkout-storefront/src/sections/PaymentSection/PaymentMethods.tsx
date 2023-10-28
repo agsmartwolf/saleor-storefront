@@ -10,12 +10,17 @@ export const PaymentMethods = () => {
     updateState: { checkoutDeliveryMethodUpdate },
   } = useCheckoutUpdateState();
 
-  const { adyen } = availablePaymentGateways;
+  const { adyen, dummy } = availablePaymentGateways;
 
   // delivery methods change total price so we want to wait until the change is done
   if (changingBillingCountry || fetching || checkoutDeliveryMethodUpdate === "loading") {
     return <PaymentSectionSkeleton />;
   }
 
-  return <div className="mb-3">{adyen ? <AdyenDropIn config={adyen} /> : null}</div>;
+  return (
+    <>
+      <div className="mb-3">{adyen ? <AdyenDropIn config={adyen} /> : null}</div>
+      <div className="mb-3">{dummy ? <AdyenDropIn config={dummy} /> : null}</div>
+    </>
+  );
 };

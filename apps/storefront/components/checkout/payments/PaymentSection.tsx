@@ -5,7 +5,11 @@ import { useIntl } from "react-intl";
 import { messages } from "@/components/translations";
 import { CheckoutDetailsFragment } from "@/saleor/api";
 
-import { DUMMY_CREDIT_CARD_GATEWAY, DummyCreditCardSection } from "./DummyCreditCardSection";
+import {
+  DUMMY_CREDIT_CARD_GATEWAY,
+  DUMMY_MIRUMEE_GATEWAY,
+  DummyCreditCardSection,
+} from "./DummyCreditCardSection";
 import { STRIPE_GATEWAY, StripeCreditCardSection } from "./StripeCreditCardSection";
 
 export interface PaymentSectionProps {
@@ -15,7 +19,7 @@ export interface PaymentSectionProps {
 
 export function PaymentSection({ checkout, active }: PaymentSectionProps) {
   const t = useIntl();
-  const existingGateways = [STRIPE_GATEWAY, DUMMY_CREDIT_CARD_GATEWAY];
+  const existingGateways = [STRIPE_GATEWAY, DUMMY_CREDIT_CARD_GATEWAY, DUMMY_MIRUMEE_GATEWAY];
   const availableGateways = checkout.availablePaymentGateways.filter((g) =>
     existingGateways.includes(g.id),
   );

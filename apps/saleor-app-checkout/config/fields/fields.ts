@@ -44,6 +44,14 @@ const paymentMethods: Omit<PaymentMethod, "name">[] = [
     id: "dummy",
     logo: DummyIcon,
   },
+  {
+    id: "cash",
+    logo: DummyIcon,
+  },
+  {
+    id: "bankTransfer",
+    logo: DummyIcon,
+  },
 ];
 
 const molliePaymentProvider: Omit<PaymentProviderSettings<"mollie">, "label">[] = [
@@ -164,6 +172,7 @@ const paymentProviderFields: Record<PaymentProviderID, any> = {
   adyen: adyenPaymentProvider,
   stripe: stripePaymentProvider,
   dummy: {},
+  sw: {},
 };
 
 export type CommonField = { id: string } & Record<string, any>;
@@ -222,10 +231,21 @@ export const useDummyPaymentProvider = (): PaymentProvider<"dummy"> => {
   };
 };
 
+export const useSWPaymentProvider = (): PaymentProvider<"sw"> => {
+  const intl = useIntl();
+
+  return {
+    id: "sw",
+    label: intl.formatMessage(paymentProvidersMessages.sw),
+    settings: [],
+  };
+};
+
 export const usePaymentProviders = (): PaymentProvider<PaymentProviderID>[] => [
   useMolliePaymentProvider(),
   useAdyenPaymentProvider(),
   useStripePaymentProvider(),
+  useSWPaymentProvider(),
 ];
 
 export const useBrandingCustomization = (): Customization<"branding"> => {

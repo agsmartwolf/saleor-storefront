@@ -27,6 +27,11 @@ export const paymentProvidersMessages = defineMessages<PaymentProviderID>({
     id: "LtD8zn",
     description: "dummy payment provider",
   },
+  sw: {
+    defaultMessage: "Smart wolf Payment",
+    id: "5Pom0J",
+    description: "smart wolf payment provider",
+  },
 });
 
 export const molliePaymentProviderMessages = defineMessages<MollieProviderSettingID>({

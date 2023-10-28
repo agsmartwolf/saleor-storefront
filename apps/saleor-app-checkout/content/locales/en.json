@@ -31,6 +31,14 @@
     "developer_comment": "customization",
     "string": "Branding"
   },
+  "5Pom0J": {
+    "developer_comment": "smart wolf payment provider",
+    "string": "Smart wolf Payment"
+  },
+  "5jnsD0": {
+    "developer_comment": "cash payment method",
+    "string": "Cash Payment"
+  },
   "6bexF4": {
     "developer_comment": "payment method",
     "string": "Drop-in"
@@ -198,6 +206,10 @@
   "t7YEMr": {
     "developer_comment": "payment provider setting",
     "string": "Profile ID"
+  },
+  "tmxqTX": {
+    "developer_comment": "bank transfer payment method",
+    "string": "Bank transfer Payment"
   },
   "ufY8+j": {
     "developer_comment": "payment provider setting",

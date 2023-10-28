@@ -8,7 +8,10 @@ import {
 } from "@/checkout-storefront/graphql";
 import { MightNotExist } from "@/checkout-storefront/lib/globalTypes";
 import { getUrl } from "@/checkout-storefront/lib/utils/url";
-import { adyenGatewayId } from "@/checkout-storefront/sections/PaymentSection/AdyenDropIn/types";
+import {
+  adyenGatewayId,
+  dummyGatewayId,
+} from "@/checkout-storefront/sections/PaymentSection/AdyenDropIn/types";
 import {
   ParsedPaymentGateways,
   PaymentGatewayId,
@@ -20,10 +23,11 @@ const PAYMENT_PLUGIN_PREFIX = "sw";
 
 const paymentGatewayMap: Record<PaymentGatewayId, keyof ParsedPaymentGateways> = {
   [adyenGatewayId]: "adyen",
+  [dummyGatewayId]: "dummy",
 };
 
 export const getParsedPaymentGatewayConfigs = (
-  gatewayConfigs: MightNotExist<PaymentGatewayConfig[]>
+  gatewayConfigs: MightNotExist<PaymentGatewayConfig[]>,
 ): ParsedPaymentGateways => {
   if (!gatewayConfigs) {
     return {};
@@ -49,7 +53,7 @@ export const getParsedPaymentGatewayConfigs = (
 };
 
 export const getFilteredPaymentGateways = (
-  paymentGateways: MightNotExist<PaymentGateway[]>
+  paymentGateways: MightNotExist<PaymentGateway[]>,
 ): PaymentGateway[] => {
   if (!paymentGateways) {
     return [];

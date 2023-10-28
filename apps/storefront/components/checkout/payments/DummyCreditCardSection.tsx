@@ -17,6 +17,7 @@ import {
 import { CompleteCheckoutButton } from "../CompleteCheckoutButton";
 
 export const DUMMY_CREDIT_CARD_GATEWAY = "mirumee.payments.dummy";
+export const DUMMY_MIRUMEE_GATEWAY = "mirumee.payments.dummy";
 
 interface CardForm {
   cardNumber: string;

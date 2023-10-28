@@ -47,6 +47,18 @@
       "value": "Branding"
     }
   ],
+  "5Pom0J": [
+    {
+      "type": 0,
+      "value": "Smart wolf Payment"
+    }
+  ],
+  "5jnsD0": [
+    {
+      "type": 0,
+      "value": "Cash Payment"
+    }
+  ],
   "6bexF4": [
     {
       "type": 0,
@@ -297,6 +309,12 @@
     {
       "type": 0,
       "value": "Profile ID"
+    }
+  ],
+  "tmxqTX": [
+    {
+      "type": 0,
+      "value": "Bank transfer Payment"
     }
   ],
   "ufY8+j": [

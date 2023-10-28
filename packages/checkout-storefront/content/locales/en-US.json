@@ -534,10 +534,6 @@
     "developer_comment": "checkout pay - shipping method not set error",
     "string": "Please choose delivery method before finalizing checkout"
   },
-  "kd+Ya5": {
-    "developer_comment": "polish",
-    "string": "Polish"
-  },
   "khhC7s": {
     "developer_comment": "save accessibility label",
     "string": "Save address"

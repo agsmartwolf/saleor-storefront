@@ -13,8 +13,8 @@ export const LanguageSelect: React.FC = ({}) => {
   const formatMessage = useFormattedMessages();
   const { locale } = useLocale();
 
-  const handleLanguageChange = (locale: Locale) => {
-    replaceUrl({ query: { locale } });
+  const handleLanguageChange = (l: Locale) => {
+    replaceUrl({ query: { locale: l } });
 
     const navEvent = new PopStateEvent(POPSTATE_EVENT);
     window.dispatchEvent(navEvent);
@@ -33,9 +33,9 @@ export const LanguageSelect: React.FC = ({}) => {
         onChange={(event: ChangeEvent<HTMLSelectElement>) =>
           handleLanguageChange(event.target.value as Locale)
         }
-        options={locales.map((locale) => ({
-          label: formatMessage(languagesMessages[locale]),
-          value: locale,
+        options={locales.map((l) => ({
+          label: formatMessage(languagesMessages[l]),
+          value: l,
         }))}
       />
     </div>

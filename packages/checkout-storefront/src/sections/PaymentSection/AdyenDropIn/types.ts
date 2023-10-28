@@ -4,7 +4,10 @@ import { PaymentMethodsResponseObject } from "@adyen/adyen-web/dist/types/core/P
 import { PaymentResponse } from "@adyen/adyen-web/dist/types/components/types";
 
 export const adyenGatewayId = "app.saleor.adyen";
+export const dummyGatewayId = "mirumee.payments.dummy";
 export type AdyenGatewayId = typeof adyenGatewayId;
+export type DummyGatewayId = typeof dummyGatewayId;
+export type GatewayId = AdyenGatewayId & DummyGatewayId;
 
 // because it's defined to these in the docs but it's a string in the response type
 type AdyenResultCode =
@@ -16,6 +19,11 @@ type AdyenResultCode =
   | "Received";
 
 export interface AdyenGatewayInitializePayload {
+  paymentMethodsResponse: PaymentMethodsResponseObject;
+  clientKey: string;
+  environment: string;
+}
+export interface DummyGatewayInitializePayload {
   paymentMethodsResponse: PaymentMethodsResponseObject;
   clientKey: string;
   environment: string;

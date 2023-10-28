@@ -61,6 +61,13 @@ export const checkout: CheckoutFragment = {
   user: null,
   availablePaymentGateways: [
     {
+      id: "mirumee.payments.dummy",
+      currencies: ["GEL", "USD"],
+      config: [],
+      name: "Dummy",
+      __typename: "PaymentGateway",
+    },
+    {
       id: "sw.payments.dummy",
       currencies: ["EUR"],
       config: [],

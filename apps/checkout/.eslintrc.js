@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   extends: ["checkout"],
+  plugins: ["formatjs"],
   parserOptions: {
     tsconfigRootDir: __dirname,
   },
