@@ -2,7 +2,7 @@ import { invariant } from "ts-invariant";
 import { RootWrapper } from "./pageWrapper";
 
 export const metadata = {
-	title: "Shopping Cart · Saleor Storefront example",
+	title: "Shopping Cart",
 };
 
 export default function CheckoutPage({ searchParams }: { searchParams: { checkout?: string } }) {
@@ -17,7 +17,7 @@ export default function CheckoutPage({ searchParams }: { searchParams: { checkou
 			<section className="mx-auto max-w-7xl p-8">
 				<div className="flex items-center font-bold">
 					<a aria-label="homepage" href="/">
-						ACME
+						Smart Wolf
 					</a>
 				</div>
 				<h1 className="mt-8 text-3xl font-bold text-neutral-900">Checkout</h1>

@@ -2,6 +2,13 @@ fragment VariantDetails on ProductVariant {
 	id
 	name
 	quantityAvailable
+	translation(languageCode: $locale) {
+		id
+		name
+	}
+	attributes {
+		...SelectedAttributeDetailsFragment
+	}
 	pricing {
 		price {
 			gross {
@@ -9,5 +16,11 @@ fragment VariantDetails on ProductVariant {
 				amount
 			}
 		}
+	}
+	media {
+		id
+		url
+		alt
+		type
 	}
 }

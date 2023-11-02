@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { EmptyCartPage } from "../EmptyCartPage";
 import { PageNotFound } from "../PageNotFound";
@@ -9,10 +9,13 @@ import { CheckoutForm, CheckoutFormSkeleton } from "@/checkout/sections/Checkout
 import { useCheckout } from "@/checkout/hooks/useCheckout";
 import { CheckoutSkeleton } from "@/checkout/views/Checkout/CheckoutSkeleton";
 import { PAGE_ID } from "@/checkout/views/Checkout/consts";
+import { useCheckoutComplete } from "@/checkout/hooks/useCheckoutComplete";
+import { Button } from "@/checkout/components";
 
 export const Checkout = () => {
 	const { checkout, loading } = useCheckout();
 	const { loading: isAuthenticating } = useUser();
+	const { onCheckoutComplete, completingCheckout } = useCheckoutComplete();
 
 	const isCheckoutInvalid = !loading && !checkout && !isAuthenticating;
 
@@ -39,6 +42,13 @@ export const Checkout = () => {
 							<Suspense fallback={<SummarySkeleton />}>
 								<Summary {...checkout} />
 							</Suspense>
+							<Button
+								onClick={onCheckoutComplete}
+								type="button"
+								disabled={isCheckoutInvalid}
+								ariaLabel={"Finish checkout"}
+								label={"Finish checkout"}
+							/>
 						</>
 					)}
 				</div>

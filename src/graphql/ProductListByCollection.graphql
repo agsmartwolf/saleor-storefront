@@ -1,5 +1,5 @@
-query ProductListByCollection($slug: String!) {
-	collection(slug: $slug, channel: "default-channel") {
+query ProductListByCollection($slug: String!, $locale: LanguageCodeEnum = EN) {
+	collection(slug: $slug, channel: "georgia") {
 		name
 		description
 		seoDescription

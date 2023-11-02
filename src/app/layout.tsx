@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { type ReactNode } from "react";
 import { type Metadata } from "next";
+import { KumaRegistry } from "@kuma-ui/next-plugin/registry";
 import { AuthProvider } from "@/ui/components/AuthProvider";
 import { DraftModeNotification } from "@/ui/components/DraftModeNotification";
 
@@ -19,8 +20,10 @@ export default function RootLayout(props: { children: ReactNode }) {
 	return (
 		<html lang="en">
 			<body className={`${inter.className} flex min-h-screen flex-col`}>
-				<AuthProvider>{props.children}</AuthProvider>
-				<DraftModeNotification />
+				<KumaRegistry>
+					<AuthProvider>{props.children}</AuthProvider>
+					<DraftModeNotification />
+				</KumaRegistry>
 			</body>
 		</html>
 	);

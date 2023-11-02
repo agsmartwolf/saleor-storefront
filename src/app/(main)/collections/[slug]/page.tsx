@@ -1,17 +1,18 @@
 import { notFound } from "next/navigation";
 import { type Metadata } from "next";
-import { ProductListByCollectionDocument } from "@/gql/graphql";
+import { LanguageCodeEnum, ProductListByCollectionDocument } from "@/gql/graphql";
 import { executeGraphQL } from "@/lib/graphql";
 import { ProductList } from "@/ui/components/ProductList";
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
 	const { collection } = await executeGraphQL(ProductListByCollectionDocument, {
-		variables: { slug: params.slug },
+		variables: { slug: params.slug,
+			locale: LanguageCodeEnum.En },
 		revalidate: 60,
 	});
 
 	return {
-		title: `${collection?.seoTitle || collection?.name || "Collection"} · Saleor Storefront example`,
+		title: `${collection?.seoTitle || collection?.name || "Collection"}`,
 		description:
 			collection?.seoDescription || collection?.description || collection?.seoTitle || collection?.name,
 	};
@@ -19,7 +20,8 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 
 export default async function Page({ params }: { params: { slug: string } }) {
 	const { collection } = await executeGraphQL(ProductListByCollectionDocument, {
-		variables: { slug: params.slug },
+		variables: { slug: params.slug,
+			locale: LanguageCodeEnum.En },
 		revalidate: 60,
 	});
 

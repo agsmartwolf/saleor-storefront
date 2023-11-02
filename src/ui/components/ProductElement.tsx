@@ -3,16 +3,18 @@ import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 
 import type { ProductListItemFragment } from "@/gql/graphql";
 import { formatMoneyRange } from "@/lib/graphql";
+import { Box } from "@kuma-ui/core";
 
 export function ProductElement({
 	product,
 	loading,
 	priority,
-}: { product: ProductListItemFragment } & { loading: "eager" | "lazy"; priority?: boolean }) {
+	vertical = true
+}: { product: ProductListItemFragment, vertical?: boolean } & { loading: "eager" | "lazy"; priority?: boolean }) {
 	return (
 		<li data-testid="ProductElement">
 			<Link href={`/products/${product.slug}`} key={product.id}>
-				<div>
+				<Box display={vertical ? '' : 'flex'}>
 					{product?.thumbnail?.url && (
 						<ProductImageWrapper
 							loading={loading}
@@ -23,7 +25,7 @@ export function ProductElement({
 							priority={priority}
 						/>
 					)}
-					<div className="mt-2 flex justify-between">
+					<Box className={vertical ? "mt-2 flex justify-between" : "mt-2 flex-col justify-between"}>
 						<div>
 							<h3 className="mt-1 text-sm font-semibold text-neutral-900">{product.name}</h3>
 							<p className="mt-1 text-sm text-neutral-500" data-testid="ProductElement_Category">
@@ -36,8 +38,8 @@ export function ProductElement({
 								stop: product?.pricing?.priceRange?.stop?.gross,
 							})}
 						</p>
-					</div>
-				</div>
+					</Box>
+				</Box>
 			</Link>
 		</li>
 	);

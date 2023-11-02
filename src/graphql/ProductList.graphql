@@ -1,5 +1,5 @@
-query ProductList($first: Int = 9) {
-	products(first: $first, channel: "default-channel") {
+query ProductList($first: Int = 9, $locale: LanguageCodeEnum = EN) {
+	products(first: $first, channel: "georgia") {
 		edges {
 			node {
 				...ProductListItem

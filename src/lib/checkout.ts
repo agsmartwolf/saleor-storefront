@@ -1,4 +1,4 @@
-import { CheckoutCreateDocument, CheckoutFindDocument } from "@/gql/graphql";
+import { CheckoutCreateDocument, CheckoutFindDocument, LanguageCodeEnum } from "@/gql/graphql";
 import { executeGraphQL } from "@/lib/graphql";
 
 export async function find(checkoutId: string) {
@@ -6,6 +6,7 @@ export async function find(checkoutId: string) {
 		? await executeGraphQL(CheckoutFindDocument, {
 				variables: {
 					id: checkoutId,
+					locale: LanguageCodeEnum.En
 				},
 				cache: "no-cache",
 		  })

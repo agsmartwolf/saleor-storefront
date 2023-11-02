@@ -1,17 +1,18 @@
-import { ProductListByCollectionDocument } from "@/gql/graphql";
+import { LanguageCodeEnum, ProductListByCollectionDocument } from "@/gql/graphql";
 import { executeGraphQL } from "@/lib/graphql";
 import { ProductList } from "@/ui/components/ProductList";
 
 export const metadata = {
-	title: "ACME Storefront, powered by Saleor & Next.js",
+	title: "Smart Wolf",
 	description:
-		"Storefront Next.js Example for building performant e-commerce experiences with Saleor - the composable, headless commerce platform for global brands.",
+		"Welcome to our online store for dog lovers! We offer a wide range of high-quality products, clothes and equipment for your furry friends.",
 };
 
 export default async function Page() {
 	const data = await executeGraphQL(ProductListByCollectionDocument, {
 		variables: {
-			slug: "featured-products",
+			slug: "bestsellers",
+			locale: LanguageCodeEnum.En
 		},
 		revalidate: 60,
 	});

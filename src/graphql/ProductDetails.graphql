@@ -1,11 +1,17 @@
-query ProductDetails($slug: String!) {
-	product(slug: $slug, channel: "default-channel") {
+query ProductDetails($slug: String!, $locale: LanguageCodeEnum = EN) {
+	product(slug: $slug, channel: "georgia") {
 		id
 		name
 		slug
 		description
 		seoTitle
 		seoDescription
+		media {
+			id
+			url
+			alt
+			type
+		}
 		thumbnail(size: 1024, format: WEBP) {
 			url
 			alt

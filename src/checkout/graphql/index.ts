@@ -28750,6 +28750,10 @@ export const AddressFragmentDoc = gql`
 		}
 		firstName
 		lastName
+		metadata {
+			key
+			value
+		}
 	}
 `;
 export const PaymentGatewayFragmentDoc = gql`
@@ -29290,13 +29294,17 @@ export function useCheckoutRemovePromoCodeMutation() {
 	);
 }
 export const CheckoutCompleteDocument = gql`
-	mutation checkoutComplete($checkoutId: ID!) {
-		checkoutComplete(id: $checkoutId) {
+	mutation checkoutComplete($checkoutId: ID!, $metadata: [MetadataInput!]) {
+		checkoutComplete(id: $checkoutId, metadata: $metadata) {
 			errors {
 				...CheckoutErrorFragment
 			}
 			order {
 				id
+				metadata {
+					key
+					value
+				}
 			}
 		}
 	}

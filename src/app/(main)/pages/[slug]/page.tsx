@@ -2,26 +2,28 @@ import { notFound } from "next/navigation";
 import { type Metadata } from "next";
 import edjsHTML from "editorjs-html";
 import xss from "xss";
-import { PageGetBySlugDocument } from "@/gql/graphql";
+import { LanguageCodeEnum, PageGetBySlugDocument } from "@/gql/graphql";
 import { executeGraphQL } from "@/lib/graphql";
 
 const parser = edjsHTML();
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
 	const { page } = await executeGraphQL(PageGetBySlugDocument, {
-		variables: { slug: params.slug },
+		variables: { slug: params.slug,
+			locale: LanguageCodeEnum.En },
 		revalidate: 60,
 	});
 
 	return {
-		title: `${page?.seoTitle || page?.title || "Page"} · Saleor Storefront example`,
+		title: `${page?.seoTitle || page?.title || "Page"}`,
 		description: page?.seoDescription || page?.seoTitle || page?.title,
 	};
 };
 
 export default async function Page({ params }: { params: { slug: string } }) {
 	const { page } = await executeGraphQL(PageGetBySlugDocument, {
-		variables: { slug: params.slug },
+		variables: { slug: params.slug,
+			locale: LanguageCodeEnum.En },
 		revalidate: 60,
 	});
 

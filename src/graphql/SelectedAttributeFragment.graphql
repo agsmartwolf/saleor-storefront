@@ -1,0 +1,27 @@
+fragment SelectedAttributeDetailsFragment on SelectedAttribute {
+  attribute {
+    id
+    name
+    translation(languageCode: $locale) {
+      id
+      name
+    }
+    type
+    unit
+    slug
+    metadata {
+      key
+      value
+    }
+  }
+  values {
+    id
+    name
+    translation(languageCode: $locale) {
+      id
+      name
+      richText
+    }
+    value
+  }
+}

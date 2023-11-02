@@ -21,7 +21,7 @@ fragment MenuItem on MenuItem {
 }
 
 query MenuGetBySlug($slug: String!) {
-	menu(slug: $slug, channel: "default-channel") {
+	menu(slug: $slug, channel: "georgia") {
 		items {
 			...MenuItem
 			children {

@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation";
-import { ProductListPaginatedDocument } from "@/gql/graphql";
+import { LanguageCodeEnum, ProductListPaginatedDocument } from "@/gql/graphql";
 import { ProductsPerPage, executeGraphQL } from "@/lib/graphql";
 import { Pagination } from "@/ui/components/Pagination";
 import { ProductList } from "@/ui/components/ProductList";
 
 export const metadata = {
-	title: "Product List · Saleor Storefront example",
-	description: "All products in Saleor Storefront example",
+	title: "Products",
+	description: "All products in Smart Wold dog store",
 };
 
 type Props = {
@@ -22,6 +22,7 @@ export default async function Page({ searchParams }: Props) {
 		variables: {
 			first: ProductsPerPage,
 			after: cursor,
+			locale: LanguageCodeEnum.En
 		},
 		revalidate: 60,
 	});

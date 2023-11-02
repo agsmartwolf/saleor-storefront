@@ -1,3 +1,5 @@
+const { withKumaUI } = require("@kuma-ui/next-plugin");
+
 /** @type {import('next').NextConfig} */
 const config = {
 	images: {
@@ -10,6 +12,8 @@ const config = {
 	experimental: {
 		typedRoutes: false,
 	},
+	reactStrictMode: true,
 };
 
-export default config;
+module.exports = withKumaUI(config);
+// export default config

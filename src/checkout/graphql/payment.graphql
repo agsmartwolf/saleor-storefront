@@ -59,3 +59,24 @@ mutation transactionProcess($id: ID!, $data: JSON) {
 		}
 	}
 }
+
+mutation checkoutPaymentCreate(	$checkoutId: ID!,
+	$paymentGateway: String!,
+	$amount: PositiveDecimal!,
+	$meta: [MetadataInput!]
+) {
+	checkoutPaymentCreate(id: $checkoutId, input: {
+		gateway: $paymentGateway,
+		amount:$amount,
+		metadata: $meta
+	}) {
+		payment {
+			id
+			token
+		}
+		errors {
+			field
+			message
+		}
+	}
+}

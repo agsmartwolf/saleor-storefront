@@ -26,7 +26,8 @@
 		],
 		"paths": {
 			"@/*": ["./src/*"],
-			"@ui/*": ["./src/components/*"]
+			"@ui/*": ["./src/components/*"],
+
 		},
 		"types": ["react-dom/canary"]
 	},
@@ -37,7 +38,8 @@
 		"src/**/*.tsx",
 		".next/types/**/*.ts",
 		"*.ts",
-		"__tests__/**/*"
+		"__tests__/**/*",
+		"./kuma.config.ts"
 	],
 	"exclude": ["node_modules"]
 }
