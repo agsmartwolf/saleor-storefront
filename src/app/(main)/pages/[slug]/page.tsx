@@ -9,8 +9,7 @@ const parser = edjsHTML();
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
 	const { page } = await executeGraphQL(PageGetBySlugDocument, {
-		variables: { slug: params.slug,
-			locale: LanguageCodeEnum.En },
+		variables: { slug: params.slug, locale: LanguageCodeEnum.En },
 		revalidate: 60,
 	});
 
@@ -22,8 +21,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 
 export default async function Page({ params }: { params: { slug: string } }) {
 	const { page } = await executeGraphQL(PageGetBySlugDocument, {
-		variables: { slug: params.slug,
-			locale: LanguageCodeEnum.En },
+		variables: { slug: params.slug, locale: LanguageCodeEnum.En },
 		revalidate: 60,
 	});
 

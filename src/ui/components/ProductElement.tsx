@@ -1,20 +1,23 @@
 import Link from "next/link";
+import { Box } from "@kuma-ui/core";
 import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 
 import type { ProductListItemFragment } from "@/gql/graphql";
 import { formatMoneyRange } from "@/lib/graphql";
-import { Box } from "@kuma-ui/core";
 
 export function ProductElement({
 	product,
 	loading,
 	priority,
-	vertical = true
-}: { product: ProductListItemFragment, vertical?: boolean } & { loading: "eager" | "lazy"; priority?: boolean }) {
+	vertical = true,
+}: { product: ProductListItemFragment; vertical?: boolean } & {
+	loading: "eager" | "lazy";
+	priority?: boolean;
+}) {
 	return (
 		<li data-testid="ProductElement">
 			<Link href={`/products/${product.slug}`} key={product.id}>
-				<Box display={vertical ? '' : 'flex'}>
+				<Box display={vertical ? "" : "flex"}>
 					{product?.thumbnail?.url && (
 						<ProductImageWrapper
 							loading={loading}

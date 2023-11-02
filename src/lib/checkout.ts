@@ -6,7 +6,7 @@ export async function find(checkoutId: string) {
 		? await executeGraphQL(CheckoutFindDocument, {
 				variables: {
 					id: checkoutId,
-					locale: LanguageCodeEnum.En
+					locale: LanguageCodeEnum.En,
 				},
 				cache: "no-cache",
 		  })

@@ -8,9 +8,11 @@ import { AddButton } from "./AddButton";
 import { executeGraphQL, formatMoney, formatMoneyRange } from "@/lib/graphql";
 import {
 	CheckoutAddLineDocument,
-	LanguageCodeEnum, type Product,
+	LanguageCodeEnum,
+	type Product,
 	ProductDetailsDocument,
-	ProductListDocument, type ProductMedia
+	ProductListDocument,
+	type ProductMedia,
 } from "@/gql/graphql";
 import * as Checkout from "@/lib/checkout";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
@@ -32,7 +34,7 @@ export async function generateMetadata({
 	const { product } = await executeGraphQL(ProductDetailsDocument, {
 		variables: {
 			slug: decodeURIComponent(params.slug),
-			locale: LanguageCodeEnum.En
+			locale: LanguageCodeEnum.En,
 		},
 		revalidate: 60,
 	});
@@ -62,7 +64,7 @@ export async function generateStaticParams() {
 		revalidate: 60,
 		variables: {
 			first: 20,
-			locale: LanguageCodeEnum.En
+			locale: LanguageCodeEnum.En,
 		},
 	});
 
@@ -72,19 +74,22 @@ export async function generateStaticParams() {
 
 const parser = edjsHTML();
 
-export default async function Page(props: { params: { slug: string }; searchParams: { [key: string]: string } }) {
+export default async function Page(props: {
+	params: { slug: string };
+	searchParams: { [key: string]: string };
+}) {
 	const { params, searchParams } = props;
 
 	const { product } = await executeGraphQL(ProductDetailsDocument, {
 		variables: {
 			slug: decodeURIComponent(params.slug),
-			locale: LanguageCodeEnum.En
+			locale: LanguageCodeEnum.En,
 		},
 		revalidate: 60,
 	});
 
-	if (product?.media && typeof window === 'undefined') {
-		product.media = await addBlurDataMedia(product.media as ProductMedia[])
+	if (product?.media && typeof window === "undefined") {
+		product.media = await addBlurDataMedia(product.media as ProductMedia[]);
 	}
 
 	const attributeOptions = getAttributeOptionsForVariantSelector(product);
@@ -137,7 +142,7 @@ export default async function Page(props: { params: { slug: string }; searchPara
 				variables: {
 					id: checkoutId,
 					productVariantId: decodeURIComponent(selectedVariantID),
-					locale: LanguageCodeEnum.En
+					locale: LanguageCodeEnum.En,
 				},
 				cache: "no-cache",
 			});
@@ -163,7 +168,6 @@ export default async function Page(props: { params: { slug: string }; searchPara
 		<section className="mx-auto grid max-w-7xl p-8">
 			<form className="grid gap-2 sm:grid-cols-2" action={addItem}>
 				{firstImage && (
-
 					// <ProductImageWrapper alt={firstImage.alt ?? ""} width={1024} height={1024} src={firstImage.url} />
 					<ProductGallery product={product} attributeOptions={attributeOptions} />
 				)}

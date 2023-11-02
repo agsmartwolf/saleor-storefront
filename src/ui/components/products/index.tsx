@@ -1,12 +1,11 @@
-"use client"
-import dynamic from 'next/dynamic'
+"use client";
+import dynamic from "next/dynamic";
 
 export const ProductGalleryNoSSR = dynamic(
-   () => import('./ProductGallery').then(m=>({"default":m.ProductGallery})),
-  {
-  ssr: false
-})
+	() => import("./ProductGallery").then((m) => ({ default: m.ProductGallery })),
+	{
+		ssr: false,
+	},
+);
 
-
-
-export const ProductGallery = (props: any) => <ProductGalleryNoSSR {...props}/>
+export const ProductGallery = (props: any) => <ProductGalleryNoSSR {...props} />;

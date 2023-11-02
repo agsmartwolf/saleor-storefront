@@ -8,7 +8,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 	const { category } = await executeGraphQL(ProductListByCategoryDocument, {
 		variables: {
 			slug: params.slug,
-			locale: LanguageCodeEnum.En
+			locale: LanguageCodeEnum.En,
 		},
 		revalidate: 60,
 	});
@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 	const { category } = await executeGraphQL(ProductListByCategoryDocument, {
 		variables: {
 			slug: params.slug,
-			locale: LanguageCodeEnum.En
+			locale: LanguageCodeEnum.En,
 		},
 		revalidate: 60,
 	});

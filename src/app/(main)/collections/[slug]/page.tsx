@@ -6,8 +6,7 @@ import { ProductList } from "@/ui/components/ProductList";
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
 	const { collection } = await executeGraphQL(ProductListByCollectionDocument, {
-		variables: { slug: params.slug,
-			locale: LanguageCodeEnum.En },
+		variables: { slug: params.slug, locale: LanguageCodeEnum.En },
 		revalidate: 60,
 	});
 
@@ -20,8 +19,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 
 export default async function Page({ params }: { params: { slug: string } }) {
 	const { collection } = await executeGraphQL(ProductListByCollectionDocument, {
-		variables: { slug: params.slug,
-			locale: LanguageCodeEnum.En },
+		variables: { slug: params.slug, locale: LanguageCodeEnum.En },
 		revalidate: 60,
 	});
 

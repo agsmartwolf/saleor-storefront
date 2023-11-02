@@ -12,7 +12,7 @@ export default async function Page() {
 	const data = await executeGraphQL(ProductListByCollectionDocument, {
 		variables: {
 			slug: "bestsellers",
-			locale: LanguageCodeEnum.En
+			locale: LanguageCodeEnum.En,
 		},
 		revalidate: 60,
 	});

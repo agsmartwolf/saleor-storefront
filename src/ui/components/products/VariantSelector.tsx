@@ -3,8 +3,17 @@
 import { useMemo } from "react";
 import { useRouter, redirect, useSearchParams, type ReadonlyURLSearchParams } from "next/navigation";
 import { RadioGroup } from "@headlessui/react";
-import { type Product, type ProductListItemFragment, type ProductVariant, type VariantDetailsFragment } from "@/gql/graphql";
-import { type AttributeOptionsVarSelectorType, type AttributeValuesType, getPrimaryAttribute } from "@/app/lib/products";
+import {
+	type Product,
+	type ProductListItemFragment,
+	type ProductVariant,
+	type VariantDetailsFragment,
+} from "@/gql/graphql";
+import {
+	type AttributeOptionsVarSelectorType,
+	type AttributeValuesType,
+	getPrimaryAttribute,
+} from "@/app/lib/products";
 import { GenericAttribute } from "@/ui/components/products/GenericAttribute";
 import { useSelectedVariant } from "@/app/lib/useSelectedVariant";
 
@@ -12,12 +21,12 @@ export function VariantSelector({
 	variants,
 	product,
 	initialSelectedVariant,
-	attributeOptions
+	attributeOptions,
 }: {
 	variants: readonly VariantDetailsFragment[];
 	product: Product;
 	initialSelectedVariant?: ProductVariant;
-	attributeOptions: AttributeOptionsVarSelectorType
+	attributeOptions: AttributeOptionsVarSelectorType;
 }) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -25,18 +34,20 @@ export function VariantSelector({
 	const [selectedVariant, setSelectedVariant] = useSelectedVariant({
 		product,
 		attributes: attributeOptions,
-		initialSelectedVariant
-	})
+		initialSelectedVariant,
+	});
 
 	if (!selectedVariant && variants.length === 1 && variants[0]?.quantityAvailable) {
 		// TODO
-		redirect(getHrefForVariant(
-			product,
-			variants[0].attributes.map(a => a.attribute.id),
-			variants[0].attributes.map(a => a.values[0].value),
-			primaryAttribute,
-			searchParams
-		));
+		redirect(
+			getHrefForVariant(
+				product,
+				variants[0].attributes.map((a) => a.attribute.id),
+				variants[0].attributes.map((a) => a.values[0].value),
+				primaryAttribute,
+				searchParams,
+			),
+		);
 	}
 
 	const onChange = (value: string, attributeId: string) => {
@@ -44,12 +55,9 @@ export function VariantSelector({
 		// TODO
 		if (attributeId !== primaryAttribute?.attribute.id) {
 		}
-		void router.replace(
-			getHrefForVariant(product, [attributeId], [value], primaryAttribute, searchParams),
-			{
-				scroll: false,
-			}
-		);
+		void router.replace(getHrefForVariant(product, [attributeId], [value], primaryAttribute, searchParams), {
+			scroll: false,
+		});
 	};
 
 	return (
@@ -90,27 +98,28 @@ function getHrefForVariant(
 	attributeIds: string[],
 	values: (string | null | undefined)[],
 	primaryAttribute: AttributeValuesType | undefined,
-	searchParams: ReadonlyURLSearchParams): string {
+	searchParams: ReadonlyURLSearchParams,
+): string {
 	const pathname = `/products/${encodeURIComponent(product.slug)}`;
 	const queryEntries = searchParams.entries();
 	const queryObject: Record<string, string> = {};
 	for (const [key, value] of queryEntries) {
-		queryObject[key] = value
+		queryObject[key] = value;
 	}
 
-	let finalQueryObject: Record<string, string> = {}
+	let finalQueryObject: Record<string, string> = {};
 
 	// if (!attributeIds.some(attributeId => attributeId === primaryAttribute?.attribute?.id)) {
 	//
 	// }
 
-	finalQueryObject = {...queryObject}
+	finalQueryObject = { ...queryObject };
 
 	attributeIds.forEach((attributeId, _ind) => {
 		if (attributeId && typeof values[_ind] !== "undefined" && values[_ind] !== null) {
-			finalQueryObject[attributeId] = values[_ind] as string
+			finalQueryObject[attributeId] = values[_ind] as string;
 		}
-	})
+	});
 	const query = new URLSearchParams(finalQueryObject);
 	return `${pathname}?${query.toString()}`;
 }

@@ -29,15 +29,17 @@ export function ProductGallery({ product, attributeOptions }: ProductGalleryProp
 
 	const galleryMedia = product.media?.filter((m) => !isNull(m)) ?? [];
 
-  let initialImageIndex  = getImgIndexOnPrimaryAttr({
-    product,
-    selectedPrimaryAttrValue,
-    galleryMedia,
-  });
+	let initialImageIndex = getImgIndexOnPrimaryAttr({
+		product,
+		selectedPrimaryAttrValue,
+		galleryMedia,
+	});
 
-  initialImageIndex = initialImageIndex === -1 ? 0 : initialImageIndex
+	initialImageIndex = initialImageIndex === -1 ? 0 : initialImageIndex;
 
-	const [currentImage, setCurrentImage] = useState<MediaWithBlurData | ProductMedia>(galleryMedia?.[initialImageIndex]);
+	const [currentImage, setCurrentImage] = useState<MediaWithBlurData | ProductMedia>(
+		galleryMedia?.[initialImageIndex],
+	);
 	const [direction, setDirection] = useState(0);
 	const [currentImgIndex, setCurrentImageInd] = useState(initialImageIndex);
 

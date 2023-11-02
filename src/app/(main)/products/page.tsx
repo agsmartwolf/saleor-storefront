@@ -22,7 +22,7 @@ export default async function Page({ searchParams }: Props) {
 		variables: {
 			first: ProductsPerPage,
 			after: cursor,
-			locale: LanguageCodeEnum.En
+			locale: LanguageCodeEnum.En,
 		},
 		revalidate: 60,
 	});

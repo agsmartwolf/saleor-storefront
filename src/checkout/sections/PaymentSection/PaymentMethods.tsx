@@ -9,24 +9,24 @@ import { useCheckout } from "@/checkout/hooks/useCheckout";
 import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
 import { executeGraphQL } from "@/lib/graphql";
 import { CheckoutPaymentCreateDocument, CountryCode } from "@/gql/graphql";
-import { Address, InputMaybe, useCheckoutBillingAddressUpdateMutation } from "@/checkout/graphql";
+import { type Address, type InputMaybe, useCheckoutBillingAddressUpdateMutation } from "@/checkout/graphql";
 
-const PAYMENT_METHOD_META_FIELD_KEY = "payment_method_custom"
+const PAYMENT_METHOD_META_FIELD_KEY = "payment_method_custom";
 enum PaymentMethodsEnum {
-	cash = 'cash',
-	bankTransfer = 'bank_transfer'
+	cash = "cash",
+	bankTransfer = "bank_transfer",
 }
 
 const PAYMENT_METHODS = [
 	{
 		id: PaymentMethodsEnum.cash,
-		label: 'Cash'
+		label: "Cash",
 	},
 	{
 		id: PaymentMethodsEnum.bankTransfer,
-		label: 'Bank Transfer'
+		label: "Bank Transfer",
 	},
-]
+];
 
 interface PaymentMethodsFormData {
 	paymentMethodId: PaymentMethodsEnum | null;
@@ -39,8 +39,6 @@ export const PaymentMethods = () => {
 		changingBillingCountry,
 		updateState: { checkoutDeliveryMethodUpdate },
 	} = useCheckoutUpdateState();
-
-
 
 	// const { adyen } = availablePaymentGateways;
 
@@ -66,8 +64,7 @@ export const PaymentMethods = () => {
 			() => ({
 				scope: "checkoutBillingUpdate",
 				onSubmit: checkoutBillingAddressUpdate,
-				shouldAbort: ({ formData: { paymentMethodId } }) =>
-					!paymentMethodId,
+				shouldAbort: ({ formData: { paymentMethodId } }) => !paymentMethodId,
 				parse: ({ paymentMethodId, languageCode, checkoutId }) => ({
 					languageCode,
 					id: checkoutId,
@@ -75,11 +72,13 @@ export const PaymentMethods = () => {
 					billingAddress: {
 						...(({ id, __typename, ...o }) => o)(checkout.billingAddress as Address),
 						country: (checkout.billingAddress?.country?.code ?? CountryCode.Ge) as InputMaybe<CountryCode>,
-						metadata: [{
-							key: PAYMENT_METHOD_META_FIELD_KEY,
-							value: paymentMethodId
-						}]
-					}
+						metadata: [
+							{
+								key: PAYMENT_METHOD_META_FIELD_KEY,
+								value: paymentMethodId,
+							},
+						],
+					},
 				}),
 				onError: ({ formData: { paymentMethodId }, formHelpers: { setValues } }) => {
 					return setValues({ paymentMethodId });
@@ -118,12 +117,12 @@ export const PaymentMethods = () => {
 	}
 
 	// return <div className="mb-8">{adyen ? <AdyenDropIn config={adyen} /> : null}</div>;
-	return <div className="mb-8">
-		<FormProvider form={form}>
-			<Divider />
-			<SelectBoxGroup label="payment methods">
-				{PAYMENT_METHODS.map(
-					({id, label}) => (
+	return (
+		<div className="mb-8">
+			<FormProvider form={form}>
+				<Divider />
+				<SelectBoxGroup label="payment methods">
+					{PAYMENT_METHODS.map(({ id, label }) => (
 						<SelectBox key={id} name="paymentMethodId" value={id}>
 							<div className="min-h-12 pointer-events-none flex grow flex-col justify-center">
 								<div className="flex flex-row items-center justify-between self-stretch">
@@ -131,9 +130,9 @@ export const PaymentMethods = () => {
 								</div>
 							</div>
 						</SelectBox>
-					),
-				)}
-			</SelectBoxGroup>
-		</FormProvider>
-	</div>;
+					))}
+				</SelectBoxGroup>
+			</FormProvider>
+		</div>
+	);
 };

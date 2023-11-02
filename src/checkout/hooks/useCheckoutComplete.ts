@@ -10,15 +10,14 @@ export const useCheckoutComplete = () => {
 	} = useCheckout();
 	const [{ fetching }, checkoutComplete] = useCheckoutCompleteMutation();
 
-	const billingMetadata =
-		billingAddress?.metadata.map(m => ({...(({ __typename, ...r}) => r)(m)}))
+	const billingMetadata = billingAddress?.metadata.map((m) => ({ ...(({ __typename, ...r }) => r)(m) }));
 
 	const onCheckoutComplete = useSubmit<{}, typeof checkoutComplete>(
 		useMemo(
 			() => ({
 				parse: () => ({
 					checkoutId,
-					metadata: billingMetadata
+					metadata: billingMetadata,
 				}),
 				onSubmit: checkoutComplete,
 				onSuccess: ({ data }) => {
