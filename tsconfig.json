@@ -10,7 +10,7 @@
 		"noEmit": true,
 		"esModuleInterop": true,
 		"module": "esnext",
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
@@ -25,8 +25,8 @@
 			}
 		],
 		"paths": {
-			"@/*": ["./src/*"],
-			"@ui/*": ["./src/components/*"],
+			"@/*": ["./*"],
+			"@ui/*": ["./components/*"]
 
 		},
 		"types": ["react-dom/canary"]
@@ -34,12 +34,14 @@
 
 	"include": [
 		"next-env.d.ts",
-		"src/**/*.ts",
-		"src/**/*.tsx",
+		"./**/*.ts",
+		"./**/*.tsx",
 		".next/types/**/*.ts",
 		"*.ts",
 		"__tests__/**/*",
-		"./kuma.config.ts"
+		"./kuma.config.ts",
+		"middleware.ts",
+		"messages/**/*.json"
 	],
 	"exclude": ["node_modules"]
 }

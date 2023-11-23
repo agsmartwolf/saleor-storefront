@@ -31,9 +31,9 @@ const config: CodegenConfig = {
 			}
 		},
 	},
-	documents: ["src/graphql/**/*.graphql", "src/checkout/graphql/*.graphql"],
+	documents: ["graphql/**/*.graphql", "checkout/graphql/*.graphql"],
 	generates: {
-		"src/gql/": {
+		"gql/": {
 			preset: "client",
 			plugins: [],
 			config: {

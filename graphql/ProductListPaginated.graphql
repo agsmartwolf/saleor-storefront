@@ -1,0 +1,17 @@
+query ProductListPaginated($first: Int, $after: String, $before: String, $last: Int, $locale: LanguageCodeEnum = EN) {
+	products(first: $first, channel: "georgia", after: $after, before: $before, last: $last) {
+		totalCount
+		edges {
+			node {
+				...ProductListItem
+			}
+			cursor
+		}
+		pageInfo {
+			endCursor
+			hasNextPage
+			startCursor
+			hasPreviousPage
+		}
+	}
+}

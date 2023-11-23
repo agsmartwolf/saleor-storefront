@@ -12,7 +12,7 @@ const config = {
 	experimental: {
 		typedRoutes: false,
 	},
-	reactStrictMode: true,
+	reactStrictMode: true
 };
 
 module.exports = withKumaUI(config);

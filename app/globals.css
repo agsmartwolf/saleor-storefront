@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	overflow-x: hidden;
+}
+
+@media (min-width: theme(screens.lg)) {
+	.checkout-bg {
+		background: linear-gradient(
+			90deg,
+			theme(colors.white) 0%,
+			theme(colors.white) 50%,
+			theme(colors.neutral.200) calc(50%),
+			theme(colors.neutral.200) calc(50% + 1px),
+			theme(colors.neutral.50) calc(50% + 1px),
+			theme(colors.neutral.50) 100%
+		);
+	}
+}
+
+.strikethrough-diagonal {
+	position: relative;
+}
+
+.strikethrough-diagonal:before {
+	position: absolute;
+	content: '';
+	left: 0;
+	top: 50%;
+	right: 0;
+	border-top: 1px solid;
+	border-color: var(--gray-400);
+	transform: skewY(-11deg);
+}
