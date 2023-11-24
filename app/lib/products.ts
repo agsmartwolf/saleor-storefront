@@ -1,7 +1,6 @@
 import { type ReadonlyURLSearchParams } from "next/navigation";
-import { type ImageProps } from "next/image";
-import { type Attribute, type AttributeValue, type Product, type ProductVariant } from "../../gql/graphql";
-import { type MediaWithBlurData } from "../../ui/components/Carousel";
+import { type Attribute, type AttributeValue, type Product, type ProductVariant } from "@/gql/graphql";
+import { type MediaWithBlurData } from "@/ui/components/Carousel";
 
 export const PRIMARY_ATTRIBUTE_FIELD = "isPrimaryAttribute";
 

@@ -1,5 +1,4 @@
 import { Box, Heading } from "@kuma-ui/core";
-import Link from "next/link";
 import { Picture, type PictureProps } from "../atoms/Picture";
 import Button from "@/ui/atoms/Button";
 import { BUTTON_STYLE, BUTTON_TYPE } from "@/ui/atoms/Button/Button";

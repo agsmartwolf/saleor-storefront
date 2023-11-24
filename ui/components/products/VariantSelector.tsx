@@ -31,7 +31,7 @@ export function VariantSelector({
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const primaryAttribute = useMemo(() => getPrimaryAttribute(attributeOptions), [attributeOptions]);
-	const [selectedVariant, setSelectedVariant] = useSelectedVariant({
+	const [selectedVariant] = useSelectedVariant({
 		product,
 		attributes: attributeOptions,
 		initialSelectedVariant,
@@ -54,6 +54,7 @@ export function VariantSelector({
 		// setSelectedVariant(value);
 		// TODO
 		if (attributeId !== primaryAttribute?.attribute.id) {
+			/* empty */
 		}
 		void router.replace(getHrefForVariant(product, [attributeId], [value], primaryAttribute, searchParams), {
 			scroll: false,
@@ -68,6 +69,7 @@ export function VariantSelector({
 						attribute={primaryAttribute}
 						selectedVariant={selectedVariant}
 						onChange={(v) => onChange(v, primaryAttribute?.attribute.id)}
+						primaryAttribute={primaryAttribute}
 					/>
 				) : null}
 				{Object.keys(attributeOptions)
@@ -97,7 +99,7 @@ function getHrefForVariant(
 	product: ProductListItemFragment,
 	attributeIds: string[],
 	values: (string | null | undefined)[],
-	primaryAttribute: AttributeValuesType | undefined,
+	_primaryAttribute: AttributeValuesType | undefined,
 	searchParams: ReadonlyURLSearchParams,
 ): string {
 	const pathname = `/products/${encodeURIComponent(product.slug)}`;

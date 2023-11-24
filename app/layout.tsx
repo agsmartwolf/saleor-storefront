@@ -2,9 +2,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { type ReactNode } from "react";
 import { type Metadata } from "next";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { KumaRegistry } from "@kuma-ui/next-plugin/registry";
-import { AuthProvider } from "../ui/components/AuthProvider";
-import { DraftModeNotification } from "../ui/components/DraftModeNotification";
+import { AuthProvider } from "@/ui/components/AuthProvider";
+import { DraftModeNotification } from "@/ui/components/DraftModeNotification";
 
 const inter = Inter({ subsets: ["latin"] });
 

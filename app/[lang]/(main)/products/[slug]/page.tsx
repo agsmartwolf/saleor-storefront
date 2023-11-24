@@ -20,6 +20,7 @@ import {
 	type ProductMedia,
 } from "@/gql/graphql";
 import { executeGraphQL, formatMoney, formatMoneyRange } from "@/lib/graphql";
+import getIntl from "@/app/[lang]/intl";
 
 const shouldUseHttps =
 	process.env.NEXT_PUBLIC_STOREFRONT_URL?.startsWith("https") || !!process.env.NEXT_PUBLIC_VERCEL_URL;
@@ -75,11 +76,20 @@ export async function generateStaticParams() {
 const parser = edjsHTML();
 
 export default async function Page(props: {
-	params: { slug: string };
+	params: { slug: string; lang: string };
 	searchParams: { [key: string]: string };
 }) {
 	const { params, searchParams } = props;
-
+	const { lang } = params;
+	const intl = await getIntl(lang, "common");
+	const content = {
+		addToBasket: intl.formatMessage({
+			id: "addToBasket",
+		}),
+		processing: intl.formatMessage({
+			id: "processing",
+		}),
+	};
 	const { product } = await executeGraphQL(ProductDetailsDocument, {
 		variables: {
 			slug: decodeURIComponent(params.slug),
@@ -188,14 +198,21 @@ export default async function Page(props: {
 								attributeOptions={attributeOptions}
 							/>
 						)}
-						<AvailabilityMessage isAvailable={isAvailable} />
+						<AvailabilityMessage isAvailable={!!isAvailable} />
 						<div className="mt-2">
-							<AddButton disabled={!selectedVariantID || !selectedVariant?.quantityAvailable} />
+							<AddButton
+								disabled={!selectedVariantID || !selectedVariant?.quantityAvailable}
+								content={{
+									addToBasket: content.addToBasket,
+									processing: content.processing,
+								}}
+								price={price}
+							/>
 						</div>
 						{description && (
 							<div className="mt-8 space-y-6">
-								{description.map((content) => (
-									<div key={content} dangerouslySetInnerHTML={{ __html: xss(content) }} />
+								{description.map((c) => (
+									<div key={c} dangerouslySetInnerHTML={{ __html: xss(c) }} />
 								))}
 							</div>
 						)}

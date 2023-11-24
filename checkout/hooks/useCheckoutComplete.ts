@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { Address, useCheckoutCompleteMutation } from "../graphql";
+import { useCheckoutCompleteMutation } from "../graphql";
+import { replaceUrl } from "../lib/utils/url";
 import { useCheckout } from "./useCheckout";
 import { useSubmit } from "./useSubmit";
-import { replaceUrl } from "../lib/utils/url";
 
 export const useCheckoutComplete = () => {
 	const {

@@ -173,7 +173,7 @@ const config: Config = {
 				fade: "fadeOut 15s infinite",
 			},
 			// that is actual animation
-			keyframes: (theme) => {
+			keyframes: (_theme) => {
 				// a = presentation time for one image
 				// b = duration for cross-fading
 				// n = image amount
@@ -185,11 +185,11 @@ const config: Config = {
 
 				return {
 					fadeOut: {
-						"0%": { opacity: 1, "z-index": 10 },
-						[`${(a / t) * 100}%`]: { opacity: 1, "z-index": 10 },
-						[`${((a + b) / t) * 100}%`]: { opacity: 0, "z-index": 0 },
-						[`${100 - (b / t) * 100}%`]: { opacity: 0, "z-index": 0 },
-						"100%": { opacity: 1, "z-index": 10 },
+						"0%": { opacity: "1", "z-index": "10" },
+						[`${(a / t) * 100}%`]: { opacity: "1", "z-index": "10" },
+						[`${((a + b) / t) * 100}%`]: { opacity: "0", "z-index": "0" },
+						[`${100 - (b / t) * 100}%`]: { opacity: "0", "z-index": "0" },
+						"100%": { opacity: "1", "z-index": "10" },
 					},
 				};
 			},

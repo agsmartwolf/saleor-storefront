@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo } from "react";
-import { PaymentSectionSkeleton } from "./PaymentSectionSkeleton";
 import { useCheckoutUpdateState } from "../../state/updateStateStore";
 import { Divider, SelectBox, SelectBoxGroup } from "../../components";
 import { useForm } from "../../hooks/useForm";
@@ -7,9 +6,9 @@ import { useDebouncedSubmit } from "../../hooks/useDebouncedSubmit";
 import { useFormSubmit } from "../../hooks/useFormSubmit";
 import { useCheckout } from "../../hooks/useCheckout";
 import { FormProvider } from "../../hooks/useForm/FormProvider";
-import { executeGraphQL } from "../../../lib/graphql";
-import { CheckoutPaymentCreateDocument, CountryCode } from "../../../gql/graphql";
 import { type Address, type InputMaybe, useCheckoutBillingAddressUpdateMutation } from "../../graphql";
+import { PaymentSectionSkeleton } from "./PaymentSectionSkeleton";
+import { CountryCode } from "@/gql/graphql";
 
 const PAYMENT_METHOD_META_FIELD_KEY = "payment_method_custom";
 enum PaymentMethodsEnum {
@@ -70,7 +69,7 @@ export const PaymentMethods = () => {
 					id: checkoutId,
 					checkoutId: checkoutId,
 					billingAddress: {
-						...(({ id, __typename, ...o }) => o)(checkout.billingAddress as Address),
+						...(({ __typename, ...o }) => o)(checkout.billingAddress as Address),
 						country: (checkout.billingAddress?.country?.code ?? CountryCode.Ge) as InputMaybe<CountryCode>,
 						metadata: [
 							{

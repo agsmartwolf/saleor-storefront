@@ -2,7 +2,18 @@
 
 import { useFormStatus } from "react-dom";
 
-export function AddButton({ disabled }: { disabled?: boolean }) {
+export function AddButton({
+	disabled,
+	price,
+	content,
+}: {
+	disabled?: boolean;
+	price?: string | null;
+	content: {
+		processing: string;
+		addToBasket: string;
+	};
+}) {
 	const { pending } = useFormStatus();
 	const isButtonDisabled = disabled || pending;
 
@@ -35,10 +46,13 @@ export function AddButton({ disabled }: { disabled?: boolean }) {
 							d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
 						></path>
 					</svg>
-					<span>Processing...</span>
+					<span>{content.processing}</span>
 				</div>
 			) : (
-				<span>Add to cart</span>
+				<>
+					<span>{content.addToBasket}</span>
+					<span>{price}</span>
+				</>
 			)}
 		</button>
 	);

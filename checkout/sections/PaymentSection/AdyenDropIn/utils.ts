@@ -1,4 +1,4 @@
-import { type CoreOptions } from "@adyen/adyen-web/dist/types/core/types";
+import { type CoreOptions } from "@/node_modules/@adyen/adyen-web/dist/types/core/types";
 import {
 	type AdyenCheckoutInstanceOnAdditionalDetails,
 	type AdyenCheckoutInstanceOnSubmit,

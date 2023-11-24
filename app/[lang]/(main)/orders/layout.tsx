@@ -1,7 +1,6 @@
 import { type ReactNode } from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { KumaRegistry } from "@kuma-ui/next-plugin/registry";
-import { Footer } from "../../../../ui/components/Footer";
-import { Header } from "../../../../ui/components/Header";
 
 export const metadata = {
 	title: "Smart Wolf",

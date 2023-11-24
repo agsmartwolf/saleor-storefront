@@ -1,15 +1,14 @@
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
-import Image from "next/image";
+import Image, { type ImageProps } from "next/image";
 import clsx from "clsx";
-import { type MediaWithBlurData } from "../../pages/[channel]/[locale]/products/[slug]";
-import { type ProductMediaFragment } from "@/saleor/api";
+import { type MediaWithBlurData } from "@/ui/components/Carousel/Carousel";
 
-interface ProductMediaThumbnailsProps {
+interface ProductMediaThumbnailsProps<T> {
 	currentImageIndex: number;
-	images: MediaWithBlurData[];
-	currentPhoto: MediaWithBlurData;
+	images: T[];
+	currentPhoto: T;
 	setCurrentImage: (ind: number) => void;
-	setVideoToPlay: (v: MediaWithBlurData) => void;
+	setVideoToPlay: (v: T) => void;
 	loaded: boolean;
 	direction?: number;
 	hide: boolean;
@@ -27,16 +26,10 @@ export const range = (start: number, end: number) => {
 	return output;
 };
 
-export default function ProductMediaThumbnails({
-	setCurrentImage,
-	setVideoToPlay,
-	currentImageIndex,
-	images,
-	currentPhoto,
-	loaded,
-	hide,
-}: ProductMediaThumbnailsProps) {
-	const filteredImages = images?.filter((img: ProductMediaFragment, ind) =>
+export default function ProductMediaThumbnails<
+	T extends MediaWithBlurData & ImageProps & { type: "IMAGE" | "VIDEO" },
+>({ setCurrentImage, currentImageIndex, images, hide }: ProductMediaThumbnailsProps<T>) {
+	const filteredImages = images?.filter((_img, ind) =>
 		range(currentImageIndex - 15, currentImageIndex + 15).includes(ind),
 	);
 
@@ -73,7 +66,7 @@ export default function ProductMediaThumbnails({
 									}}
 									exit={{ width: "0%" }}
 									onClick={() => setCurrentImage(ind)}
-									key={img.url}
+									key={(img as MediaWithBlurData).url}
 									className={`${
 										ind === currentImageIndex ? "z-20 rounded-md shadow shadow-black/50" : "z-10"
 									} ${ind === 0 ? "rounded-l-md" : ""} ${
@@ -89,7 +82,7 @@ export default function ProductMediaThumbnails({
 												? "brightness-110 hover:brightness-110"
 												: "brightness-50 contrast-125 hover:brightness-75"
 										} h-full transform object-cover transition`}
-										src={img.url}
+										src={(img as MediaWithBlurData)?.url}
 									/>
 								</motion.button>
 							))}

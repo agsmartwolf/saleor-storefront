@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { Box } from "@kuma-ui/core";
 
 import { AnimatedHorizontalScroller } from "../AnimatedHorizontalScroller";
-import { PRODUCT_COLOR_MAP } from "../../../app/lib/products";
+import { PRODUCT_COLOR_MAP } from "@/app/lib/products";
 
 interface ColorPickerProps {
 	colors: Array<{
@@ -59,7 +59,7 @@ export function ColorPicker({ colors, onColorChanged }: ColorPickerProps) {
 					>
 						<div
 							className={clsx("h-full w-full", {
-								[PRODUCT_COLOR_MAP.get(c?.name?.toLowerCase() ?? "")]: true,
+								[PRODUCT_COLOR_MAP.get(c?.name?.toLowerCase() ?? "") as string]: true,
 							})}
 						/>
 					</Box>

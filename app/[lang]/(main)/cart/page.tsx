@@ -1,10 +1,10 @@
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import * as Checkout from "../../../../lib/checkout";
 import { CheckoutLink } from "./CheckoutLink";
 import { DeleteLineButton } from "./DeleteLineButton";
-import * as Checkout from "../../../../lib/checkout";
-import { formatMoney } from "../../../../lib/graphql";
+import { formatMoney } from "@/lib/graphql";
 
 export const metadata = {
 	title: "Shopping Cart",

@@ -7,15 +7,15 @@ import { PageHeader } from "../../sections/PageHeader";
 import { Summary, SummarySkeleton } from "../../sections/Summary";
 import { CheckoutForm, CheckoutFormSkeleton } from "../../sections/CheckoutForm";
 import { useCheckout } from "../../hooks/useCheckout";
-import { CheckoutSkeleton } from "./CheckoutSkeleton";
-import { PAGE_ID } from "./consts";
 import { useCheckoutComplete } from "../../hooks/useCheckoutComplete";
 import { Button } from "../../components";
+import { CheckoutSkeleton } from "./CheckoutSkeleton";
+import { PAGE_ID } from "./consts";
 
 export const Checkout = () => {
 	const { checkout, loading } = useCheckout();
 	const { loading: isAuthenticating } = useUser();
-	const { onCheckoutComplete, completingCheckout } = useCheckoutComplete();
+	const { onCheckoutComplete } = useCheckoutComplete();
 
 	const isCheckoutInvalid = !loading && !checkout && !isAuthenticating;
 

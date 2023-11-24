@@ -4,16 +4,16 @@ import { useEffect, useMemo } from "react";
 import { isNull } from "lodash-es";
 import { useSearchParams } from "next/navigation";
 import { type ImageProps } from "next/image";
+import { Carousel, type MediaWithBlurData } from "../Carousel";
+import { useCarouselState } from "../Carousel/useCarouselState";
+import { ImageExpand } from "./ImageExpand";
+import { VideoExpand } from "./VideoExpand";
 import {
 	type AttributeOptionsVarSelectorType,
 	getPrimaryAttribute,
 	mapSaleorProductMediaToCarousal,
-} from "../../../app/lib/products";
-import { type Product } from "../../../gql/graphql";
-import { Carousel, type MediaWithBlurData } from "../Carousel";
-import { ImageExpand } from "./ImageExpand";
-import { VideoExpand } from "./VideoExpand";
-import { useCarouselState } from "../Carousel/useCarouselState";
+} from "@/app/lib/products";
+import { type Product } from "@/gql/graphql";
 
 export interface ProductGalleryProps {
 	// product: ProductDetailsFragment;
@@ -84,10 +84,14 @@ export function ProductGallery({ product, attributeOptions }: ProductGalleryProp
 				</div>
 			)}
 			<Carousel
+				/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+				// @ts-ignore
 				currentImg={currentImage}
 				currentImgIndex={currentImgIndex}
 				setCurrentImage={setCurrentImageCB}
 				setVideoToPlay={setVideoToPlay}
+				/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+				// @ts-ignore
 				media={galleryMedia}
 				direction={direction}
 			/>

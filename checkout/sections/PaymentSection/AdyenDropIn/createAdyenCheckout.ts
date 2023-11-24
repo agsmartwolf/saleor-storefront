@@ -7,8 +7,8 @@ import { type CardElementData } from "@adyen/adyen-web/dist/types/components/Car
 import type DropinElement from "@adyen/adyen-web/dist/types/components/Dropin";
 import { PaymentResponse as AdyenApiPaymentResponse } from "@adyen/api-library/lib/src/typings/checkout/paymentResponse";
 import { type CreateCheckoutSessionResponse } from "@adyen/api-library/lib/src/typings/checkout/createCheckoutSessionResponse";
-import { type AdyenPaymentResponse } from "./types";
 import { replaceUrl } from "../../../lib/utils/url";
+import { type AdyenPaymentResponse } from "./types";
 
 export type AdyenDropInCreateSessionResponse = {
 	session: CreateCheckoutSessionResponse;
@@ -25,6 +25,7 @@ export type PostAdyenDropInPaymentsResponse = {
 
 export type AdyenCheckoutInstanceState = {
 	isValid?: boolean;
+	// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 	data: CardElementData & Record<string, any>;
 };
 export type AdyenCheckoutInstanceOnSubmit = (

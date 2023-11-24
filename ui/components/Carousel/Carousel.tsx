@@ -8,8 +8,8 @@ import ArrowRightIcon from "../../../public/arrow-right.svg";
 import ArrowLeftIcon from "../../../public/arrow-left.svg";
 import ProductMediaThumbnails from "./ProductMediaThumbnails";
 import { animationVariants } from "./utils";
-import { type ProductMedia } from "../../../gql/graphql";
-import { useOnScreen } from "../../../hooks/useOnScreen";
+import { type ProductMedia, ProductMediaType } from "@/gql/graphql";
+import { useOnScreen } from "@/hooks/useOnScreen";
 
 export type MediaWithBlurData = ProductMedia & {
 	blurDataURL: string;
@@ -30,7 +30,9 @@ interface CarouselPropsMedia<T> extends CarouselPropsBase {
 	setVideoToPlay: (v: T) => void;
 }
 type CarouselProps<T> = CarouselPropsChildren | CarouselPropsMedia<T>;
-export function Carousel<T extends ImageProps & { type: "IMAGE" | "VIDEO" }>(props: CarouselProps<T>) {
+export function Carousel<T extends MediaWithBlurData & ImageProps & { type: "IMAGE" | "VIDEO" }>(
+	props: CarouselProps<T>,
+) {
 	const [loaded, setLoaded] = useState(false);
 
 	const currentImageRef = useRef(null);
@@ -105,7 +107,7 @@ export function Carousel<T extends ImageProps & { type: "IMAGE" | "VIDEO" }>(pro
 									exit="exit"
 									className="absolute"
 								>
-									{(currentImg as T)?.type === "VIDEO" && (
+									{(currentImg as MediaWithBlurData)?.type === ProductMediaType.Video && (
 										<div
 											role="button"
 											tabIndex={-2}
@@ -135,14 +137,14 @@ export function Carousel<T extends ImageProps & { type: "IMAGE" | "VIDEO" }>(pro
 											</div>
 										</div>
 									)}
-									{(currentImg as T)?.type === "IMAGE" &&
+									{(currentImg as MediaWithBlurData)?.type === ProductMediaType.Image &&
 										(!children?.length ? (
 											<Image
-												width={(currentImg as T)?.width ?? 1024}
-												height={(currentImg as T)?.width ?? 1024}
-												src={(currentImg as T)?.src}
+												width={(currentImg as ImageProps)?.width ?? 1024}
+												height={(currentImg as ImageProps)?.width ?? 1024}
+												src={(currentImg as ImageProps)?.src}
 												placeholder="blur"
-												blurDataURL={(currentImg as T)?.blurDataURL}
+												blurDataURL={(currentImg as ImageProps)?.blurDataURL}
 												priority
 												alt="Next.js Conf image"
 												onLoad={() => setLoaded(true)}
@@ -158,7 +160,7 @@ export function Carousel<T extends ImageProps & { type: "IMAGE" | "VIDEO" }>(pro
 						<ProductMediaThumbnails
 							images={media}
 							currentImageIndex={currentImgIndex}
-							currentPhoto={currentImg}
+							currentPhoto={currentImg as T}
 							setCurrentImage={setCurrentImage}
 							setVideoToPlay={setVideoToPlay}
 							loaded={loaded}

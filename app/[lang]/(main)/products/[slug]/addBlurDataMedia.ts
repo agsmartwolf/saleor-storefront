@@ -1,7 +1,7 @@
 "use server";
-import { type ProductMedia } from "../../../../../gql/graphql";
-import { type MediaWithBlurData } from "../../../../../ui/components/Carousel";
-import getBase64ImageUrl from "../../../../../lib/generateBlurPlaceholder";
+import getBase64ImageUrl from "@/lib/generateBlurPlaceholder";
+import { type ProductMedia } from "@/gql/graphql";
+import { type MediaWithBlurData } from "@/ui/components/Carousel";
 
 export async function addBlurDataMedia(media: ProductMedia[]) {
 	const updatedMedia: MediaWithBlurData[] = [];

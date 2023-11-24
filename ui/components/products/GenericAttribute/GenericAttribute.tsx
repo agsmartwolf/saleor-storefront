@@ -16,7 +16,7 @@ export type GenericAttributeProps = {
 	selectedVariant?: ProductVariant;
 	// variants which contain current AND primary attribute
 	product?: Product;
-	primaryAttribute: AttributeValuesType;
+	primaryAttribute?: AttributeValuesType;
 	onChange: (value: string) => void;
 };
 
@@ -78,7 +78,7 @@ export const GenericAttribute = ({
 									"bg-brand": checked && !disabled,
 									"bg-white": !checked,
 									"strikethrough-diagonal border-gray-200 text-gray-200": disabled,
-									"bg-green-100 text-gray-100 bg-opacity-30": checked && disabled,
+									"bg-green-100 bg-opacity-30 text-gray-100": checked && disabled,
 								})
 							}
 						>

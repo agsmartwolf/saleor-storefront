@@ -41,7 +41,7 @@
 		"__tests__/**/*",
 		"./kuma.config.ts",
 		"middleware.ts",
-		"messages/**/*.json"
+		"messages/**/*.json",
 	],
 	"exclude": ["node_modules"]
 }

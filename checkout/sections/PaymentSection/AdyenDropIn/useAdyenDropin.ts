@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import type DropinElement from "@adyen/adyen-web/dist/types/components/Dropin";
+import type DropinElement from "@/node_modules/@adyen/adyen-web/dist/types/components/Dropin";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { camelCase } from "lodash-es";
 import {

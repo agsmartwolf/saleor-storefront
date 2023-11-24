@@ -32,7 +32,7 @@ export function ProductElement({
 				<Box display={"flex"} flexDirection={vertical ? "column" : "row"} height="100%">
 					<ProductImageWrapper
 						loading={loading}
-						src={product?.thumbnail?.url}
+						src={product?.thumbnail?.url as string}
 						alt={product?.thumbnail?.alt ?? ""}
 						width={512}
 						height={512}

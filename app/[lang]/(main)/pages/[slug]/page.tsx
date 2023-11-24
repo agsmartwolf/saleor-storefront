@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import { type Metadata } from "next";
 import edjsHTML from "editorjs-html";
 import xss from "xss";
-import { LanguageCodeEnum, PageGetBySlugDocument } from "../../../../../gql/graphql";
-import { executeGraphQL } from "../../../../../lib/graphql";
+import { LanguageCodeEnum, PageGetBySlugDocument } from "@/gql/graphql";
+import { executeGraphQL } from "@/lib/graphql";
 
 const parser = edjsHTML();
 
@@ -38,8 +38,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 			<h1 className="text-3xl font-semibold">{title}</h1>
 			{contentHtml && (
 				<div className="prose">
-					{contentHtml.map((content) => (
-						<div key={content} dangerouslySetInnerHTML={{ __html: xss(content) }} />
+					{contentHtml.map((с) => (
+						<div key={с} dangerouslySetInnerHTML={{ __html: xss(с) }} />
 					))}
 				</div>
 			)}
