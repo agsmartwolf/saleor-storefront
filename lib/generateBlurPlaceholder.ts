@@ -3,8 +3,19 @@
 import Jimp from "jimp";
 import sharp from "sharp";
 import { type ProductMedia } from "@/gql/graphql";
+import { DEFAULT_IMAGE_PLACEHOLDER_BASE_64 } from "@/lib/constants";
 
 const cache = new Map<string, string>();
+
+const SUPPORTED_MIME_TYPES = [
+	"image/gif",
+	"image/jpg",
+	"image/jpeg",
+	"image/png",
+	"image/svg+xml",
+	"image/webp",
+	"image/gif",
+];
 
 export default async function getBase64ImageUrl(image: ProductMedia): Promise<string> {
 	let url = cache.get(image.url);
@@ -16,8 +27,11 @@ export default async function getBase64ImageUrl(image: ProductMedia): Promise<st
 	const buffer = await response.arrayBuffer();
 	let buf = Buffer.from(buffer);
 	const mimeType = response.headers.get("Content-Type");
+	if (!SUPPORTED_MIME_TYPES.includes(mimeType)) {
+		return DEFAULT_IMAGE_PLACEHOLDER_BASE_64;
+	}
+
 	if (mimeType && !!/webp/gi.exec(mimeType)) {
-		console.log(mimeType);
 		buf = await sharp(buffer).toFormat("jpeg").toBuffer();
 	}
 	const im = await Jimp.read(buf);
