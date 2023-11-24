@@ -1,4 +1,6 @@
 "server-only";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 import { promises as fs } from "fs";
 import { type MessageFormatElement } from "react-intl";
@@ -8,9 +10,9 @@ const getMessages = async (
 	locale: string,
 	namespace: string,
 ): Promise<Record<string, MessageFormatElement[]> | Record<string, string>> => {
-	console.log(locale);
-	console.log(namespace);
-	const data = await fs.readFile(process.cwd() + `/messages/${locale}/${namespace}.json`, "utf8");
+	const dName = dirname(fileURLToPath(import.meta.url));
+	const p = path.resolve(dName, `../../messages/${locale}/${namespace}.json`);
+	const data = await fs.readFile(p, "utf8");
 	return JSON.parse(data) as Record<string, MessageFormatElement[]> | Record<string, string>;
 };
 
