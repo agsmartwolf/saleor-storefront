@@ -1,0 +1,56 @@
+name: Vercel Production Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  SALEOR_API_TOKEN: ${{ secrets.SALEOR_API_TOKEN }}
+  NEXT_PUBLIC_ALLOWED_IMAGE_DOMAINS: ${{ secrets.NEXT_PUBLIC_ALLOWED_IMAGE_DOMAINS }}
+  I18NEXUS_API_KEY: ${{ secrets.I18NEXUS_API_KEY }}
+on:
+  push:
+    branches:
+      - master
+jobs:
+  Localazy-download:
+    name: Download strings from Localazy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: "0"
+          token: ${{ secrets.TOKEN }}
+      - name: Install localazy/cli and other dependencies
+        run: npm install
+      - name: Publish production release tag
+        run: npm run localazy:publish
+      - name: Download translated files
+        uses: localazy/download@v1
+        with:
+          read_key: ${{ secrets.LOCALAZY_READ_KEY }}
+          write_key: ${{ secrets.LOCALAZY_WRITE_KEY }}
+          release_tag: ${{ secrets.LOCALAZY_PROD_RELEASE_TAG }}
+
+      - run: |
+          # Test that localized files were downloaded by listing 
+          # the content of locales folder.
+          ls src/assets/locales/*.json
+      - name: Commit translation changes to repository
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Commit latest translations from Localazy.
+          commit_options: "--no-verify"
+          branch: master
+
+  Deploy-Production:
+    name: Deploy previews on vercel
+    needs: Localazy-download
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

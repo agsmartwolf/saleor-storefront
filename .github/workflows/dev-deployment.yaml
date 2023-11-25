@@ -1,0 +1,65 @@
+name: Vercel Development Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  SALEOR_API_TOKEN: ${{ secrets.SALEOR_API_TOKEN }}
+  NEXT_PUBLIC_ALLOWED_IMAGE_DOMAINS: ${{ secrets.NEXT_PUBLIC_ALLOWED_IMAGE_DOMAINS }}
+  I18NEXUS_API_KEY: ${{ secrets.I18NEXUS_API_KEY }}
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  i18nexus-download:
+    name: Download strings from I18NEXUS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get PNPM version from package.json
+        id: pnpm-version
+        run: echo "pnpm_version=$(cat package.json | jq '.engines.pnpm' | sed -E 's/[^0-9.]//g')" >> $GITHUB_OUTPUT
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ steps.pnpm-version.outputs.pnpm_version }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: package.json
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm --version && pnpm install --frozen-lockfile
+
+      - name: Download translated files
+        run: pnpm i18nexus pull
+        with:
+          api_key: ${{ secrets.I18NEXUS_API_KEY }}
+
+      - run: |
+          # Test that localized files were downloaded by listing 
+          # the content of locales folder.
+          ls messages/**/*.json
+      - name: Commit translation changes to repository
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Commit latest translations from i18nexus.
+          commit_options: "--no-verify"
+          branch: dev
+
+  Deploy-Dev:
+    name: Deploy previews on vercel
+    needs: i18nexus-download
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Vercel CLI
+        run: npm add --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
