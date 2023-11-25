@@ -35,8 +35,6 @@ jobs:
 
       - name: Download translated files
         run: pnpm i18nexus pull
-        with:
-          api_key: ${{ secrets.I18NEXUS_API_KEY }}
 
       - run: |
           # Test that localized files were downloaded by listing 
