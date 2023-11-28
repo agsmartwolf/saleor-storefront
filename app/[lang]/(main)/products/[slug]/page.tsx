@@ -89,6 +89,17 @@ export default async function Page(props: {
 		processing: intl.formatMessage({
 			id: "processing",
 		}),
+		stock: {
+			inStock: intl.formatMessage({
+				id: "inStock",
+			}),
+			outOfStock: intl.formatMessage({
+				id: "outOfStock",
+			}),
+			selectVariant: intl.formatMessage({
+				id: "selectVariant",
+			}),
+		},
 	};
 	const { product } = await executeGraphQL(ProductDetailsDocument, {
 		variables: {
@@ -198,7 +209,11 @@ export default async function Page(props: {
 								attributeOptions={attributeOptions}
 							/>
 						)}
-						<AvailabilityMessage isAvailable={!!isAvailable} />
+						<AvailabilityMessage
+							isAvailable={!!isAvailable}
+							selectedVariant={selectedVariant}
+							content={content.stock}
+						/>
 						<div className="mt-2">
 							<AddButton
 								disabled={!selectedVariantID || !selectedVariant?.quantityAvailable}

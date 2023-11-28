@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
+import { Box } from "@kuma-ui/core";
 
 export function AddButton({
 	disabled,
@@ -51,7 +52,9 @@ export function AddButton({
 			) : (
 				<>
 					<span>{content.addToBasket}</span>
-					<span>{price}</span>
+					<Box as="span" paddingLeft="2rem">
+						{price}
+					</Box>
 				</>
 			)}
 		</button>

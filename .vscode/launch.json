@@ -1,12 +1,31 @@
 {
+	"autoAttachChildProcesses": true,
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"type": "node",
+			"name": "Attach",
+			"port": 9230,
 			"request": "attach",
-			"name": "Attach to application",
 			"skipFiles": ["<node_internals>/**"],
-			"port": 9229
+			"type": "node"
+		},
+		{
+			"name": "Client",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://localhost:3000"
+		},
+		{
+			"name": "Next.js: debug full stack",
+			"cwd": "${workspaceFolder}",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "npm run dev",
+			"serverReadyAction": {
+				"action": "startDebugging",
+				"pattern": "started server on .+, url: (https?://.+)",
+				"name": "Client"
+			}
 		}
 	]
 }
