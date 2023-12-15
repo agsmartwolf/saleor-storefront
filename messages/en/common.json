@@ -1,7 +1,1 @@
-{
-	"inStock": "In stock",
-	"outOfStock": "Out of stock",
-	"processing": "Processing...",
-	"addToBasket": "Add to cart",
-	"selectVariant": "Select product options"
-}
+{"inStock":"In stock","outOfStock":"Out of stock","processing":"Processing...","addToBasket":"Add to cart","selectVariant":"Select product options"}
