@@ -1,5 +1,18 @@
-query ProductListPaginated($first: Int, $after: String, $before: String, $last: Int, $locale: LanguageCodeEnum = EN) {
-	products(first: $first, channel: "georgia", after: $after, before: $before, last: $last) {
+query ProductListPaginated(
+	$first: Int
+	$after: String
+	$before: String
+	$last: Int
+	$locale: LanguageCodeEnum = EN
+) {
+	products(
+		first: $first
+		channel: "georgia"
+		after: $after
+		before: $before
+		last: $last
+		sortBy: { field: RATING, direction: DESC }
+	) {
 		totalCount
 		edges {
 			node {

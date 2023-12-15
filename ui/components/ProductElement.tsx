@@ -23,7 +23,7 @@ export function ProductElement({
 		<Box
 			as="li"
 			data-testid="ProductElement"
-			className="min-w-[170px] border-[1px] border-solid border-gray-100"
+			className="min-w-[170px] border-[1px] border-solid border-gray-100 transition"
 			_hover={{
 				transform: "scale(1.1)",
 			}}

@@ -23,7 +23,14 @@ export function AddButton({
 			type="submit"
 			aria-disabled={isButtonDisabled}
 			onClick={(e) => isButtonDisabled && e.preventDefault()}
-			className="h-12 items-center bg-green-100 px-6 py-3 text-base font-medium leading-6 text-black-100 shadow hover:bg-green-200 disabled:cursor-not-allowed disabled:bg-gray-300 hover:disabled:opacity-70 aria-disabled:cursor-not-allowed aria-disabled:opacity-70 hover:aria-disabled:bg-gray-300"
+			className={`flex h-12 w-full items-center justify-between
+			bg-green-100 px-6
+			py-3 text-base font-medium leading-6 
+			text-black-100 shadow hover:bg-green-200 
+			disabled:cursor-not-allowed disabled:bg-gray-300 
+			hover:disabled:opacity-70 aria-disabled:cursor-not-allowed 
+			aria-disabled:opacity-70 
+			hover:aria-disabled:bg-gray-300 sm:w-auto`}
 		>
 			{pending ? (
 				<div className="inline-flex items-center">
@@ -52,7 +59,7 @@ export function AddButton({
 			) : (
 				<>
 					<span>{content.addToBasket}</span>
-					<Box as="span" paddingLeft="2rem">
+					<Box as="span" paddingLeft={["", "", "3rem"]}>
 						{price}
 					</Box>
 				</>

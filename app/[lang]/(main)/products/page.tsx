@@ -31,9 +31,12 @@ export default async function Page({ searchParams }: Props) {
 	if (endCursor) {
 		variables.after = endCursor;
 		variables.first = ProductsPerPage;
-	} else {
+	} else if (startCursor) {
 		variables.before = startCursor;
 		variables.last = ProductsPerPage;
+	} else {
+		variables.after = startCursor;
+		variables.first = ProductsPerPage;
 	}
 
 	const { products } = await executeGraphQL(ProductListPaginatedDocument, {

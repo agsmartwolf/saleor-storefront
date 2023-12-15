@@ -1,7 +1,7 @@
 {
-	"addToBasket": "Add to cart",
 	"inStock": "In stock",
 	"outOfStock": "Out of stock",
 	"processing": "Processing...",
-	"selectVariant": "Select product option"
+	"addToBasket": "Add to cart",
+	"selectVariant": "Select product options"
 }

@@ -67,14 +67,7 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
 						listStyleType="none"
 					>
 						{bestsellers?.map((p, ind) => (
-							<Box
-								key={p.id}
-								className="border-lg border-[1px] p-2 shadow-lg transition"
-								transform={["", ind === 1 ? "scale(1.1)" : ""]}
-								_hover={{
-									transform: ind === 1 ? "scale(1.2)" : "scale(1.1)",
-								}}
-							>
+							<Box key={p.id} className="" transform={["", ind === 1 ? "scale(1.1)" : ""]}>
 								<ProductElement product={p} loading={"eager"} vertical />
 							</Box>
 						))}
