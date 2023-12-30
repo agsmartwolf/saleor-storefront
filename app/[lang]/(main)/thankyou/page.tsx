@@ -1,5 +1,3 @@
-"use client";
-
 import getIntl from "@/app/[lang]/intl";
 
 export default async function ThankyouPage(props: { params: { lang: string } }) {

@@ -12,7 +12,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import { useAuthChange, useSaleorAuthContext } from "@saleor/auth-sdk/react";
 import { useState } from "react";
-import { RawIntlProvider, type MessageFormatElement } from "react-intl";
+import { RawIntlProvider, type MessageFormatElement, type IntlShape } from "react-intl";
 import { createIntl } from "@formatjs/intl";
 import { alertsContainerProps } from "./hooks/useAlerts/consts";
 import { RootViews } from "./views/RootViews";
@@ -50,7 +50,7 @@ export const Root = ({
 	return (
 		<UrqlProvider value={urqlClient}>
 			<ToastContainer {...alertsContainerProps} />
-			<RawIntlProvider value={intl}>
+			<RawIntlProvider value={intl as IntlShape}>
 				<ErrorBoundary FallbackComponent={PageNotFound}>
 					<RootViews />
 				</ErrorBoundary>

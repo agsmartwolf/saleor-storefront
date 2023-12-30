@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import { type PrimitiveType, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 import { PageHeader } from "../../sections/PageHeader";
 import { Summary, SummarySkeleton } from "../../sections/Summary";
 import { OrderInfo } from "../../sections/OrderInfo";
@@ -9,6 +9,7 @@ import { useOrder } from "../../hooks/useOrder";
 export const OrderConfirmation = () => {
 	const { order } = useOrder();
 
+	// eslint-disable-next-line @typescript-eslint/unbound-method
 	const { formatMessage } = useIntl();
 
 	const content = {

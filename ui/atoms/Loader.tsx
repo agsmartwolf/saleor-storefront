@@ -8,7 +8,7 @@ import React, { useEffect } from "react";
 const SPEED_FACTOR = 0.5;
 const pulseDuration = 1.5;
 
-const LoaderSVG: React.FC = () => {
+const Loader: React.FC = () => {
 	const controlsCircle = useAnimation();
 	const controlsDog = useAnimation();
 	const controlsPulse = useAnimation();
@@ -116,6 +116,7 @@ const LoaderSVG: React.FC = () => {
 	);
 };
 
-LoaderSVG.displayName = "LoaderSVG";
+Loader.displayName = "LoaderSVG";
 
-export default LoaderSVG;
+export default Loader;
+export { Loader };

@@ -5,7 +5,6 @@ import { AlertIcon, SuccessIcon } from "../../assets/icons";
 import { useOrder } from "../../hooks/useOrder";
 import { usePaymentMeta, usePaymentStatus } from "../PaymentSection/utils";
 import { Section } from "./Section";
-import { SelectBox } from "@/checkout/components";
 import { PAYMENT_METHODS } from "@/checkout/sections/PaymentSection/PaymentMethods";
 
 const ErrorMessage = ({ message }: { message: string }) => {
@@ -45,7 +44,7 @@ export const PaymentSection = () => {
 						>
 							<div className="min-h-12 pointer-events-none flex grow flex-col justify-center">
 								<div className="flex flex-row items-center justify-between self-stretch">
-									<p>{PAYMENT_METHODS.find((m) => m?.id === paymentMethod.value)?.label}</p>
+									<p>{PAYMENT_METHODS.find((m) => (m?.id as string) === paymentMethod.value)?.label}</p>
 								</div>
 							</div>
 						</div>

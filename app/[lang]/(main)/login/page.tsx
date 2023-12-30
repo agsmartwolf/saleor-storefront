@@ -2,10 +2,10 @@
 
 import { gql, useQuery } from "urql";
 import { useSaleorAuthContext } from "@saleor/auth-sdk/react";
-import { LoginForm } from "../../../../ui/components/LoginForm";
-import { Loader } from "../../../../ui/atoms/Loader";
-import { CurrentUserDocument, type CurrentUserQuery } from "../../../../gql/graphql";
-import { UserCard } from "../../../../ui/components/UserCard";
+import { LoginForm } from "@/ui/components/LoginForm";
+import { Loader } from "@/ui/atoms/Loader";
+import { CurrentUserDocument, type CurrentUserQuery } from "@/gql/graphql";
+import { UserCard } from "@/ui/components/UserCard";
 
 export default function LoginPage() {
 	const { signOut } = useSaleorAuthContext();
