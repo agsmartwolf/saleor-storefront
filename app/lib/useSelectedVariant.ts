@@ -2,8 +2,8 @@
 
 import { useSearchParams } from "next/navigation";
 import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
-import { type Product, type ProductVariant } from "../../gql/graphql";
 import { type AttributeOptionsVarSelectorType, getSelectedVariant } from "./products";
+import { type Product, type ProductVariant } from "@/gql/graphql";
 
 export const useSelectedVariant = ({
 	product,

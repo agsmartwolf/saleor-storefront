@@ -2,11 +2,11 @@ import Image from "next/image";
 import clsx from "clsx";
 import getIntl from "../../intl";
 import { HeroImages } from "./HeroImages";
+import { HERO_IMAGES } from "./constants";
 import { type LanguageCodeEnum, ProductListByCollectionDocument } from "@/gql/graphql";
 import { executeGraphQL } from "@/lib/graphql";
 import { ProductElement } from "@/ui/components/ProductElement";
 import { REVALIDATE_TIME } from "@/lib/constants";
-import { HERO_IMAGES } from "./constants";
 
 export const metadata = {
 	title: "Smart Wolf",
