@@ -6,6 +6,7 @@ import { type LanguageCodeEnum, ProductListByCollectionDocument } from "@/gql/gr
 import { executeGraphQL } from "@/lib/graphql";
 import { FullWidthPicture } from "@/ui/components/FullWidthPicture";
 import { ProductElement } from "@/ui/components/ProductElement";
+import { REVALIDATE_TIME } from "@/lib/constants";
 export const metadata = {
 	title: "Smart Wolf",
 	description:
@@ -18,7 +19,7 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
 			slug: "bestsellers",
 			locale: lang.toUpperCase() as LanguageCodeEnum,
 		},
-		revalidate: 60,
+		revalidate: REVALIDATE_TIME,
 	});
 	const intl = await getIntl(lang, "home");
 	const heroItems = HERO_IMAGES.map((item, ind) => ({

@@ -12,7 +12,8 @@ const config = {
 	experimental: {
 		typedRoutes: false,
 	},
-	reactStrictMode: true
+	reactStrictMode: true,
+	productionBrowserSourceMaps: true,
 };
 
 module.exports = withKumaUI(config);

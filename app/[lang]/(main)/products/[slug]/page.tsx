@@ -21,6 +21,7 @@ import {
 } from "@/gql/graphql";
 import { executeGraphQL, formatMoney, formatMoneyRange } from "@/lib/graphql";
 import getIntl from "@/app/[lang]/intl";
+import { REVALIDATE_TIME } from "@/lib/constants";
 
 const shouldUseHttps =
 	process.env.NEXT_PUBLIC_STOREFRONT_URL?.startsWith("https") || !!process.env.NEXT_PUBLIC_VERCEL_URL;
@@ -37,7 +38,7 @@ export async function generateMetadata({
 			slug: decodeURIComponent(params.slug),
 			locale: LanguageCodeEnum.En,
 		},
-		revalidate: 60,
+		revalidate: REVALIDATE_TIME,
 	});
 
 	if (!product) {
@@ -62,7 +63,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
 	const { products } = await executeGraphQL(ProductListDocument, {
-		revalidate: 60,
+		revalidate: REVALIDATE_TIME,
 		variables: {
 			first: 20,
 			locale: LanguageCodeEnum.En,
@@ -106,7 +107,7 @@ export default async function Page(props: {
 			slug: decodeURIComponent(params.slug),
 			locale: LanguageCodeEnum.En,
 		},
-		revalidate: 60,
+		revalidate: REVALIDATE_TIME,
 	});
 
 	if (product?.media && typeof window === "undefined") {

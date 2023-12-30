@@ -10,13 +10,13 @@ import { type Address, type InputMaybe, useCheckoutBillingAddressUpdateMutation 
 import { PaymentSectionSkeleton } from "./PaymentSectionSkeleton";
 import { CountryCode } from "@/gql/graphql";
 
-const PAYMENT_METHOD_META_FIELD_KEY = "payment_method_custom";
+export const PAYMENT_METHOD_META_FIELD_KEY = "payment_method_custom";
 enum PaymentMethodsEnum {
 	cash = "cash",
 	bankTransfer = "bank_transfer",
 }
 
-const PAYMENT_METHODS = [
+export const PAYMENT_METHODS = [
 	{
 		id: PaymentMethodsEnum.cash,
 		label: "Cash",

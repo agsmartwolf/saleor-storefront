@@ -24,6 +24,10 @@ export enum AttributeSlug {
 	color = "color",
 	sizeNumbers = "size-numbers",
 	sizeSml = "size-sml",
+	volume = "volume",
+	length = "length",
+	dimensions = "dimensions",
+	lengthWidth = "length-width",
 }
 
 export const GenericAttribute = ({
@@ -47,7 +51,12 @@ export const GenericAttribute = ({
 				/>
 			);
 		}
-		case AttributeSlug.sizeSml: {
+		case AttributeSlug.sizeSml:
+		case AttributeSlug.lengthWidth:
+		case AttributeSlug.sizeNumbers:
+		case AttributeSlug.length:
+		case AttributeSlug.dimensions:
+		case AttributeSlug.volume: {
 			return (
 				<AnimatedHorizontalScroller>
 					{attribute.values.map((v) => (
@@ -55,23 +64,25 @@ export const GenericAttribute = ({
 							key={v.id}
 							value={v.id}
 							disabled={
-								!product?.variants
-									?.filter(
-										(_var) =>
-											_var?.attributes.some(
-												(a) =>
-													a.attribute.id === primaryAttribute?.attribute?.id &&
-													a.values.some(
-														(_val) => _val.id === searchParams.get(primaryAttribute?.attribute.id),
+								primaryAttribute?.attribute
+									? !product?.variants
+											?.filter(
+												(_var) =>
+													_var?.attributes.some(
+														(a) =>
+															a.attribute.id === primaryAttribute?.attribute?.id &&
+															a.values.some(
+																(_val) => _val.id === searchParams.get(primaryAttribute?.attribute.id),
+															),
 													),
-											),
-									)
-									.some(
-										(_av) =>
-											_av.attributes
-												.find((_a) => _a.attribute.id === attribute.attribute.id)
-												?.values.some((_v) => _v.id === v.id),
-									)
+											)
+											.some(
+												(_av) =>
+													_av.attributes
+														.find((_a) => _a.attribute.id === attribute.attribute.id)
+														?.values.some((_v) => _v.id === v.id),
+											)
+									: false
 							}
 							className={({ checked, disabled }) =>
 								clsx({

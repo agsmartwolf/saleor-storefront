@@ -1,7 +1,1 @@
-{
-	"inStock": "В наличии",
-	"outOfStock": "Распродано",
-	"processing": "Обработка...",
-	"addToBasket": "Добавить в корзину",
-	"selectVariant": "Выберите параметры продукта"
-}
+{"inStock":"В наличии","outOfStock":"Распродано","processing":"Обработка...","addToBasket":"Добавить в корзину","selectVariant":"Выберите параметры продукта"}

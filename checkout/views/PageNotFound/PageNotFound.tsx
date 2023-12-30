@@ -10,9 +10,6 @@ export const PageNotFound = ({ error }: Partial<FallbackProps>) => {
 
 	return (
 		<div className="flex h-screen w-full flex-col items-center justify-center pt-12">
-			<div className="flex w-full justify-center">
-				<SaleorLogo />
-			</div>
 			<div className="mb-22 flex h-full flex-col items-center justify-center">
 				<p className="max-w-85 mb-6 text-center">
 					We couldn&apos;t fetch information about your checkout. Go back to the store and try again.

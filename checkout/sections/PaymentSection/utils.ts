@@ -4,17 +4,16 @@ import {
 	type CheckoutChargeStatusEnum,
 	type OrderAuthorizeStatusEnum,
 	type OrderChargeStatusEnum,
+	type OrderFragment,
 	type PaymentGateway,
 	type PaymentGatewayConfig,
 } from "../../graphql";
 import { type MightNotExist } from "../../lib/globalTypes";
 import { getUrl } from "../../lib/utils/url";
 import { adyenGatewayId } from "./AdyenDropIn/types";
-import {
-	type ParsedPaymentGateways,
-	type PaymentGatewayId,
-	type PaymentStatus,
-} from "./types";
+import { type ParsedPaymentGateways, type PaymentGatewayId, type PaymentStatus } from "./types";
+import { type MetadataItem } from "@/gql/graphql";
+import { PAYMENT_METHOD_META_FIELD_KEY } from "@/checkout/sections/PaymentSection/PaymentMethods";
 
 const paymentGatewayMap: Record<PaymentGatewayId, keyof ParsedPaymentGateways> = {
 	[adyenGatewayId]: "adyen",
@@ -91,4 +90,10 @@ export const usePaymentStatus = ({
 	}
 
 	return "none";
+};
+
+export const usePaymentMeta = ({ order }: { order: OrderFragment }): MetadataItem | null => {
+	const paymentMethod = order.metadata.find((item) => item.key === PAYMENT_METHOD_META_FIELD_KEY);
+	if (paymentMethod) return paymentMethod;
+	return null;
 };

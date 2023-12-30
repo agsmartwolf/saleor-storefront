@@ -27997,6 +27997,10 @@ export type OrderFragment = {
 	number: string;
 	userEmail?: string | null;
 	isPaid: boolean;
+	metadata: Array<{
+		key: string;
+		value: string;
+	}>;
 	chargeStatus: OrderChargeStatusEnum;
 	authorizeStatus: OrderAuthorizeStatusEnum;
 	discounts: Array<{
@@ -28957,6 +28961,10 @@ export const OrderFragmentDoc = gql`
 		number
 		userEmail
 		isPaid
+		metadata {
+			key
+			value
+		}
 		discounts {
 			type
 			name

@@ -12,13 +12,24 @@ import {
 import { ToastContainer } from "react-toastify";
 import { useAuthChange, useSaleorAuthContext } from "@saleor/auth-sdk/react";
 import { useState } from "react";
+import { RawIntlProvider, type MessageFormatElement } from "react-intl";
+import { createIntl } from "@formatjs/intl";
 import { alertsContainerProps } from "./hooks/useAlerts/consts";
 import { RootViews } from "./views/RootViews";
 import { PageNotFound } from "./views/PageNotFound";
 import "./index.css";
 
-export const Root = ({ saleorApiUrl }: { saleorApiUrl: string }) => {
+export const Root = ({
+	saleorApiUrl,
+	intlMessages,
+	locale,
+}: {
+	saleorApiUrl: string;
+	intlMessages: Record<string, MessageFormatElement[]> | Record<string, string>;
+	locale: string;
+}) => {
 	const saleorAuthClient = useSaleorAuthContext();
+	const intl = createIntl({ locale, messages: intlMessages });
 
 	const makeUrqlClient = () =>
 		createClient({
@@ -39,9 +50,11 @@ export const Root = ({ saleorApiUrl }: { saleorApiUrl: string }) => {
 	return (
 		<UrqlProvider value={urqlClient}>
 			<ToastContainer {...alertsContainerProps} />
-			<ErrorBoundary FallbackComponent={PageNotFound}>
-				<RootViews />
-			</ErrorBoundary>
+			<RawIntlProvider value={intl}>
+				<ErrorBoundary FallbackComponent={PageNotFound}>
+					<RootViews />
+				</ErrorBoundary>
+			</RawIntlProvider>
 		</UrqlProvider>
 	);
 };
