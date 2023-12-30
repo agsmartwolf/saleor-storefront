@@ -1,5 +1,3 @@
-const { withKumaUI } = require("@kuma-ui/next-plugin");
-
 /** @type {import('next').NextConfig} */
 const config = {
 	images: {
@@ -16,5 +14,5 @@ const config = {
 	productionBrowserSourceMaps: true,
 };
 
-module.exports = withKumaUI(config);
+module.exports = config;
 // export default config
