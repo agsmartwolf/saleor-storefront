@@ -1,5 +1,4 @@
 import { type FallbackProps } from "react-error-boundary";
-import { SaleorLogo } from "../../assets/images/SaleorLogo";
 import { Button } from "../../components/Button";
 
 export const PageNotFound = ({ error }: Partial<FallbackProps>) => {

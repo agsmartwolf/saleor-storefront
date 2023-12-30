@@ -14,8 +14,8 @@ export function NavLink({ href, children }: { href: string; children: JSX.Elemen
 			<Link
 				href={href}
 				className={clsx(
-					isActive ? "border-neutral-900 text-green-100" : "border-transparent",
-					"inline-flex items-center border-b-2 pt-px text-sm hover:text-green-100",
+					isActive ? "border-neutral-900 text-green-100 underline underline-offset-8" : "border-transparent",
+					"inline-flex items-center border-b-2 pt-px text-xs font-[400] hover:text-green-100",
 				)}
 			>
 				{children}

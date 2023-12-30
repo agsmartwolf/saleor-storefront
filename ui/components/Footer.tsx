@@ -48,7 +48,7 @@ export async function Footer() {
 										<hr className="mb-4 h-1 w-full" />
 									) : null}
 									<Link href={`/categories/${item.category?.slug}`}>
-										<h3 className="text-sm font-semibold text-white">{item.name}</h3>
+										<h3 className="text-xs font-medium text-white hover:text-green-100">{item.name}</h3>
 									</Link>
 									<ul className="mt-4 space-y-4 [&>li]:text-neutral-500">
 										{item.children?.map((child) => {

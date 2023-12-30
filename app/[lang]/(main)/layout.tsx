@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
-import { Footer } from "../../../ui/components/Footer";
-import { Header } from "../../../ui/components/Header";
+import { Footer } from "@/ui/components/Footer";
+import { Header } from "@/ui/components/Header";
 
 export const metadata = {
 	title: "Smart Wolf",

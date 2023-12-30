@@ -20,6 +20,7 @@ export const Logo = ({ className }: { className?: string }) => {
 				textTransform="lowercase"
 				color="white"
 				aria-label="homepage"
+				fontSize={18}
 			>
 				{companyName}
 			</Heading>
